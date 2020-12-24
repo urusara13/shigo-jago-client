@@ -1,19 +1,46 @@
 import React from "react";
-import Nav from './components/nav';
-import Search from './components/search';
-import Sitemap from './components/sitemap';
-import { BrowserRouter as Router } from "react-router-dom";
+
+import Nav from './components/Nav.js'
 
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isLogin: false,
+      userData: null,
+    }
+    this.logoutHandler = this.logoutHandler.bind(this);
+    this.loginHandler = this.loginHandler.bind(this);
+  }
+
+  loginHandler() {
+    this.setState({
+      isLogin: true
+    })
+  }
+
+  logoutHandler() {
+    this.setState({
+      isLogin: false
+    })
+  }
+
   render() {
+    const { isLogin } = this.state;
+    const userInfo = {
+      username: '송윤지',
+      email: 'gmail.com',
+      mobile: '010'
+    }
+
     return (
-      <Router>
         <div className="bg_image">
-          <Nav />
-          <Search />
-          <Sitemap />
+          <Nav 
+            isLogin={isLogin} 
+            userInfo={userInfo} 
+            loginHandler={this.loginHandler} 
+            logoutHandler={this.logoutHandler}/>
         </div>
-      </Router>
     );
   };
 }
