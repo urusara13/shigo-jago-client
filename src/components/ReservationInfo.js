@@ -5,20 +5,20 @@ class ReservationInfo extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      userInfo : [        
-        {hotelName: "나만의풍경펜션"},
-        {hotelName: "나만의풍경펜션"},
-        {hotelName: "나만의풍경펜션"}
-      ]
+      userInfo : []
     };
   }
   
   componentDidMount() {
-    axios.get('http://localhost:4000/mypage/reserveinfo', 
-    {headers: { Authorization : `token ${this.props.accessToken}`} })
+    const { accessToken } = this.props
+
+    axios.get('http://localhost:4000/mypage/reserveinfo', { 
+      headers: { "Authorization" : `Bearer ${accessToken}`} 
+    })
     .then(res => {
+      console.log(res)
       this.setState({
-        userInfo : res
+        userInfo : res.data.data
       })
     })
     .catch(err => console.log(err))
@@ -31,14 +31,14 @@ class ReservationInfo extends Component {
       return (
         <div className='reservationInfoContainer'>
           <div>예약 내역</div>
-          {userInfo.map(ele => {
+          {userInfo.map( (ele, idx) => {
             return(
             <>
-              <div>숙소명 : {ele.hotelName}</div>
-              {/* <div>체크인 : {ele.checkdIn}</div>
-              <div>체크아웃 : {ele.checkdOut}</div>
-              <div>인원수 : {ele.adult + ele.child}</div>
-              <div>예약 날짜 : {ele.reservedTime}</div> */}
+              <div key={idx}>숙소명 : {ele.hotelName}</div>
+              <div key={idx}>체크인 : {ele.checkedin}</div>
+              <div key={idx}>체크아웃 : {ele.checkedout}</div>
+              <div key={idx}>인원수 : {ele.adult + ele.child}</div>
+              <div key={idx}>예약 날짜 : {ele.createdAt.substr(0,10)}</div> 
             </>
           )})}
         </div>

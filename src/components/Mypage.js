@@ -64,8 +64,10 @@ class Mypage extends Component {
                 logoutHandler={logoutHandler}
                 accessToken={accessToken}
                 userInfoHandler={this.userInfoHandler}
-                userInfo={userInfo}  />: //로그인 시 받은 userInfo props 전달 필요
-              <ReservationInfo ></ReservationInfo> //로그인 시 받은 userInfo props 전달 필요
+                userInfo={userInfo}  /> : //로그인 시 받은 userInfo props 전달 필요
+              
+              <ReservationInfo 
+                accessToken={accessToken}/> //로그인 시 받은 userInfo props 전달 필요
             }
           </div>
           <Sitemap />

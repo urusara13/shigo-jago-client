@@ -33,7 +33,6 @@ class UserInfo extends Component {
       headers: {"Authorization": `Bearer ${accessToken}`}
     })
     .then(res => {
-      console.log(res)
       userInfoHandler(res.data.data)
     })
     .catch(err => console.log(err))
