@@ -10,10 +10,16 @@ class Mypage extends Component {
     super(props);
     this.state = {
       infoDetail: 'user',
+      userInfo: {
+        name: '',
+        email: '',
+        mobile: ''
+      },
     };
 
     this.reservationInfoChange = this.reservationInfoChange.bind(this);
     this.userInfoChange = this.userInfoChange.bind(this);
+    this.userInfoHandler = this.userInfoHandler.bind(this);
   }
 
   reservationInfoChange() {
@@ -28,8 +34,19 @@ class Mypage extends Component {
     })
   }
 
+  userInfoHandler(data) {
+    this.setState({
+      userInfo: {
+        name: data.name,
+        email: data.email,
+        mobile: data.mobile
+      }
+    })
+  }
+
   render() {
-      const { infoDetail } = this.state;
+      const { userInfoHandler, logoutHandler, accessToken } = this.props;
+      const { infoDetail, userInfo } = this.state;
 
       return (
         <div className='mypageContainer'>
@@ -42,8 +59,13 @@ class Mypage extends Component {
             </button>
             { 
               infoDetail === 'user' ? 
-              <UserInfo userInfo={this.props.userInfo} logoutHandler={this.props.logoutHandler}></UserInfo> : //로그인 시 받은 userInfo props 전달 필요
-              <ReservationInfo userInfo={this.props.userInfo}></ReservationInfo> //로그인 시 받은 userInfo props 전달 필요
+              <UserInfo 
+                userInfoHandler={userInfoHandler} 
+                logoutHandler={logoutHandler}
+                accessToken={accessToken}
+                userInfoHandler={this.userInfoHandler}
+                userInfo={userInfo}  />: //로그인 시 받은 userInfo props 전달 필요
+              <ReservationInfo ></ReservationInfo> //로그인 시 받은 userInfo props 전달 필요
             }
           </div>
           <Sitemap />

@@ -7,15 +7,17 @@ class App extends React.Component {
     super(props);
     this.state = {
       isLogin: false,
-      userData: null,
+      accessToken: '',
     }
     this.logoutHandler = this.logoutHandler.bind(this);
     this.loginHandler = this.loginHandler.bind(this);
+  
   }
 
-  loginHandler() {
+  loginHandler(data) {
     this.setState({
-      isLogin: true
+      isLogin: true,
+      accessToken: data
     })
   }
 
@@ -25,21 +27,17 @@ class App extends React.Component {
     })
   }
 
+
   render() {
-    const { isLogin } = this.state;
-    const userInfo = {
-      username: '송윤지',
-      email: 'gmail.com',
-      mobile: '010'
-    }
+    const { isLogin, accessToken } = this.state;
 
     return (
         <div className="bg_image">
           <Nav 
             isLogin={isLogin} 
-            userInfo={userInfo} 
             loginHandler={this.loginHandler} 
-            logoutHandler={this.logoutHandler}/>
+            logoutHandler={this.logoutHandler}
+            accessToken={accessToken} />
         </div>
     );
   };
