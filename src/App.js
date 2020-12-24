@@ -1,6 +1,8 @@
 import React from "react";
-
-import Nav from './components/Nav.js'
+import Nav from './components/Nav';
+import Search from './components/Search';
+import Sitemap from './components/Sitemap';
+import { BrowserRouter as Router } from "react-router-dom";
 
 class App extends React.Component {
   constructor(props) {
@@ -11,7 +13,7 @@ class App extends React.Component {
     }
     this.logoutHandler = this.logoutHandler.bind(this);
     this.loginHandler = this.loginHandler.bind(this);
-  
+
   }
 
   loginHandler(data) {
@@ -32,13 +34,13 @@ class App extends React.Component {
     const { isLogin, accessToken } = this.state;
 
     return (
-        <div className="bg_image">
-          <Nav 
-            isLogin={isLogin} 
-            loginHandler={this.loginHandler} 
-            logoutHandler={this.logoutHandler}
-            accessToken={accessToken} />
+      <Router>
+        <div className="container">
+          <Nav />
+          <Search />
+          <Sitemap />
         </div>
+      </Router>
     );
   };
 }

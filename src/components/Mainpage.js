@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
-import Search from './Search'
-import Sitemap from './Sitemap'
+//import Search from './Search'
+//import Sitemap from './Sitemap'
 
 class Mainpage extends Component {
   constructor(props) {
@@ -15,8 +15,7 @@ class Mainpage extends Component {
 
     return(
       <>
-        <Search />
-        <Sitemap />
+
       </>
     )
   }
