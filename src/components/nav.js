@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Switch, Route, Link, BrowserRouter as Router } from "react-router-dom";
 
-
 import Mypage from './Mypage'
 import LoginModal from './LoginModal'
 import Mainpage from './Mainpage';
@@ -31,7 +30,6 @@ class Nav extends Component {
   }
 
   changeMypage() {
-    this.closeLoginModal(); //모달창 닫기
     this.props.loginHandler();
     this.setState({
       buttonName: 'My page'
@@ -39,7 +37,13 @@ class Nav extends Component {
   }
 
   render() {
-    const { isLogin, userInfo, logoutHandler } = this.props;
+    const { 
+      isLogin, 
+      userInfo, 
+      logoutHandler, 
+      loginHandler, 
+      userInfoHandler,
+      accessToken } = this.props;
     const { isModalOpen } = this.state;
     return (
       <Router>
@@ -55,7 +59,12 @@ class Nav extends Component {
                 </> :
                 <>
                   <button onClick={this.openLoginModal}>Sign in</button>
-                  <LoginModal isLogin={isLogin} isOpen={isModalOpen} close={this.changeMypage}/>
+                  <LoginModal 
+                    isLogin={isLogin} 
+                    isOpen={isModalOpen} 
+                    close={this.closeLoginModal}
+                    changeMypage={this.changeMypage}
+                    loginHandler={loginHandler} />
                   <button >Sign up</button>
                 </>
               }
@@ -69,7 +78,9 @@ class Nav extends Component {
             <Route exact path='/mypage' >
               <Mypage 
                 userInfo={userInfo}
-                logoutHandler={logoutHandler}/>
+                logoutHandler={logoutHandler}
+                userInfoHandler={userInfoHandler}
+                accessToken={accessToken} />
             </Route>  
           </Switch>
           </nav>
