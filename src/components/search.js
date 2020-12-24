@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
+import { withRouter, Switch, Route, Link, BrowserRouter as Router } from "react-router-dom";
+import ResultList from './ResultList/ResultList';
 
 class Search extends Component {
     render() {
         return (
+            <Router>
             <div class="section">
             <div class="search__box">
                 <div class="search__title">
@@ -38,12 +41,18 @@ class Search extends Component {
                     </tr>
                 </table>
                 <div class="search__button">
-                    <button>검색</button>
+                    <Link to='/resultList'>검색</Link>
                 </div>
             </div>
+            <Switch>
+              <Route exact path="/resultList" >
+                <ResultList/>
+              </Route>
+            </Switch>
             </div>
+            </Router>
         )
     }
 }
 
-export default Search
+export default withRouter(Search)
