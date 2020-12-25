@@ -36,7 +36,10 @@ class App extends React.Component {
     return (
       <Router>
         <div className="container">
-          <Nav />
+          <Nav 
+            isLogin={isLogin}
+            accessToken={accessToken}
+            loginHandler={this.loginHandler} />
           <Search />
           <Sitemap />
         </div>

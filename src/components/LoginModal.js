@@ -43,15 +43,15 @@ class LoginModal extends Component {
 
     return (
       <>
-        {isOpen ?
+ {isOpen ?
           (
             <div className="modal1">
-              <div onClick={close}>
+              <div>
                 <div className="loginModal">
                   <span className="btnClose" onClick={close}>
                     &times;
                   </span>
-                  <div className="loginModalContents" onClick={isOpen}>
+                  <div className="loginModalContents" >
                   <div>로그인</div>
                   <input
                       className="email"
@@ -85,7 +85,7 @@ class LoginModal extends Component {
             </div>
           ) : null
         }
-      </>
+        </>
     );
   }
 }
