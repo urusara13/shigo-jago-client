@@ -2,10 +2,9 @@ import React, { Component } from "react";
 
 import UserInfo from "./UserInfo";
 import ReservationInfo from "./ReservationInfo";
-import Sitemap from "./Sitemap"
 
 
-class Mypage extends Component {
+class MypageInfo extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -49,7 +48,6 @@ class Mypage extends Component {
       const { infoDetail, userInfo } = this.state;
 
       return (
-        <div className='mypageContainer'>
           <div className='infoContainer'>
             <button className='btnUserInfo' onClick={this.userInfoChange}>
               회원정보
@@ -70,12 +68,10 @@ class Mypage extends Component {
                 accessToken={accessToken}/> //로그인 시 받은 userInfo props 전달 필요
             }
           </div>
-          <Sitemap />
-        </div>
       )
   }
 
 
 }
 
-export default Mypage;
+export default MypageInfo;
