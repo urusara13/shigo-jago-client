@@ -48,8 +48,8 @@ class Nav extends Component {
     return (
       <Router>
         <nav>
-        <div class="logo"><Link to="/">쉬고자고</Link></div>
-          <div class="menu">
+        <div className="logo"><Link to="/">쉬고,자고</Link></div>
+          <div className="menu">
             <ul>
               { 
                 isLogin ? //로그인 유무를 기준으로 나브바가 보여주는 내용

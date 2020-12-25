@@ -5,14 +5,16 @@ class Sitemap extends Component {
     render() {
         return (
 
-            <div class="sitemap">
-                <div class="map__box">
-                    <li><Link to="/">소개</Link></li>
-                    <li><Link to="/">만든이</Link></li>
-                    <li><Link to="/">문의</Link></li>
-                    <li><Link to="/">도움말</Link></li>
+            <div className="sitemap">
+                <div className="map__menu1">
+                    <ul>
+                        <li><Link to="/">소개</Link></li>
+                        <li><Link to="/">만든이</Link></li>
+                        <li><Link to="/">문의</Link></li>
+                        <li><Link to="/">도움말</Link></li>
+                    </ul>
                 </div>
-                <div class="menu">
+                <div className="map__menu2">
                     <ul>
                         <li><Link to="/mypage/reserveinfo">예약내역</Link></li>
                         <li><Link to="/mypage/userinfo">마이페이지</Link></li>
