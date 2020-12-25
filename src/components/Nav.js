@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
-import { Switch, Route, Link, BrowserRouter as Router } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-import Mypage from './Mypage'
 import LoginModal from './LoginModal'
 import SignUpModal from './SignUpModal'
-import Mainpage from './Mainpage';
 
 class Nav extends Component {
   constructor(props) {
@@ -55,26 +53,25 @@ class Nav extends Component {
   render() {
     const { 
       isLogin, 
-      userInfo, 
-      logoutHandler, 
-      loginHandler, 
-      userInfoHandler,
-      accessToken } = this.props;
-    const { isModalOpen, isSignUpModal } = this.state;
+      loginHandler } = this.props;
+
+    const { 
+      isModalOpen,
+      isSignUpModal } = this.state;
+
     return (
-      <Router>
-        <nav>
-        <div className="logo"><Link to="/">쉬고,자고</Link></div>
-          <div className="menu">
+      <div>
+        <div class="logo"><Link to="/">쉬고자고</Link></div>
+          <div class="menu">
             <ul>
               { 
-                isLogin ? //로그인 유무를 기준으로 나브바가 보여주는 내용
+                isLogin ? 
                 <>
-                  <Link to="/mypage" className='mypageLink' >My page</Link>
-                  <button>Log out</button>
+                  <Link exact to="/mypage" className='mypageLink' >My page</Link>
+                  <button >Log out</button>
                 </> :
                 <>
-                  <button className='loginBtn' onClick={this.openLoginModal}>Sign in</button>
+                  <button onClick={this.openLoginModal}>Sign in</button>
                   <LoginModal 
                     isLogin={isLogin} 
                     isOpen={isModalOpen} 
@@ -89,21 +86,7 @@ class Nav extends Component {
               }
             </ul>
           </div>
-
-          <Switch>
-            <Route exact path="/" >
-              <Mainpage/>
-            </Route>
-            <Route exact path='/mypage' >
-              <Mypage 
-                userInfo={userInfo}
-                logoutHandler={logoutHandler}
-                userInfoHandler={userInfoHandler}
-                accessToken={accessToken} />
-            </Route>  
-          </Switch>
-          </nav>
-        </Router>
+      </div>
     )
   }
 }

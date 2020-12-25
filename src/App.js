@@ -1,8 +1,10 @@
 import React from "react";
-import Nav from './components/Nav';
-import Search from './components/Search';
-import Sitemap from './components/Sitemap';
-import { BrowserRouter as Router } from "react-router-dom";
+import { withRouter, Switch, Route } from "react-router-dom";
+
+import Mainpage from './components/Mainpage/Mainpage'
+import Mypage from './components/Mypage/Mypage'
+import Sitemap from "./components/Sitemap";
+import Nav from "./components/Nav"
 
 class App extends React.Component {
   constructor(props) {
@@ -13,7 +15,7 @@ class App extends React.Component {
     }
     this.logoutHandler = this.logoutHandler.bind(this);
     this.loginHandler = this.loginHandler.bind(this);
-
+  
   }
 
   loginHandler(data) {
@@ -34,19 +36,36 @@ class App extends React.Component {
     const { isLogin, accessToken } = this.state;
 
     return (
-      <Router>
         <div className="container">
           <Nav 
             isLogin={isLogin}
-            accessToken={accessToken}
             loginHandler={this.loginHandler} />
-          <Search />
+          <Switch>
+            <Route 
+              
+              path='/mypage'
+              render={() => (
+                <Mypage 
+                  isLogin={isLogin}
+                  accessToken={accessToken}
+                  logoutHandler={this.logoutHandler} />
+              )} />
+            <Route
+              exact
+              path='/'
+              render={() => (
+                <Mainpage 
+                  isLogin={isLogin} 
+                  accessToken={accessToken} 
+                  loginHandler={this.loginHandler} />
+              )} />
+          </Switch>
           <Sitemap />
         </div>
-      </Router>
     );
   };
 }
 
 
-export default App;
+export default withRouter(App);
+

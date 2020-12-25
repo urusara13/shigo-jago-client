@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter, Switch, Route, Link, BrowserRouter as Router } from "react-router-dom";
-import ResultList from './ResultList/ResultList';
+import ResultList from '../ResultList/ResultList';
 
 class Search extends Component {
     render() {
