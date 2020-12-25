@@ -45,13 +45,13 @@ class LoginModal extends Component {
       <>
         {isOpen ?
           (
-            <div className="modal">
+            <div className="modal1">
               <div onClick={close}>
                 <div className="loginModal">
                   <span className="btnClose" onClick={close}>
                     &times;
                   </span>
-                  <div className="modalContents" onClick={isOpen}>
+                  <div className="loginModalContents" onClick={isOpen}>
                   <div>로그인</div>
                   <input
                       className="email"
