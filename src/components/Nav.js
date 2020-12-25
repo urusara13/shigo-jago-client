@@ -3,6 +3,7 @@ import { Switch, Route, Link, BrowserRouter as Router } from "react-router-dom";
 
 import Mypage from './Mypage'
 import LoginModal from './LoginModal'
+import SignUpModal from './SignUpModal'
 import Mainpage from './Mainpage';
 
 class Nav extends Component {
@@ -10,10 +11,13 @@ class Nav extends Component {
     super(props);
     this.state = {
       isModalOpen: false,
+      isSignUpModal: false,
       buttonName: 'Log in'
     };
     this.openLoginModal = this.openLoginModal.bind(this);
     this.closeLoginModal = this.closeLoginModal.bind(this);
+    this.openSignUpModal = this.openSignUpModal.bind(this);
+    this.closeSignUpModal = this.closeSignUpModal.bind(this);
     this.changeMypage = this.changeMypage.bind(this);
   }
 
@@ -26,6 +30,18 @@ class Nav extends Component {
   closeLoginModal() {
     this.setState({
       isModalOpen: false
+    })
+  }
+
+  openSignUpModal() {
+    this.setState({
+      isSignUpModal: true
+    })
+  }
+
+  closeSignUpModal() {
+    this.setState({
+      isSignUpModal: false
     })
   }
 
@@ -44,7 +60,7 @@ class Nav extends Component {
       loginHandler, 
       userInfoHandler,
       accessToken } = this.props;
-    const { isModalOpen } = this.state;
+    const { isModalOpen, isSignUpModal } = this.state;
     return (
       <Router>
         <nav>
@@ -55,17 +71,20 @@ class Nav extends Component {
                 isLogin ? //로그인 유무를 기준으로 나브바가 보여주는 내용
                 <>
                   <Link to="/mypage" className='mypageLink' >My page</Link>
-                  <button >Log out</button>
+                  <button>Log out</button>
                 </> :
                 <>
-                  <button onClick={this.openLoginModal}>Sign in</button>
+                  <button className='loginBtn' onClick={this.openLoginModal}>Sign in</button>
                   <LoginModal 
                     isLogin={isLogin} 
                     isOpen={isModalOpen} 
                     close={this.closeLoginModal}
                     changeMypage={this.changeMypage}
                     loginHandler={loginHandler} />
-                  <button >Sign up</button>
+                  <button className='signUpBtn' onClick={this.openSignUpModal} >Sign up</button>
+                  <SignUpModal 
+                    isOpen={isSignUpModal} 
+                    close={this.closeSignUpModal}/>
                 </>
               }
             </ul>
