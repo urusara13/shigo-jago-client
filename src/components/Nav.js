@@ -9,13 +9,13 @@ class Nav extends Component {
     super(props);
     this.state = {
       isModalOpen: false,
-      isSignUpModal: false,
+      //isSignUpModal: false,
       buttonName: 'Log in'
     };
     this.openLoginModal = this.openLoginModal.bind(this);
     this.closeLoginModal = this.closeLoginModal.bind(this);
-    this.openSignUpModal = this.openSignUpModal.bind(this);
-    this.closeSignUpModal = this.closeSignUpModal.bind(this);
+    //this.openSignUpModal = this.openSignUpModal.bind(this);
+    //this.closeSignUpModal = this.closeSignUpModal.bind(this);
     this.changeMypage = this.changeMypage.bind(this);
   }
 
@@ -30,7 +30,7 @@ class Nav extends Component {
       isModalOpen: false
     })
   }
-
+/*
   openSignUpModal() {
     this.setState({
       isSignUpModal: true
@@ -42,7 +42,7 @@ class Nav extends Component {
       isSignUpModal: false
     })
   }
-
+*/
   changeMypage() {
     this.props.loginHandler();
     this.setState({
@@ -56,12 +56,12 @@ class Nav extends Component {
       loginHandler } = this.props;
 
     const { 
-      isModalOpen,
-      isSignUpModal } = this.state;
+      isModalOpen
+    } = this.state;
 
     return (
-      <div>
-        <div class="logo"><Link to="/">쉬고자고</Link></div>
+      <nav>
+          <div class="logo"><Link to="/">쉬고자고</Link></div>
           <div class="menu">
             <ul>
               { 
@@ -78,15 +78,12 @@ class Nav extends Component {
                     close={this.closeLoginModal}
                     changeMypage={this.changeMypage}
                     loginHandler={loginHandler} />
-                  <button className='signUpBtn' onClick={this.openSignUpModal} >Sign up</button>
-                  <SignUpModal 
-                    isOpen={isSignUpModal} 
-                    close={this.closeSignUpModal}/>
+                  <Link exact to="/user/signup">Sign up</Link>
                 </>
               }
             </ul>
           </div>
-      </div>
+      </nav>
     )
   }
 }

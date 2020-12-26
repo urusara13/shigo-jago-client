@@ -13,10 +13,10 @@ class Search extends Component {
                 </div>
                 <table>
                     <tr>
-                        <td colspan="2" className="search__sub__title">목적지</td>
+                        <td colSpan="2" className="search__sub__title">목적지</td>
                     </tr>
                     <tr>
-                        <td colspan="2">
+                        <td colSpan="2">
                             <input className="search__input" type="text" placeholder="  모든 위치" />
                         </td>
                     </tr>
