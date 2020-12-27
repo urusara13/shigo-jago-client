@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
+import './Sitemap.css';
 
 class Sitemap extends Component {
     render() {
@@ -8,10 +9,10 @@ class Sitemap extends Component {
                 <div className="sitemap">
                     <div className="map__menu1">
                         <ul>
-                            <li><Link to="/">소개</Link></li>
-                            <li><Link to="/">만든이</Link></li>
-                            <li><Link to="/">문의</Link></li>
-                            <li><Link to="/">도움말</Link></li>
+                            <li><Link to="/about">소개</Link></li>
+                            <li><Link to="/gethelp">문의</Link></li>
+                            <li><Link to="/hire">채용정보</Link></li>
+                            <li><Link to="/refund">환불 및 개인정보방침</Link></li>
                         </ul>
                     </div>
                     <div className="map__menu2">

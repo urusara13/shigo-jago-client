@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import axios from "axios";
+import './Login.css';
+import facebook from '../images/facebook.png'
+import google from '../images/google.png'
 
 axios.defaults.withCredentials = true;
 
@@ -43,7 +46,7 @@ class LoginModal extends Component {
 
     return (
       <>
- {isOpen ?
+        {isOpen ?
           (
             <div className="modal1">
               <div>
@@ -52,8 +55,8 @@ class LoginModal extends Component {
                     &times;
                   </span>
                   <div className="loginModalContents" >
-                  <div>로그인</div>
-                  <input
+                    <div>로그인</div>
+                    <input
                       className="email"
                       type="text"
                       placeholder="E-mail"
@@ -68,15 +71,21 @@ class LoginModal extends Component {
                     <button className="btnLogin" onClick={this.handleLogin}>{" "}
                     로그인{" "}</button>
                     <div className="socialBox">
-                      <div className="kakao">
-
-                        <div className="kakaoText">카카오 계정으로 신규가입</div>
+                      <div className="google">
+                        <img
+                          className="googleLogo"
+                          src={google} alt='google'
+                        />
+                        <div className="googleText">구글 계정으로 신규가입</div>
                       </div>
                       <div className="facebook">
-
+                        <img
+                          className="facebookLogo"
+                          src={facebook} alt='facebook'
+                        />
                         <div className="facebookText">
                           페이스북 계정으로 신규가입
-                      </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -85,7 +94,7 @@ class LoginModal extends Component {
             </div>
           ) : null
         }
-        </>
+      </>
     );
   }
 }
@@ -93,8 +102,3 @@ class LoginModal extends Component {
 
 export default LoginModal;
 
-
-
-
-                    
-                    

@@ -1,11 +1,18 @@
 import React from "react";
-import { withRouter, Switch, Redirect, Route } from "react-router-dom";
-
-import Mainpage from './components/Mainpage/Mainpage'
-import Mypage from './components/Mypage/Mypage'
+import { withRouter, Switch, Route } from "react-router-dom";
+import axios from "axios";
+import Mainpage from './components/Mainpage/Mainpage';
+import Mypage from './components/Mypage/Mypage';
 import Sitemap from "./components/Sitemap";
-import Nav from "./components/Nav"
+import Nav from "./components/Nav";
 import SignUpModal from "./components/SignUpModal";
+
+import About from "./components/SiteMapSection/About";
+import GetHelp from "./components/SiteMapSection/GetHelp";
+import Hire from "./components/SiteMapSection/Hire";
+import Refund from "./components/SiteMapSection/Refund";
+
+axios.defaults.withCredentials = true;
 
 class App extends React.Component {
   constructor(props) {
@@ -27,9 +34,18 @@ class App extends React.Component {
   }
 
   logoutHandler() {
-    this.setState({
-      isLogin: false
+    axios.post('http://localhost:4000/user/logout', 
+    { headers: {"Authorization": `token ${this.props.accessToken}`}})
+    .then((res) => {
+      this.setState({
+        isLogin: false,
+        accessToken: null
+      })
     })
+    .then(() => {
+      this.props.history.push('/');
+    })
+    
   }
 
 
@@ -40,10 +56,12 @@ class App extends React.Component {
       <div className="container">
         <Nav
           isLogin={isLogin}
-          loginHandler={this.loginHandler} />
+          loginHandler={this.loginHandler} 
+          logoutHandler={this.logoutHandler}
+        />
         <Switch>
           <Route
-            exact
+          
             path='/mypage'
             render={() => (
               <Mypage
@@ -52,7 +70,12 @@ class App extends React.Component {
                 logoutHandler={this.logoutHandler} />
             )} />
 
-          <Route exact path='/user/signup' render={() => <SignUpModal isLogin={isLogin} />} />
+          <Route path='/user/signup' render={() => <SignUpModal isLogin={isLogin} />} />
+
+          <Route path="/about" render={() =><About />}/>
+          <Route path="/gethelp"render={() =><GetHelp />}/>
+          <Route path="/hire"render={() =><Hire />}/>
+          <Route path="/refund"render={() =><Refund />}/>
 
           <Route
             exact
@@ -64,14 +87,6 @@ class App extends React.Component {
                 loginHandler={this.loginHandler} />
             )} />
 
-          <Route
-            path='/'
-            render={() => {
-              if (isLogin) {
-                return <Redirect to='/mypage' />;
-              }
-              return <Redirect to='/' />;
-            }} />
         </Switch>
         <Sitemap />
       </div>
