@@ -30,7 +30,7 @@ class UserInfo extends Component {
     const { accessToken, userInfoHandler } = this.props;
     
     axios.get('http://localhost:4000/mypage/userinfo', {
-      headers: {"Authorization": `Bearer ${accessToken}`}
+      headers: {"Authorization": `token ${accessToken}`}
     })
     .then(res => {
       userInfoHandler(res.data.data)
@@ -40,7 +40,7 @@ class UserInfo extends Component {
 
 
   render() {
-      const { userInfo, logoutHandler } = this.props;
+      const { userInfo, logoutHandler, accessToken } = this.props;
       const { isDeleteAccountModalOpen } = this.state;
 
       return (
@@ -55,8 +55,8 @@ class UserInfo extends Component {
           <DeleteAccountModal 
             isOpen={isDeleteAccountModalOpen} 
             close={this.closeDeleteAccountModal} 
-            logoutHandler={logoutHandler}>
-          </DeleteAccountModal>
+            logoutHandler={logoutHandler}
+            accessToken={accessToken} />
         </div>
       )
   }

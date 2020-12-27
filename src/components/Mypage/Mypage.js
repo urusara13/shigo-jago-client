@@ -1,5 +1,6 @@
 import React, { Component } from "react"; 
 import { BrowserRouter as Router } from "react-router-dom";
+import Mainpage from "../Mainpage/Mainpage";
 
 import MypageInfo from "./MypageInfo"
 
@@ -8,19 +9,19 @@ class Mypage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      
     };
   }
 
   render() {
-      const { logoutHandler, accessToken } = this.props;
+      const { logoutHandler, accessToken, isLogin } = this.props;
 
       return (
-        <Router>
+        isLogin ? 
           <MypageInfo 
             accessToken={accessToken}
-            logoutHandler={logoutHandler} />
-        </Router>
+            logoutHandler={logoutHandler} /> :
+          <Mainpage />
       )
   }
 }
