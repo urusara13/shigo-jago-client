@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { Component } from "react"; 
 import { Link } from "react-router-dom";
 
-import DeleteAccountModal from "./DeleteAccountModal";
+import DeleteAccountModal from "./DeleteUserModal";
 
 class UserInfo extends Component {
   constructor(props) {

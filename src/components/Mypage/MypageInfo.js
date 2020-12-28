@@ -1,8 +1,8 @@
 import React, { Component } from "react"; 
 
-import UserInfo from "./UserInfo";
-import UserEdit from "./UserEdit";
-import ReservationInfo from "./ReservationInfo";
+import UserInfo from "./UserInfo/UserInfo";
+import UserEdit from "./UserInfo/EditUser";
+import ReservationList from "./ReservationInfo/ReservationList";
 import { Link, Switch, Route, BrowserRouter as Router } from "react-router-dom";
 
 class MypageInfo extends Component {
@@ -49,7 +49,7 @@ class MypageInfo extends Component {
             <Route 
               path='/mypage/reservationinfo'
               render={() => (
-                <ReservationInfo 
+                <ReservationList
                  accessToken={accessToken} />
             )} />
             <Route 

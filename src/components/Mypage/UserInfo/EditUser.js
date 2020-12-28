@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { Component } from "react"; 
 
 import { withRouter } from "react-router-dom"; //withRouter: history 사용하기 위해
-import EditModal from "./EditModal"
+import EditModal from "./EditUserModal"
 
 class UserEdit extends Component {
   constructor(props) {
@@ -34,8 +34,7 @@ class UserEdit extends Component {
     const { accessToken } = this.props;
     const { name, password, mobile } = this.state;
 
-    
-    if((name && password && mobile) === null) {
+    if(!(name || password || mobile)) {
       this.setState({
         errorMessage: '변경된 사항이 없습니다.'
       });
