@@ -21,6 +21,7 @@ class App extends React.Component {
       accessToken: '',
     }
     this.logoutHandler = this.logoutHandler.bind(this);
+    this.logoutHandlerSimple = this.logoutHandlerSimple.bind(this);
     this.loginHandler = this.loginHandler.bind(this);
 
   }
@@ -32,9 +33,16 @@ class App extends React.Component {
     })
   }
 
+  logoutHandlerSimple() {
+    this.setState({
+      isLogin: false,
+      accessToken: null
+    })
+  }
+
   logoutHandler() {
     axios.post('http://localhost:4000/user/logout', 
-    { headers: {"Authorization": `token ${this.props.accessToken}`}})
+    { headers: {"Authorization": `Bearer ${this.props.accessToken}`}})
     .then((res) => {
       this.setState({
         isLogin: false,
@@ -59,13 +67,12 @@ class App extends React.Component {
         />
         <Switch>
           <Route
-          
             path='/mypage'
             render={() => (
               <Mypage
                 isLogin={isLogin}
                 accessToken={accessToken}
-                logoutHandler={this.logoutHandler} />
+                logoutHandlerSimple={this.logoutHandlerSimple} />
             )} />
             <Route path='/user/signup' render={() => <SignUpModal isLogin={isLogin} />} />
             <Route path="/about" render={() =><About />}/>
@@ -73,15 +80,15 @@ class App extends React.Component {
             <Route path="/hire"render={() =><Hire />}/>
             <Route path="/refund"render={() =><Refund />}/>
             <Route
-                    path='/'
-                    render={() => (
-                      <Mainpage
-                        accessToken={accessToken} 
-                        loginHandler={this.loginHandler} />
-                    )} />
-                </Switch>
-                <Sitemap />
-              </div>
+              path='/'
+              render={() => (
+                <Mainpage
+                  accessToken={accessToken} 
+                  loginHandler={this.loginHandler} />
+              )} />
+            </Switch>
+            <Sitemap />
+          </div>
     );
   };
 }

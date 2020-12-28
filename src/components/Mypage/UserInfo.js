@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { Component } from "react"; 
+import { Link } from "react-router-dom";
 
 import DeleteAccountModal from "./DeleteAccountModal";
 
@@ -38,9 +39,8 @@ class UserInfo extends Component {
     .catch(err => console.log(err))
   }
 
-
   render() {
-      const { userInfo, logoutHandler, accessToken } = this.props;
+      const { userInfo, logoutHandlerSimple, accessToken } = this.props;
       const { isDeleteAccountModalOpen } = this.state;
 
       return (
@@ -51,16 +51,16 @@ class UserInfo extends Component {
             <div className='email'>이메일 : {userInfo.email}</div>
             <div className='mobile'>전화번호 : {userInfo.mobile}</div>
           </div>
+          <Link to='/mypage/useredit'>회원정보수정</Link>
           <button className='deleteAccount' onClick={this.openDeleteAccountModal}>탈퇴하기</button>
           <DeleteAccountModal 
             isOpen={isDeleteAccountModalOpen} 
             close={this.closeDeleteAccountModal} 
-            logoutHandler={logoutHandler}
+            logoutHandlerSimple={logoutHandlerSimple}
             accessToken={accessToken} />
         </div>
       )
   }
-
 }
 
 export default UserInfo;

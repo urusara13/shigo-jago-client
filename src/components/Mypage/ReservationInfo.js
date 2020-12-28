@@ -16,7 +16,6 @@ class ReservationInfo extends Component {
       headers: { "Authorization" : `Bearer ${accessToken}`} 
     })
     .then(res => {
-      console.log(res)
       this.setState({
         userInfo : res.data.data
       })
@@ -33,13 +32,13 @@ class ReservationInfo extends Component {
           <div>예약 내역</div>
           {userInfo.map( (ele, idx) => {
             return(
-            <>
-              <div key={idx}>숙소명 : {ele.hotelName}</div>
-              <div key={idx}>체크인 : {ele.checkedin}</div>
-              <div key={idx}>체크아웃 : {ele.checkedout}</div>
-              <div key={idx}>인원수 : {ele.adult + ele.child}</div>
-              <div key={idx}>예약 날짜 : {ele.createdAt.substr(0,10)}</div> 
-            </>
+            <div key={idx} className='reserveContainer'>
+              <div >숙소명 : {ele.hotelName}</div>
+              <div >체크인 : {ele.checkedin}</div>
+              <div >체크아웃 : {ele.checkedout}</div>
+              <div >인원수 : {ele.adult + ele.child}</div>
+              <div >예약 날짜 : {ele.createdAt.substr(0,10)}</div> 
+            </div>
           )})}
         </div>
       )
