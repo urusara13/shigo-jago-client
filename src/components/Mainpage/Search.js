@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
 import './Search.css';
 import { withRouter, Switch, Route, Link, BrowserRouter as Router } from "react-router-dom";
-import ResultList from '../ResultList/ResultList';
 
 class Search extends Component {
     constructor(props){
-      super(props);
-      
+      super(props)
+      this.state = {
+          adult: 0,
+          child: 1
+      }
     }
     
     render() {
-
+        const { setReservation } = this.props
         return (
             <div className="section">
             <div className="search__box">
@@ -63,7 +65,9 @@ class Search extends Component {
                     </tr>
                     </tbody>
                 </table>
-                <div className="search__button"> 
+                <div className="search__button" onClick={() => {
+                    setReservation(this.state)
+                }}> 
                   <Link to='/resultlist'>검색</Link>
                 </div>
             </div>

@@ -5,33 +5,49 @@ class ListModal extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      
+      hotelDetail: null
     };
   }
   
-  getDetail() {
-    axios.post('', {
-      
+  async getDetail() {
+    const { contentid, contenttypeid } = this.props.list
+    const detail = await axios.post('http://localhost:4000/search/detail',{
+      contentid: contentid,
+      contenttypeid: contenttypeid
     })
+
+    this.setState({
+      hotelDetail: detail.data
+    })
+  }
+
+  componentDidMount() {
+    this.getDetail()
   }
   
   render() {
-    const { list, isOpen, close } = this.props;
+    const { close, reservation } = this.props
+    const { hotelDetail } = this.state
+    console.log(reservation)
+ 
     return (
-      isOpen ? 
+      hotelDetail ?
       <>
       <div className='modal1'>
         <div className='loginModal'>       
         <span className="btnClose" onClick={close}>&times;</span>
-        <div>숙소명 : {list.title} </div>
-        <div>위치 : {list.addr1} {list.addr2}</div>
-        <div>연락처 : {list.tel}</div>
-        <img alt='' src={list.firstimage} width='200' height='200'></img>
+        <div>숙소명 : {hotelDetail.title} </div>
+        <div>위치 : {hotelDetail.addr1} {hotelDetail.addr2}</div>
+        <div>연락처 : {hotelDetail.telname} {hotelDetail.tel}</div>
+        <div>상세 : {hotelDetail.overview} </div>
+        <img alt='' src={hotelDetail.firstimage} width='200' height='200'></img>
+        <div>예약정보-성인: {reservation.adult}</div>
+        <div>예약정보-아동: {reservation.child}</div>
+        <button>예약하기</button>
       </div>
       </div>
-
-      </> :
-      null
+      </> 
+      : null
     )
   }
 

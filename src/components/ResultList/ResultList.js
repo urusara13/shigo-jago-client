@@ -11,10 +11,10 @@ class ResultList extends Component {
   }
 
   render() {
-
+    const { reservation } = this.props
     return (
       <>
-        <List></List>
+        <List reservation={reservation}></List>
       </>
     )
   }
