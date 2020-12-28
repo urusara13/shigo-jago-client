@@ -1,37 +1,24 @@
 import React, { Component } from "react"; 
 
-import UserInfo from "./UserInfo";
-import ReservationInfo from "./ReservationInfo";
-
+import UserInfo from "./UserInfo/UserInfo";
+import UserEdit from "./UserInfo/EditUser";
+import ReservationList from "./ReservationInfo/ReservationList";
+import { Link, Switch, Route, BrowserRouter as Router } from "react-router-dom";
 
 class MypageInfo extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      infoDetail: 'user',
       userInfo: {
         name: '',
         email: '',
         mobile: ''
       },
     };
-
-    this.reservationInfoChange = this.reservationInfoChange.bind(this);
-    this.userInfoChange = this.userInfoChange.bind(this);
+    
     this.userInfoHandler = this.userInfoHandler.bind(this);
   }
 
-  reservationInfoChange() {
-    this.setState({
-      infoDetail: 'reservation'
-    })
-  }
-
-  userInfoChange() {
-    this.setState({
-      infoDetail: 'user'
-    })
-  }
 
   userInfoHandler(data) {
     this.setState({
@@ -44,30 +31,38 @@ class MypageInfo extends Component {
   }
 
   render() {
-      const { userInfoHandler, logoutHandler, accessToken } = this.props;
-      const { infoDetail, userInfo } = this.state;
+      const { logoutHandlerSimple, accessToken } = this.props;
+      const { userInfo } = this.state;
 
       return (
-          <div className='infoContainer'>
-            <button className='btnUserInfo' onClick={this.userInfoChange}>
-              회원정보
-            </button>
-            <button className='btnReservationInfo' onClick={this.reservationInfoChange}>
-              예약내역
-            </button>
-            { 
-              infoDetail === 'user' ? 
-              <UserInfo 
-                userInfoHandler={userInfoHandler} 
-                logoutHandler={logoutHandler}
-                accessToken={accessToken}
-                userInfoHandler={this.userInfoHandler}
-                userInfo={userInfo}  /> : //로그인 시 받은 userInfo props 전달 필요
-              
-              <ReservationInfo 
-                accessToken={accessToken}/> //로그인 시 받은 userInfo props 전달 필요
-            }
-          </div>
+        <Router>
+          <Link to='/mypage'>회원정보</Link>
+          <Link to='/mypage/reservationinfo'>예약내역</Link>
+          <Switch>
+            <Route 
+              path='/mypage/useredit'
+              render={() => (
+                <UserEdit
+                  userInfo={userInfo}
+                  accessToken={accessToken} />
+            )}  />
+            <Route 
+              path='/mypage/reservationinfo'
+              render={() => (
+                <ReservationList
+                 accessToken={accessToken} />
+            )} />
+            <Route 
+              path='/mypage'
+              render={() => (
+                <UserInfo 
+                  logoutHandlerSimple={logoutHandlerSimple}
+                  accessToken={accessToken}
+                  userInfoHandler={this.userInfoHandler}
+                  userInfo={userInfo}/>
+            )}  />
+          </Switch>
+        </Router>
       )
   }
 

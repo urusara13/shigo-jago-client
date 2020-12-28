@@ -9,24 +9,36 @@ class Mainpage extends Component {
   constructor(props) {
     super(props);
     this.state = {  
+      reservation: {
+        adult: null,
+        child: null
+      }
     }
+    this.setReservation = this.setReservation.bind(this)
+  }
+
+  setReservation(data) {
+    this.setState({
+      reservation: data
+    })
   }
 
   render() {
     const { isLogin } = this.props;
+    const { reservation } = this.state
     
     return(
       <div>
       <Route 
         path='/resultlist'
         render={() => (
-          <ResultList/>
+          <ResultList reservation={reservation}/>
       )}  />
       <Route 
         exact
         path='/'
         render={() => (
-          <Search isLogin={isLogin}/>
+          <Search setReservation={this.setReservation} isLogin={isLogin}/>
       )} />
       </div>
     )

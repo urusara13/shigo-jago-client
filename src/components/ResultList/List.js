@@ -13,21 +13,27 @@ class List extends Component {
     };
   }
   
-  componentDidMount() {
-    axios.post('http://localhost:4000/search/list')
-    .then(res => {
-      this.setState({
-        list: res.data
-      })
+  async componentDidMount() {
+    const { reservation } = this.props
+
+    const hotelList = await axios.post('http://localhost:4000/search/list', {
+      areacode: reservation.areacode,
+      sigungucode: reservation.sigungucode
     })
+
+    this.setState({
+      list: hotelList.data.data
+    })
+
   }
   
   render() {
-    const { list } = this.state;
-    
+    const { list } = this.state
+    const { reservation } = this.props
+ 
     return (
       list.map((ele, idx) => (
-        <Listentry list={ele} key={idx} />
+        <Listentry list={ele} reservation={reservation} key={idx} />
       ))
     )
   }

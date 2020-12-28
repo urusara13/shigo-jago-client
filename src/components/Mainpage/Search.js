@@ -23,7 +23,7 @@ class Search extends Component {
     };
 
     render() {
-
+        const { setReservation } = this.props
         return (
             <div className="section">
                 <div className="search__box">
@@ -82,7 +82,9 @@ class Search extends Component {
                             </tbody>
                         </table>
 
-                        <div className="search__button">
+                        <div className="search__button" onClick={() => {
+                            setReservation(this.state)
+                        }}>
                             <Link to='/resultlist'>검색</Link>
                         </div>
                     </form>
