@@ -1,4 +1,4 @@
-//import axios from "axios"; //axios 초기 설정 필요
+import axios from "axios"; //axios 초기 설정 필요
 import React, { Component } from "react"; 
 import { withRouter } from "react-router";
 
@@ -13,36 +13,35 @@ class DeleteAccountModal extends Component {
   }
 
   deleteAccount() {
-    // axios.post('http://localhost:4000/user/delete', //탈퇴 api (추가, readReview 내용 안보임)
-    // { headers: { Authorization: `token ${this.props.accessToken}`}
-    // })
-    // .then(alert('이용해주셔서 감사합니다.'))
-    // .then(() => this.props.logoutHandler())
-    // .cath(err => console.log(err))
+    const { logoutHandler, history, accessToken } = this.props;
 
-    alert('이용해주셔서 감사합니다.');
-    this.props.logoutHandler();
-    this.props.history.push('/');
+    axios.post('http://localhost:4000/mypage/deleteuser',
+      { }, 
+      { headers: {"Authorization": `token ${accessToken}`}})
+    .then(alert('이용해주셔서 감사합니다.'))
+    .then(logoutHandler())
+    .then(history.push('/') )
+    .catch(err => console.log(err))
   }
-
+ 
   render() {
       const { isOpen, close } = this.props;
 
       return (
         <>
         {isOpen ? 
-          (<div className='modal'>
-             <div>정말 탈퇴하시겠습니까?</div>
-             <button className='deleteAccount' onClick={this.deleteAccount}>예</button>
-             <button className='close' onClick={close}>아니오</button>
+          (<div className='modal1'>
+             <div className='loginModal'>
+               <div>정말 탈퇴하시겠습니까?</div>
+               <button className='deleteAccount' onClick={this.deleteAccount}>예</button>
+               <button className='close' onClick={close}>아니오</button>
+             </div>
            </div> ) :
           null
         }
         </>
       )
   }
-
-
 }
 
 export default withRouter(DeleteAccountModal);

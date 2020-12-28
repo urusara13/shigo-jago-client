@@ -4,9 +4,14 @@ import { withRouter, Switch, Route, Link, BrowserRouter as Router } from "react-
 import ResultList from '../ResultList/ResultList';
 
 class Search extends Component {
+    constructor(props){
+      super(props);
+      
+    }
+    
     render() {
+
         return (
-            <Router>
             <div className="section">
             <div className="search__box">
                 <div className="search__title">
@@ -58,19 +63,13 @@ class Search extends Component {
                     </tr>
                     </tbody>
                 </table>
-                <div className="search__button">
-                    <Link to='/resultList'>검색</Link>
+                <div className="search__button"> 
+                  <Link to='/resultlist'>검색</Link>
                 </div>
             </div>
-            <Switch>
-              <Route exact path="/resultList" >
-                <ResultList/>
-              </Route>
-            </Switch>
             </div>
-            </Router>
         )
     }
 }
 
-export default withRouter(Search)
+export default Search
