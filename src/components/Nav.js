@@ -35,13 +35,8 @@ class Nav extends Component {
   }
 
   render() {
-    const { 
-      isLogin, 
-      loginHandler,logoutHandler } = this.props;
-
-    const { 
-      isModalOpen
-    } = this.state;
+    const { isLogin, loginHandler, logoutHandler } = this.props;
+    const { isModalOpen } = this.state;
 
     return (
       <nav>
@@ -56,12 +51,11 @@ class Nav extends Component {
                 </> :
                 <>
                   <button className='menuLoginBtn' onClick={this.openLoginModal}>Sign in</button>
-                  <LoginModal 
+                  {isModalOpen && <LoginModal 
                     isLogin={isLogin} 
-                    isOpen={isModalOpen} 
                     close={this.closeLoginModal}
                     changeMypage={this.changeMypage}
-                    loginHandler={loginHandler} />
+                    loginHandler={loginHandler} /> }
                   <Link to="/user/signup">Sign up</Link>
                 </>
               }

@@ -13,14 +13,14 @@ class DeleteAccountModal extends Component {
   }
 
   deleteAccount() {
-    const { logoutHandler, history, accessToken } = this.props;
+    const { logoutHandlerSimple, history, accessToken } = this.props;
 
     axios.post('http://localhost:4000/mypage/deleteuser',
       { }, 
       { headers: {"Authorization": `Bearer ${accessToken}`}})
     .then(alert('이용해주셔서 감사합니다.'))
-    .then(logoutHandler())
-    .then(history.push('/') )
+    .then(logoutHandlerSimple())
+    .then(history.push('/'))
     .catch(err => console.log(err))
   }
  

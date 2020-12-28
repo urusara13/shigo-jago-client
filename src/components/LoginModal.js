@@ -10,8 +10,9 @@ class LoginModal extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: '',
-      password: ''
+      email: null,
+      password: null,
+      errorMessage: null
     };
     this.handleInputValue = this.handleInputValue.bind(this);
     this.handleLogin = this.handleLogin.bind(this);
@@ -25,77 +26,61 @@ class LoginModal extends Component {
     const { loginHandler, close } = this.props;
 
     if (!(this.state.email && this.state.password)) {
-      alert('아이디와 비밀번호를 모두 채워주세요.')
+      this.setState({ errorMessage :'아이디와 비밀번호를 모두 채워주세요.' })
     } else {
       axios.post('http://localhost:4000/user/login', 
-        { email: this.state.email,
-          password: this.state.password }, 
+        { email: this.state.email, password: this.state.password }, 
         { headers: { "Content-Type": "application/json" }})
         .then(res => {
           loginHandler(res.data.data.accessToken)
           close()
         })
-        .catch(err => console.log(err));
+        .catch(err => {
+          if(err.response.data.error) this.setState({ errorMessage: '아이디 또는 비밀번호가 틀립니다.'})
+        });
     }
   }
 
+  componentDidMount() {
+    this.setState({ errorMessage: null})
+  }
+
   render() {
-    const { isOpen, close } = this.props;
+    const { close } = this.props;
+    const { errorMessage } = this.state;
 
     return (
-      <>
-        {isOpen ?
-          (
-          <div>
-            <div className="modal1">
-              <div>
-                <div className="loginModal">
-                  <span className="btnClose" onClick={close}>&times;</span>
-                  <div className="loginModalContents" >
-                    <div>로그인</div>
-                    <input
-                      className="email"
-                      type="text"
-                      placeholder="E-mail"
-                      onChange={this.handleInputValue("email")}
-                    />
-                    <input
-                      className="password"
-                      type="text"
-                      placeholder="Password"
-                      onChange={this.handleInputValue("password")}
-                    />
-                    <button className="btnLogin" onClick={this.handleLogin}>{" "}
-                    로그인{" "}</button>
-                    <div className="socialBox">
-                      <div className="google">
-                        <img
-                          className="googleLogo"
-                          src={google} alt='google'
-                        />
-                        <div className="googleText">구글 계정으로 신규가입</div>
-                      </div>
-                      <div className="facebook">
-                        <img
-                          className="facebookLogo"
-                          src={facebook} alt='facebook'
-                        />
-                        <div className="facebookText">
-                          페이스북 계정으로 신규가입
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  </div>
+      <div className="modal1">
+        <div className="loginModal">
+          <span className="btnClose" onClick={close}>&times;</span>
+            <div className="loginModalContents" >
+              <div>로그인</div>
+              { errorMessage ? <div>{errorMessage}</div> : null }
+              <input
+                className="email"
+                type="text"
+                placeholder="E-mail"
+                onChange={this.handleInputValue("email")} />
+              <input
+                className="password"
+                type="password"
+                placeholder="Password"
+                onChange={this.handleInputValue("password")}/>
+              <button className="btnLogin" onClick={this.handleLogin}>로그인</button>
+              <div className="socialBox">
+                <div className="google">
+                  <img className="googleLogo" src={google} alt='google' />
+                  <div className="googleText">구글 계정으로 신규가입</div>
+                </div>
+                <div className="facebook">
+                  <img className="facebookLogo" src={facebook} alt='facebook'/>
+                  <div className="facebookText">페이스북 계정으로 신규가입</div>
                 </div>
               </div>
             </div>
-          ) : null
-        }
-      </>
-    );
-  }
-}
+          </div>
+        </div> 
+    )}}
 
 
 export default LoginModal;
