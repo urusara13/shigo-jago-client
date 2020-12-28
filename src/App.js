@@ -6,7 +6,6 @@ import Mypage from './components/Mypage/Mypage';
 import Sitemap from "./components/Sitemap";
 import Nav from "./components/Nav";
 import SignUpModal from "./components/SignUpModal";
-
 import About from "./components/SiteMapSection/About";
 import GetHelp from "./components/SiteMapSection/GetHelp";
 import Hire from "./components/SiteMapSection/Hire";
@@ -48,12 +47,11 @@ class App extends React.Component {
     
   }
 
-
   render() {
     const { isLogin, accessToken } = this.state;
 
     return (
-      <div className="container">
+        <div className="container">
         <Nav
           isLogin={isLogin}
           loginHandler={this.loginHandler} 
@@ -69,31 +67,24 @@ class App extends React.Component {
                 accessToken={accessToken}
                 logoutHandler={this.logoutHandler} />
             )} />
-
-          <Route path='/user/signup' render={() => <SignUpModal isLogin={isLogin} />} />
-
-          <Route path="/about" render={() =><About />}/>
-          <Route path="/gethelp"render={() =><GetHelp />}/>
-          <Route path="/hire"render={() =><Hire />}/>
-          <Route path="/refund"render={() =><Refund />}/>
-
-          <Route
-            exact
-            path='/'
-            render={() => (
-              <Mainpage
-                isLogin={isLogin}
-                accessToken={accessToken}
-                loginHandler={this.loginHandler} />
-            )} />
-
-        </Switch>
-        <Sitemap />
-      </div>
+            <Route path='/user/signup' render={() => <SignUpModal isLogin={isLogin} />} />
+            <Route path="/about" render={() =><About />}/>
+            <Route path="/gethelp"render={() =><GetHelp />}/>
+            <Route path="/hire"render={() =><Hire />}/>
+            <Route path="/refund"render={() =><Refund />}/>
+            <Route
+                    path='/'
+                    render={() => (
+                      <Mainpage
+                        accessToken={accessToken} 
+                        loginHandler={this.loginHandler} />
+                    )} />
+                </Switch>
+                <Sitemap />
+              </div>
     );
   };
 }
 
 
 export default withRouter(App);
-
