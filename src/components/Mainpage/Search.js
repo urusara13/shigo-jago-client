@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { Link } from "react-router-dom";
+import './Search.css';
+import { withRouter, Switch, Route, Link, BrowserRouter as Router } from "react-router-dom";
+import ResultList from '../ResultList/ResultList';
 
 class Search extends Component {
     constructor(props){
@@ -16,6 +18,7 @@ class Search extends Component {
                     특색 있는 숙소와 즐길<br /> 거리를 예약하세요.
                 </div>
                 <table>
+                <tbody>
                     <tr>
                         <td colSpan="2" className="search__sub__title">목적지</td>
                     </tr>
@@ -58,6 +61,7 @@ class Search extends Component {
                             </select>
                         </td>
                     </tr>
+                    </tbody>
                 </table>
                 <div className="search__button"> 
                   <Link to='/resultlist'>검색</Link>

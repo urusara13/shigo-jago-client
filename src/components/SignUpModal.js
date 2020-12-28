@@ -1,6 +1,7 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
 import axios from "axios";
+import './SignUp.css';
 
 axios.defaults.withCredentials = true;
 
@@ -59,43 +60,43 @@ class SignUpModal extends React.Component {
                     <div >
                         <div className="signUpModal">
                             <div className="signUpModalContents" >
-                                <h1>Sign Up</h1>
+                                <h1>회원가입</h1>
                                 <form onSubmit={(e) => e.preventDefault()}>
                                     <div>모든 항목은 필수입니다</div>
                                     <div>
-                                        <span>이메일</span>
                                         <input
                                             className="email"
                                             type="email"
+                                            placeholder="사용하실 e-mail을 입력해주세요"
                                             onChange={this.handleInputValue("email")}
                                         ></input>
                                     </div>
                                     <div>
-                                        <span>비밀번호</span>
                                         <input
                                             className="password"
                                             type="password"
+                                            placeholder="사용하실 password를 입력해주세요"
                                             onChange={this.handleInputValue("password")}
                                         ></input>
                                     </div>
                                     <div>
-                                        <span>이름</span>
                                         <input
                                             className="newName"
                                             type='text'
+                                            placeholder="이름을 입력해주세요"
                                             onChange={this.handleInputValue("name")}
                                         ></input>
                                     </div>
                                     <div>
-                                        <span>전화번호</span>
                                         <input
                                             className="phoneNum"
                                             type='tel'
+                                            placeholder="휴대폰 번호를 입력해주세요"
                                             onChange={this.handleInputValue("mobile")}
                                         ></input>
                                     </div>
                                     <button
-                                        className="btn btn-signup"
+                                        className="btnSignUp"
                                         type='submit'
                                         onClick={this.handleSignup}
                                     >

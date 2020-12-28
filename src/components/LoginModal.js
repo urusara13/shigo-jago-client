@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import axios from "axios";
+import './Login.css';
+import facebook from '../images/facebook.png'
+import google from '../images/google.png'
 
 axios.defaults.withCredentials = true;
 
@@ -42,29 +45,44 @@ class LoginModal extends Component {
     return (
       <>
         {isOpen ?
-          ( <div className="modal1">
+          (
+            <div className="modal1">
               <div>
                 <div className="loginModal">
                   <span className="btnClose" onClick={close}>&times;</span>
                   <div className="loginModalContents" >
-                  <div>로그인</div>
-                  <input
-                    className="email"
-                    type="text"
-                    placeholder="E-mail"
-                    onChange={this.handleInputValue("email")} />
-                  <input
-                    className="password"
-                    type="text"
-                    placeholder="Password"
-                    onChange={this.handleInputValue("password")} />
-                  <button className="btnLogin" onClick={this.handleLogin}> 로그인 </button>
-                  <div className="socialBox">
-                    <div className="kakao">
-                      <div className="kakaoText">카카오 계정으로 신규가입</div>
-                    </div>
-                    <div className="facebook">
-                      <div className="facebookText">페이스북 계정으로 신규가입</div>
+                    <div>로그인</div>
+                    <input
+                      className="email"
+                      type="text"
+                      placeholder="E-mail"
+                      onChange={this.handleInputValue("email")}
+                    />
+                    <input
+                      className="password"
+                      type="text"
+                      placeholder="Password"
+                      onChange={this.handleInputValue("password")}
+                    />
+                    <button className="btnLogin" onClick={this.handleLogin}>{" "}
+                    로그인{" "}</button>
+                    <div className="socialBox">
+                      <div className="google">
+                        <img
+                          className="googleLogo"
+                          src={google} alt='google'
+                        />
+                        <div className="googleText">구글 계정으로 신규가입</div>
+                      </div>
+                      <div className="facebook">
+                        <img
+                          className="facebookLogo"
+                          src={facebook} alt='facebook'
+                        />
+                        <div className="facebookText">
+                          페이스북 계정으로 신규가입
+                        </div>
+                      </div>
                     </div>
                   </div>
                   </div>
@@ -73,7 +91,7 @@ class LoginModal extends Component {
             </div>
           ) : null
         }
-        </>
+      </>
     );
   }
 }
@@ -81,8 +99,3 @@ class LoginModal extends Component {
 
 export default LoginModal;
 
-
-
-
-                    
-                    
