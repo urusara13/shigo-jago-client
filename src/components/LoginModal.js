@@ -46,6 +46,7 @@ class LoginModal extends Component {
       <>
         {isOpen ?
           (
+          <div>
             <div className="modal1">
               <div>
                 <div className="loginModal">
