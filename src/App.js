@@ -1,10 +1,9 @@
 import React from "react";
 import { withRouter, Switch, Route } from "react-router-dom";
-
-import Mainpage from './components/Mainpage/Mainpage'
-import Mypage from './components/Mypage/Mypage'
+import Mainpage from './components/Mainpage/Mainpage';
+import Mypage from './components/Mypage/Mypage';
 import Sitemap from "./components/Sitemap";
-import Nav from "./components/Nav"
+import Nav from "./components/Nav";
 
 class App extends React.Component {
   constructor(props) {
@@ -38,11 +37,10 @@ class App extends React.Component {
     return (
         <div className="container">
           <Nav 
-            isLogin={isLogin}
-            loginHandler={this.loginHandler} />
+              isLogin={isLogin}
+              loginHandler={this.loginHandler} />
           <Switch>
             <Route 
-              
               path='/mypage'
               render={() => (
                 <Mypage 
@@ -51,11 +49,9 @@ class App extends React.Component {
                   logoutHandler={this.logoutHandler} />
               )} />
             <Route
-              exact
               path='/'
               render={() => (
-                <Mainpage 
-                  isLogin={isLogin} 
+                <Mainpage
                   accessToken={accessToken} 
                   loginHandler={this.loginHandler} />
               )} />
@@ -68,4 +64,3 @@ class App extends React.Component {
 
 
 export default withRouter(App);
-
