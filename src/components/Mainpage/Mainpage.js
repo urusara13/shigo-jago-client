@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router } from "react-router-dom";
- 
+import { Route } from "react-router-dom"; 
+
 import Search from './Search'
+import ResultList from '../ResultList/ResultList'
+
 
 class Mainpage extends Component {
   constructor(props) {
@@ -11,13 +13,22 @@ class Mainpage extends Component {
   }
 
   render() {
-    const { accessToken } = this.props;
+    const { isLogin } = this.props;
     
     return(
-      <Router>
-        <Search
-          accessToken={accessToken}/>
-      </Router>  
+      <div>
+      <Route 
+        path='/resultlist'
+        render={() => (
+          <ResultList/>
+      )}  />
+      <Route 
+        exact
+        path='/'
+        render={() => (
+          <Search isLogin={isLogin}/>
+      )} />
+      </div>
     )
   }
 }
