@@ -25,17 +25,17 @@ class Listentry extends Component {
   }
 
   render() {
-    const { list } = this.props
+    const { list, reservation } = this.props
     const { isModalOpen } = this.state
 
     return (
       <>
       <div onClick={this.openListModal} >
-        <img alt='' src={list.firstimage} height='100' width='110'></img>
+        <img alt='' src={list.image1} height='100' width='110'></img>
         <span>{list.title} </span>
         <span>{list.addr1} </span>
       </div>
-      <ListModal isOpen={isModalOpen} list={list} close={this.closeListModal}></ListModal>
+      {isModalOpen ? <ListModal list={list} reservation={reservation} close={this.closeListModal}></ListModal> : null}
       </>
     )
   }
