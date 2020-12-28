@@ -1,70 +1,48 @@
 .signUpModal {
-    width: 480px;
-    height: 621px;
-    background-color: white;
-    position: relative;
-    box-sizing: border-box;
-    margin: 50px auto;
-    padding: 20px;
-    background: #fff;   
+  width: 480px;
+  height: 621px;
+  background-color: white;
+  position: relative;
+  box-sizing: border-box;
+  margin: 50px auto;
+  padding: 20px;
+  background: #fff; 
+}
+  
+.signUpModalContents {
+  margin: 0 auto;
+  width: 100%;
+  position: relative;
+  padding: 0 20px 32px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+  .errorMessage {
+    color: red;
+    font-size: 0.75em;
+    display: relative;
   }
   
-  .signUpModalContents {
-    margin: 0 auto;
-    width: 100%;
-    position: relative;
-    padding: 0 20px 32px;
-    box-sizing: border-box;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-  }
-  
-  
-  .email {
+  .newEmail,
+  .newPassword,
+  .newName,
+  .phoneNum {
     margin-top: 30px;
     border-radius: 2px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
     width: 100%;
-    height: 40px;
-    border: 1px solid #e5e5e5;
-    padding: 9px 12px;
-    outline: none;
     box-sizing: border-box;
+    height: 40px; 
+    border: 1px solid #e5e5e5;
   }
   
-  .password {
-    margin-top: 15px;
-    border-radius: 2px;
-    width: 100%;
-    height: 40px;
-    border: 1px solid #e5e5e5;
-    padding: 9px 12px;
-    outline: none;
-    box-sizing: border-box;
-  }
-  
-  .newName {
-    margin-top: 15px;
-    border-radius: 2px;
-    width: 100%;
-    height: 40px;
-    border: 1px solid #e5e5e5;
-    padding: 9px 12px;
-    outline: none;
-    box-sizing: border-box;
-  }
-  
-  .phoneNum {
-    margin-top: 15px;
-    border-radius: 2px;
-    width: 100%;
-    height: 40px;
-    border: 1px solid #e5e5e5;
-    padding: 9px 12px;
-    outline: none;
-    box-sizing: border-box;
-  }
-  
+
+ 
   .btnSignUp {
     margin-top: 15px;
     margin-bottom: 12px;
@@ -81,3 +59,5 @@
     font-size: 14px;
     line-height: 1px;
   }
+
+

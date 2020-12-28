@@ -41,8 +41,9 @@ class App extends React.Component {
   }
 
   logoutHandler() {
-    axios.post('http://localhost:4000/user/logout', 
-    { headers: {"Authorization": `Bearer ${this.props.accessToken}`}})
+    const { accessToken } = this.props;
+    axios.post('http://localhost:4000/user/logout',{},
+    { headers: {"Authorization": `Bearer ${accessToken}`}})
     .then((res) => {
       this.setState({
         isLogin: false,
