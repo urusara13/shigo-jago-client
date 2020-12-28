@@ -17,7 +17,7 @@ class DeleteAccountModal extends Component {
 
     axios.post('http://localhost:4000/mypage/deleteuser',
       { }, 
-      { headers: {"Authorization": `token ${accessToken}`}})
+      { headers: {"Authorization": `Bearer ${accessToken}`}})
     .then(alert('이용해주셔서 감사합니다.'))
     .then(logoutHandler())
     .then(history.push('/') )

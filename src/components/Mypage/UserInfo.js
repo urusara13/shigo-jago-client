@@ -30,7 +30,7 @@ class UserInfo extends Component {
     const { accessToken, userInfoHandler } = this.props;
     
     axios.get('http://localhost:4000/mypage/userinfo', {
-      headers: {"Authorization": `token ${accessToken}`}
+      headers: {"Authorization": `Bearer ${accessToken}`}
     })
     .then(res => {
       userInfoHandler(res.data.data)
