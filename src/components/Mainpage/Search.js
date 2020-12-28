@@ -1,22 +1,29 @@
 import React, { Component } from 'react';
+import './Search.css';
 import { withRouter, Switch, Route, Link, BrowserRouter as Router } from "react-router-dom";
 import ResultList from '../ResultList/ResultList';
 
 class Search extends Component {
+    constructor(props){
+      super(props);
+      
+    }
+    
     render() {
+
         return (
-            <Router>
             <div className="section">
             <div className="search__box">
                 <div className="search__title">
                     특색 있는 숙소와 즐길<br /> 거리를 예약하세요.
                 </div>
                 <table>
+                <tbody>
                     <tr>
-                        <td colspan="2" className="search__sub__title">목적지</td>
+                        <td colSpan="2" className="search__sub__title">목적지</td>
                     </tr>
                     <tr>
-                        <td colspan="2">
+                        <td colSpan="2">
                             <input className="search__input" type="text" placeholder="  모든 위치" />
                         </td>
                     </tr>
@@ -54,20 +61,15 @@ class Search extends Component {
                             </select>
                         </td>
                     </tr>
+                    </tbody>
                 </table>
-                <div className="search__button">
-                    <Link to='/resultList'>검색</Link>
+                <div className="search__button"> 
+                  <Link to='/resultlist'>검색</Link>
                 </div>
             </div>
-            <Switch>
-              <Route exact path="/resultList" >
-                <ResultList/>
-              </Route>
-            </Switch>
             </div>
-            </Router>
         )
     }
 }
 
-export default withRouter(Search)
+export default Search

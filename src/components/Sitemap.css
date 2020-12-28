@@ -1,0 +1,44 @@
+.section {
+  margin: 30px 0;
+}
+  
+.sitemap {
+  width:100%;
+  height:100px;
+  position:absolute;
+  bottom:0px;
+  background:#5eaeff;
+  text-align: center;
+  color: white;
+  display: grid;
+  grid-template-columns: auto auto;
+  justify-content: space-between;
+}
+
+.map__menu1 ul {
+  margin: 35px 0 0 20px;
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  grid-gap: 30px;
+  list-style-type: none;
+}
+
+.map__menu2 ul {
+  margin: 35px 20px 0 0;
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  grid-gap: 30px;
+  list-style-type: none;
+}
+  
+.map__menu1 ul a {
+  text-decoration: none;
+  color:white;
+  font-weight: 800;
+}
+  
+.map__menu2 ul a {
+  text-decoration: none;
+  color:white;
+  font-weight: 800;
+}

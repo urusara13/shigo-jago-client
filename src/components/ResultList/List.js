@@ -16,7 +16,6 @@ class List extends Component {
   componentDidMount() {
     axios.post('http://localhost:4000/search/list')
     .then(res => {
-      console.log(res.data)
       this.setState({
         list: res.data
       })
@@ -25,7 +24,7 @@ class List extends Component {
   
   render() {
     const { list } = this.state;
-
+    
     return (
       list.map((ele, idx) => (
         <Listentry list={ele} key={idx} />

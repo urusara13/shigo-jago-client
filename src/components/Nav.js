@@ -1,21 +1,17 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
-
+import './Nav.css';
 import LoginModal from './LoginModal'
-import SignUpModal from './SignUpModal'
 
 class Nav extends Component {
   constructor(props) {
     super(props);
     this.state = {
       isModalOpen: false,
-      isSignUpModal: false,
       buttonName: 'Log in'
     };
     this.openLoginModal = this.openLoginModal.bind(this);
     this.closeLoginModal = this.closeLoginModal.bind(this);
-    this.openSignUpModal = this.openSignUpModal.bind(this);
-    this.closeSignUpModal = this.closeSignUpModal.bind(this);
     this.changeMypage = this.changeMypage.bind(this);
   }
 
@@ -31,18 +27,6 @@ class Nav extends Component {
     })
   }
 
-  openSignUpModal() {
-    this.setState({
-      isSignUpModal: true
-    })
-  }
-
-  closeSignUpModal() {
-    this.setState({
-      isSignUpModal: false
-    })
-  }
-
   changeMypage() {
     this.props.loginHandler();
     this.setState({
@@ -53,40 +37,37 @@ class Nav extends Component {
   render() {
     const { 
       isLogin, 
-      loginHandler } = this.props;
+      loginHandler,logoutHandler } = this.props;
 
     const { 
-      isModalOpen,
-      isSignUpModal } = this.state;
+      isModalOpen
+    } = this.state;
 
     return (
-      <div>
-        <div class="logo"><Link to="/">쉬고자고</Link></div>
-          <div class="menu">
+      <nav>
+          <div className="logo"><Link to="/">쉬고자고</Link></div>
+          <div className="menu">
             <ul>
               { 
                 isLogin ? 
                 <>
-                  <Link exact to="/mypage" className='mypageLink' >My page</Link>
-                  <button >Log out</button>
+                  <Link to="/mypage" className='mypageLink' >My page</Link>
+                  <button className='menuLogoutBtn' onClick={logoutHandler}>Log out</button>
                 </> :
                 <>
-                  <button onClick={this.openLoginModal}>Sign in</button>
+                  <button className='menuLoginBtn' onClick={this.openLoginModal}>Sign in</button>
                   <LoginModal 
                     isLogin={isLogin} 
                     isOpen={isModalOpen} 
                     close={this.closeLoginModal}
                     changeMypage={this.changeMypage}
                     loginHandler={loginHandler} />
-                  <button className='signUpBtn' onClick={this.openSignUpModal} >Sign up</button>
-                  <SignUpModal 
-                    isOpen={isSignUpModal} 
-                    close={this.closeSignUpModal}/>
+                  <Link to="/user/signup">Sign up</Link>
                 </>
               }
             </ul>
           </div>
-      </div>
+      </nav>
     )
   }
 }
