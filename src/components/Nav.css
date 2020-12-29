@@ -44,3 +44,8 @@ nav {
     font-size: 18px;
     cursor: pointer;
 }
+
+.mainLogo {
+    width: 80px;
+    height: 80px;
+}

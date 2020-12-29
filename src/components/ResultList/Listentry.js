@@ -1,6 +1,6 @@
-import React, { Component } from "react"; 
+import React, { Component } from "react";
 import ListModal from "./ListModal"
-
+import './List.css';
 
 class Listentry extends Component {
   constructor(props) {
@@ -30,12 +30,37 @@ class Listentry extends Component {
 
     return (
       <>
-      <div onClick={this.openListModal} >
-        <img alt='' src={list.image1} height='100' width='110'></img>
-        <span>{list.title} </span>
-        <span>{list.addr1} </span>
-      </div>
-      {isModalOpen ? <ListModal list={list} reservation={reservation} close={this.closeListModal}></ListModal> : null}
+        <div className="listings">
+          <div className="listings__item">
+
+            <div className="listings__image" onClick={this.openListModal}>
+              <img alt='' src={list.image1}></img>
+            </div>
+            <div className="listings__content">
+              <div className="listings__title" onClick={this.openListModal}>
+                <h2>{list.title} </h2>
+              </div>
+              <div className="separator"></div>
+              <div className="listings__address" onClick={this.openListModal}>
+                <span>{list.addr1} </span>
+              </div>
+              <div className="listings__details">
+                <div className="listings__rating">
+                  <span>5 <span>(14)</span></span>
+                </div>
+                <div className="listings__price">
+                  <div className="listings__price__night">
+                    £29 <span> / night</span>
+                  </div>
+                  <div className="listings__price__total">
+                    <span>£57 total</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {isModalOpen ? <ListModal list={list} reservation={reservation} close={this.closeListModal}></ListModal> : null}
       </>
     )
   }
