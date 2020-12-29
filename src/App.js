@@ -19,11 +19,38 @@ class App extends React.Component {
     this.state = {
       isLogin: false,
       accessToken: '',
+      kakaoUserData: null
     }
-    this.logoutHandler = this.logoutHandler.bind(this);
-    this.logoutHandlerSimple = this.logoutHandlerSimple.bind(this);
-    this.loginHandler = this.loginHandler.bind(this);
+    this.logoutHandler = this.logoutHandler.bind(this)
+    this.logoutHandlerSimple = this.logoutHandlerSimple.bind(this)
+    this.loginHandler = this.loginHandler.bind(this)
+    this.kakaoToken = this.kakaoToken.bind(this)
+  }
 
+  kakaoToken(token) {
+    const newthis = this
+ 
+    window.Kakao.init('fbb39da1c8ecc519a63cb8852dc84385')
+    console.log(window.Kakao.isInitialized())
+    window.Kakao.Auth.setAccessToken(token)
+    window.Kakao.API.request({
+      url: '/v2/user/me',
+      data: {
+        property_keys: [
+          'properties.nickname',
+          'kakao_account.email',
+        ],
+      },
+      success: function(response) {
+        newthis.setState({
+          kakaoUserData: response
+        })
+      },
+      fail: function(error) {
+          console.log(error)
+      }
+    })
+    this.props.history.push('/user/signup')
   }
 
   loginHandler(data) {
@@ -65,6 +92,7 @@ class App extends React.Component {
           isLogin={isLogin}
           loginHandler={this.loginHandler} 
           logoutHandler={this.logoutHandler}
+          kakaoToken={this.kakaoToken}
         />
         <Switch>
           <Route
@@ -75,7 +103,7 @@ class App extends React.Component {
                 accessToken={accessToken}
                 logoutHandlerSimple={this.logoutHandlerSimple} />
             )} />
-            <Route path='/user/signup' render={() => <SignUpModal isLogin={isLogin} />} />
+            <Route path='/user/signup' render={() => <SignUpModal isLogin={isLogin} kakaoUserData={this.state.kakaoUserData} />} />
             <Route path="/about" render={() =><About />}/>
             <Route path="/gethelp"render={() =><GetHelp />}/>
             <Route path="/hire"render={() =><Hire />}/>

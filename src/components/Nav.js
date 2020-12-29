@@ -2,17 +2,35 @@ import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 import './Nav.css';
 import LoginModal from './LoginModal'
+import axios from 'axios';
 
 class Nav extends Component {
   constructor(props) {
     super(props);
     this.state = {
       isModalOpen: false,
-      buttonName: 'Log in'
+      buttonName: 'Log in',
+      KakaoAccessToken: null
     };
-    this.openLoginModal = this.openLoginModal.bind(this);
-    this.closeLoginModal = this.closeLoginModal.bind(this);
-    this.changeMypage = this.changeMypage.bind(this);
+    this.openLoginModal = this.openLoginModal.bind(this)
+    this.closeLoginModal = this.closeLoginModal.bind(this)
+    this.changeMypage = this.changeMypage.bind(this)
+    
+  }
+
+  async componentDidMount() {
+    const { kakaoToken } = this.props
+    const url = new URL(window.location.href)
+    const authorizationCode = url.searchParams.get('code')
+    
+    if (authorizationCode) {
+      console.log(authorizationCode)
+      const getkakaoToken = await axios.post('http://localhost:4000/social/kakao/callback',{
+        authorizationCode: authorizationCode
+      })
+    
+      kakaoToken(getkakaoToken.data.data.access_token)
+    }
   }
 
   openLoginModal() {
