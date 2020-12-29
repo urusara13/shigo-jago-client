@@ -1,5 +1,6 @@
 import React, { Component } from "react"; 
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 class ListModal extends Component {
   constructor(props) {
@@ -28,8 +29,13 @@ class ListModal extends Component {
   render() {
     const { close, reservation } = this.props
     const { hotelDetail } = this.state
-    console.log(reservation)
- 
+    
+    const newInfo = {};
+    newInfo.reservation = reservation;
+    newInfo.hotelDetail = hotelDetail;
+
+    console.log(hotelDetail)
+     
     return (
       hotelDetail ?
       <>
@@ -43,7 +49,11 @@ class ListModal extends Component {
         <img alt='' src={hotelDetail.firstimage} width='200' height='200'></img>
         <div>예약정보-성인: {reservation.adult}</div>
         <div>예약정보-아동: {reservation.child}</div>
-        <button>예약하기</button>
+        <Link to={{
+          pathname: '/payment',
+          state: {
+            reservationInfo: newInfo}
+          }}>예약하기</Link>
       </div>
       </div>
       </> 

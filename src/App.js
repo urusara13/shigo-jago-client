@@ -10,20 +10,20 @@ import About from "./components/SiteMapSection/About";
 import GetHelp from "./components/SiteMapSection/GetHelp";
 import Hire from "./components/SiteMapSection/Hire";
 import Refund from "./components/SiteMapSection/Refund";
-
-axios.defaults.withCredentials = true;
+import Payment from "./components/Payment/Payment";
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       isLogin: false,
-      accessToken: '',
+      accessToken: null,
+      userId: null
     }
     this.logoutHandler = this.logoutHandler.bind(this);
     this.logoutHandlerSimple = this.logoutHandlerSimple.bind(this);
     this.loginHandler = this.loginHandler.bind(this);
-
+   
   }
 
   loginHandler(data) {
@@ -52,8 +52,7 @@ class App extends React.Component {
     })
     .then(() => {
       this.props.history.push('/');
-    })
-    
+    }) 
   }
 
   render() {
@@ -67,7 +66,20 @@ class App extends React.Component {
           logoutHandler={this.logoutHandler}
         />
         <Switch>
+          <Route path='/user/signup' render={() => <SignUpModal isLogin={isLogin} />} />
+          <Route path="/about" render={() =><About />}/>
+          <Route path="/gethelp"render={() =><GetHelp />}/>
+          <Route path="/hire"render={() =><Hire />}/>
+          <Route path="/refund"render={() =><Refund />}/>
           <Route
+            path='/payment'
+            render={(obj) => (
+              <Payment
+                isLogin={isLogin}
+                location={obj.location}
+                accessToken={accessToken} />
+            )} />
+            <Route
             path='/mypage'
             render={() => (
               <Mypage
@@ -75,11 +87,6 @@ class App extends React.Component {
                 accessToken={accessToken}
                 logoutHandlerSimple={this.logoutHandlerSimple} />
             )} />
-            <Route path='/user/signup' render={() => <SignUpModal isLogin={isLogin} />} />
-            <Route path="/about" render={() =><About />}/>
-            <Route path="/gethelp"render={() =><GetHelp />}/>
-            <Route path="/hire"render={() =><Hire />}/>
-            <Route path="/refund"render={() =><Refund />}/>
             <Route
               path='/'
               render={() => (

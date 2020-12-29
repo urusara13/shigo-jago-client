@@ -1,0 +1,73 @@
+import React, { Component } from "react"; 
+
+import PaymentModal from "./PaymentModal"
+
+export default class MiddlePayment extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      howPay: 'card',
+      isModalOpen: false
+    };
+    this.handleInputValue = this.handleInputValue.bind(this);
+    this.openModal = this.openModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
+  }
+  
+  
+  openModal() {
+    this.setState({
+      isModalOpen: true
+    })
+  }
+
+  closeModal() {
+    this.setState({
+      isModalOpen: false
+    })
+  }
+
+  handleInputValue = (key) => (e) => {
+    this.setState({ [key]: e.target.value });
+  }
+
+  render() {
+    const { hotelDetail, reservation } = this.props.location.state.reservationInfo
+    const { accessToken } = this.props;
+    const { howPay, isModalOpen } = this.state
+
+    console.log(reservation)
+    
+    return (
+      <>
+        <div className='hotelImage'> 
+          <img alt='' src={hotelDetail.firstimage} width='200' height='200'></img>
+        </div>
+        <div className='reservationInfo'>
+          <div>숙소명 : {hotelDetail.title} </div>
+          <div>위치 : {hotelDetail.addr1} {hotelDetail.addr2}</div>
+          <div>예약정보-성인: {reservation.adult}</div>
+          <div>예약정보-아동: {reservation.child}</div>
+          <div>예약정보-체크인: {reservation.checkIn}</div>
+          <div>예약정보-체크아웃: {reservation.checkOut}</div>
+          <div>금액: 100000 </div>
+        </div>
+        <div className='howPay'>
+          <select className="search__input" value={this.state.howPay} onChange={this.handleInputValue("howPay")} >
+            <option value='card'>카드</option>
+            <option value='account'>계좌이체</option>
+          </select>
+          <button onClick={this.openModal}>결제하기</button>
+          { isModalOpen && <PaymentModal 
+            howPay={howPay} 
+            accessToken ={accessToken} 
+            close={this.closeModal}
+            res={reservation}
+            hotelName={hotelDetail.title} /> }
+          <div></div>  
+        </div>
+      </>
+    )
+  }
+}
+
