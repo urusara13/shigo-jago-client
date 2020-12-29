@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import './Nav.css';
 import LoginModal from './LoginModal'
 import axios from 'axios';
@@ -21,15 +21,36 @@ class Nav extends Component {
   async componentDidMount() {
     const { kakaoToken } = this.props
     const url = new URL(window.location.href)
+    
     const authorizationCode = url.searchParams.get('code')
     
-    if (authorizationCode) {
+    if (authorizationCode && url.pathname !== "/mypage") {
       console.log(authorizationCode)
       const getkakaoToken = await axios.post('http://localhost:4000/social/kakao/callback',{
-        authorizationCode: authorizationCode
+        authorizationCode: authorizationCode,
+        isDelete: false
       })
-    
       kakaoToken(getkakaoToken.data.data.access_token)
+    }
+    else if(authorizationCode && url.pathname === "/mypage") {
+      const getkakaoToken = await axios.post('http://localhost:4000/social/kakao/callback',{
+        authorizationCode: authorizationCode,
+        isDelete: true
+      })
+      console.log('token', getkakaoToken.data.data.access_token)
+      if(!window.Kakao.isInitialized()) window.Kakao.init('fbb39da1c8ecc519a63cb8852dc84385')
+      console.log(window.Kakao.isInitialized())
+      window.Kakao.Auth.setAccessToken(getkakaoToken.data.data.access_token)
+      window.Kakao.API.request({
+        url: '/v1/user/unlink',
+        success: function(response) {
+          console.log('success', response)
+        },
+        fail: function(error) {
+            console.log(error)
+        }
+      })
+      this.props.history.push('/')
     }
   }
 
@@ -84,5 +105,4 @@ class Nav extends Component {
   }
 }
 
-
-export default Nav;
+export default withRouter(Nav)
