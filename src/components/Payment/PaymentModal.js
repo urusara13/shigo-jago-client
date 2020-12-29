@@ -21,7 +21,7 @@ class PaymentModal extends Component {
   }
 
   pay() {
-    const { accessToken, howPay, res, hotelName } = this.props;
+    const { accessToken, howPay, res, price, hotelName } = this.props;
     const { cardNumber1, cardNumber2, cardNumber3, cardNumber4, accountNumber} = this.state;
     const cardNumber = `${cardNumber1}${cardNumber2}${cardNumber3}${cardNumber4}`
     
@@ -31,13 +31,13 @@ class PaymentModal extends Component {
     else {
       axios.post('http://localhost:4000/detail/payment',
         { reserveInfo: {
-            checkedin: '2020-12-01', //res.checkIn
-            checkedout: '2020-12-02', //res.checkOut
+            checkedin: res.checkIn,
+            checkedout: res.checkOut,
             adult: res.adult,
             child: res.child,
             hotelName: hotelName },
           payInfo: {
-            price: '100000', //수정필요
+            price: price,
             howPaid: howPay,
             cardNumber: cardNumber,
             accountNumber: accountNumber,

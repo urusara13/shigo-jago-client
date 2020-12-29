@@ -34,8 +34,7 @@ class ReservationListEntry extends Component {
   render() {
       const { isPaymentModalOpen, isReviewModalOpen } = this.state;
       const { ele, accessToken } = this.props;
-      console.log(ele);
-  
+      
     return(
       <>
       <div className='reserveContainer'>
@@ -46,9 +45,15 @@ class ReservationListEntry extends Component {
         <div >예약 날짜 : {ele.createdAt.substr(0,10)}</div> 
       </div>
       <button onClick={this.openPaymentModal}>예약상세</button>
-      {isPaymentModalOpen && <PaymentDetailModal close={this.closePaymentModal} accessToken={accessToken} reservationinfo={ele} />}
+      {isPaymentModalOpen && <PaymentDetailModal 
+        close={this.closePaymentModal} 
+        accessToken={accessToken} 
+        reservationinfo={ele} />}
       <button onClick={this.openReviewModal}>리뷰작성</button>
-      {isReviewModalOpen && <WriteReviewModal close={this.closeReviewModal} accessToken={accessToken} reservationid={ele.id} />}
+      {isReviewModalOpen && <WriteReviewModal 
+        close={this.closeReviewModal} 
+        accessToken={accessToken} 
+        reservationid={ele.id} />}
       </>
       )
   }
