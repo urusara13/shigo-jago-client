@@ -32,12 +32,12 @@ export default class PaymentModal extends Component {
     else {
       axios.post('http://localhost:4000/detail/payment',
         { reserveInfo: {
-            checkedin: res.checkIn,
-            checkedout: res.checkOut,
+            checkedin: '2020-12-01', //res.checkIn
+            checkedout: '2020-12-02', //res.checkOut
             adult: res.adult,
             child: res.child,
             hotelName: hotelName },
-            payInfo: {
+          payInfo: {
             price: '100000', //수정필요
             howPaid: howPay,
             cardNumber: cardNumber,
