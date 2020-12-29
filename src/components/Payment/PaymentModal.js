@@ -1,25 +1,24 @@
-import React, { Component } from "react"; 
 import axios from "axios";
-import CheckModal from "./CheckModal";
+import React, { Component } from "react"; 
+import { withRouter } from "react-router-dom";
 
-export default class PaymentModal extends Component {
+
+class PaymentModal extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      errorMessage: null,
       cardNumber1: null,
       cardNumber2: null,
       cardNumber3: null,
       cardNumber4: null,
       validThru: null,
       accountNumber: null,
-      userId: null,
-      errorMessage: null
+      message: null
     };
     this.handleInputValue = this.handleInputValue.bind(this);
     this.pay = this.pay.bind(this);
+    this.goToMypage = this.goToMypage.bind(this);
   }
-
 
   pay() {
     const { accessToken, howPay, res, hotelName } = this.props;
@@ -27,7 +26,7 @@ export default class PaymentModal extends Component {
     const cardNumber = `${cardNumber1}${cardNumber2}${cardNumber3}${cardNumber4}`
     
     if(!accessToken) {
-      this.setState({errorMessage: '로그인을 먼저 진행해주세요.'})
+      this.setState({message: '로그인을 먼저 진행해주세요.'})
     } 
     else {
       axios.post('http://localhost:4000/detail/payment',
@@ -46,11 +45,18 @@ export default class PaymentModal extends Component {
         { headers: {"Authorization": `Bearer ${accessToken}`}} )
       .then(res => {
         if(res.data.message) {
-          alert('성공적으로 예약되었습니다.') //수정필요
+          this.setState({message: '성공적으로 예약되었습니다.'})
         }
       })
       .catch(err => console.log(err))
     }
+  }
+  
+  goToMypage() {
+    const { close, history } = this.props;
+
+    close()
+    history.push('/mypage/reservationinfo')
   }
 
   handleInputValue = (key) => (e) => {
@@ -59,50 +65,55 @@ export default class PaymentModal extends Component {
 
   render() {
     const { howPay, close } = this.props;
-    const { errorMessage } = this.state;
+    const { message } = this.state;
 
-      return (
+    return (
+      message ? 
         <div className='modal1'>
-        <div className='loginModal'>       
-        <span className="btnClose" onClick={close}>&times;</span>
-        {errorMessage && <div>{errorMessage}</div>}
-        {howPay === 'card' && 
+          <div className='loginModal'>      
+          <div>{message}</div> 
+          {message === '성공적으로 예약되었습니다.' && 
+            <button className="btnClose" onClick={this.goToMypage}>확인</button>}
+          {message === '로그인을 먼저 진행해주세요.' && 
+            <button className="btnClose" onClick={close}>확인</button>}
+          </div>
+        </div> :
+        <div className='modal1'>
+          <div className='loginModal'>       
+          <span className="btnClose" onClick={close}>&times;</span>
+          {howPay === 'card' && 
           <>
-          <div>카드결제입니동</div>
+          <div>카드결제</div>
           <input
-            className="cardNumber"
-            type="text"
+            className="cardNumber" type="text"
             onChange={this.handleInputValue("cardNumber1")} />
           <input
-            className="cardNumber"
-            type="text"
+            className="cardNumber" type="text"
             onChange={this.handleInputValue("cardNumber2")} />
           <input
-            className="cardNumber"
-            type="text"
+            className="cardNumber" type="text"
             onChange={this.handleInputValue("cardNumber3")} />
           <input
-            className="cardNumber"
-            type="text"
+            className="cardNumber" type="text"
             onChange={this.handleInputValue("cardNumber4")} />
           <input
-            className="cardNumber"
-            type="text"
-            placeholder='유효기간'
+            className="cardNumber" type="text" placeholder='유효기간'
             onChange={this.handleInputValue("validThru")} />
           </> }
-        {howPay === 'account' && 
+          {howPay === 'account' && 
           <>
-          <div>계좌결제입니동</div>
+          <div>계좌결제</div>
           <input
-          className="accountNumber"
-          type="text"
-          onChange={this.handleInputValue("accountNumber")} /> 
-          </>}
+            className="accountNumber" type="text"
+            onChange={this.handleInputValue("accountNumber")} /> 
+          </> }
           <button onClick={this.pay}>결제하기</button>
+          </div>
         </div>
-        </div>
+      
       )
   }
 }
+
+export default withRouter(PaymentModal)
 
