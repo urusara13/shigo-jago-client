@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 import React, { Component } from "react"
 import { withRouter } from "react-router"
 import { Link, Switch, Route, BrowserRouter as Router } from "react-router-dom"
+require('dotenv').config();
 
 class DeleteKakaoModal extends Component {
   constructor(props) {
@@ -40,7 +41,7 @@ class DeleteKakaoModal extends Component {
 
     // console.log(window.Kakao.isInitialized());
     // if(!window.Kakao.isInitialized) {
-    //   window.Kakao.init('fbb39da1c8ecc519a63cb8852dc84385')
+    //   window.Kakao.init(process.env.REACT_APP_KAKAO_JSKEY)
     // }
     // const kakaoAuthurl = `https://kauth.kakao.com/oauth/authorize?client_id=${process.env.REACT_APP_KAKAO_RESTKEY}&redirect_uri=${process.env.REACT_APP_KAKAO_REDIRECT_DELETE}&response_type=code`
     // console.log(kakaoAuthurl)

@@ -3,6 +3,7 @@ import { Link, withRouter } from "react-router-dom";
 import './Nav.css';
 import LoginModal from './LoginModal'
 import axios from 'axios';
+require('dotenv').config();
 
 class Nav extends Component {
   constructor(props) {
@@ -38,7 +39,7 @@ class Nav extends Component {
         isDelete: true
       })
       console.log('token', getkakaoToken.data.data.access_token)
-      if(!window.Kakao.isInitialized()) window.Kakao.init('fbb39da1c8ecc519a63cb8852dc84385')
+      if(!window.Kakao.isInitialized()) window.Kakao.init(process.env.REACT_APP_KAKAO_JSKEY)
       console.log(window.Kakao.isInitialized())
       window.Kakao.Auth.setAccessToken(getkakaoToken.data.data.access_token)
       window.Kakao.API.request({
@@ -104,5 +105,6 @@ class Nav extends Component {
     )
   }
 }
+
 
 export default withRouter(Nav)

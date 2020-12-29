@@ -45,7 +45,7 @@ class LoginModal extends Component {
   }
 
   async kakaoOauth() {
-    window.Kakao.init('fbb39da1c8ecc519a63cb8852dc84385');
+    window.Kakao.init(process.env.REACT_APP_KAKAO_JSKEY);
     console.log(window.Kakao.isInitialized());
     const kakaoAuthurl = `https://kauth.kakao.com/oauth/authorize?client_id=${process.env.REACT_APP_KAKAO_RESTKEY}&redirect_uri=${process.env.REACT_APP_KAKAO_REDIRECT}&response_type=code`
     console.log(kakaoAuthurl)
