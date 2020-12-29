@@ -88,6 +88,33 @@ class SignUpModal extends React.Component {
         }
     }
 
+    kakaoSignup = async () =>  {
+        const { kakaoUserData } = this.props
+
+        if (this.state.password === ""&& this.state.mobile === "") {
+            this.setState({ errorMessage: '모든 항목은 필수입니다.' })
+        }
+
+        else if(this.state.formErrors.password && this.state.formErrors.mobile) {
+            this.setState({ errorMessage: '올바르게 입력해주세요.' })
+        }
+
+        else {
+          const signup = await axios.post('http://localhost:4000/user/signup', {
+              email: kakaoUserData.kakao_account.email,
+              name: kakaoUserData.properties.nickname,
+              password: this.state.password,
+              mobile: this.state.mobile
+          })
+            .then((response) => {
+                if (response.statuscode === 201) alert('가입에 성공하셨습니다!')
+            })
+            .then(() => {
+                this.props.history.push('/');
+            })
+        }
+    }
+
     render() {
         const { formErrors } = this.state;
         const { kakaoUserData } = this.props
@@ -223,7 +250,7 @@ class SignUpModal extends React.Component {
                                 <button
                                     className="btnSignUp"
                                     type='submit'
-                                    onClick={this.handleSignup}
+                                    onClick={this.kakaoSignup}
                                 >
                                     회원가입
                                     </button>
