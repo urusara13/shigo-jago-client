@@ -10,8 +10,7 @@ import About from "./components/SiteMapSection/About";
 import GetHelp from "./components/SiteMapSection/GetHelp";
 import Hire from "./components/SiteMapSection/Hire";
 import Refund from "./components/SiteMapSection/Refund";
-
-axios.defaults.withCredentials = true;
+import Payment from "./components/Payment/Payment";
 
 class App extends React.Component {
   constructor(props) {
@@ -79,8 +78,7 @@ class App extends React.Component {
     })
     .then(() => {
       this.props.history.push('/');
-    })
-    
+    }) 
   }
 
   render() {
@@ -95,7 +93,20 @@ class App extends React.Component {
           kakaoToken={this.kakaoToken}
         />
         <Switch>
+          <Route path='/user/signup' render={() => <SignUpModal isLogin={isLogin} kakaoUserData={this.state.kakaoUserData} />} />
+          <Route path="/about" render={() =><About />}/>
+          <Route path="/gethelp"render={() =><GetHelp />}/>
+          <Route path="/hire"render={() =><Hire />}/>
+          <Route path="/refund"render={() =><Refund />}/>
           <Route
+            path='/payment'
+            render={(obj) => (
+              <Payment
+                isLogin={isLogin}
+                location={obj.location}
+                accessToken={accessToken} />
+            )} />
+            <Route
             path='/mypage'
             render={() => (
               <Mypage
@@ -103,11 +114,6 @@ class App extends React.Component {
                 accessToken={accessToken}
                 logoutHandlerSimple={this.logoutHandlerSimple} />
             )} />
-            <Route path='/user/signup' render={() => <SignUpModal isLogin={isLogin} kakaoUserData={this.state.kakaoUserData} />} />
-            <Route path="/about" render={() =><About />}/>
-            <Route path="/gethelp"render={() =><GetHelp />}/>
-            <Route path="/hire"render={() =><Hire />}/>
-            <Route path="/refund"render={() =><Refund />}/>
             <Route
               path='/'
               render={() => (
