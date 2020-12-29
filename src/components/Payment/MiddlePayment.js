@@ -14,7 +14,6 @@ export default class MiddlePayment extends Component {
     this.closeModal = this.closeModal.bind(this);
   }
   
-  
   openModal() {
     this.setState({
       isModalOpen: true
@@ -35,8 +34,6 @@ export default class MiddlePayment extends Component {
     const { hotelDetail, reservation } = this.props.location.state.reservationInfo
     const { accessToken } = this.props;
     const { howPay, isModalOpen } = this.state
-
-    console.log(reservation)
     
     return (
       <>
