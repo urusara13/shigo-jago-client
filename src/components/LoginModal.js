@@ -3,6 +3,8 @@ import axios from "axios";
 import './Login.css';
 import facebook from '../images/facebook.png'
 import google from '../images/google.png'
+import kakaotalk from '../images/kakao.png'
+require('dotenv').config();
 
 axios.defaults.withCredentials = true;
 
@@ -14,8 +16,9 @@ class LoginModal extends Component {
       password: null,
       errorMessage: null
     };
-    this.handleInputValue = this.handleInputValue.bind(this);
-    this.handleLogin = this.handleLogin.bind(this);
+    this.handleInputValue = this.handleInputValue.bind(this)
+    this.handleLogin = this.handleLogin.bind(this)
+    this.kakaoOauth = this.kakaoOauth.bind(this)
   }
 
   handleInputValue = (key) => (e) => {
@@ -41,8 +44,19 @@ class LoginModal extends Component {
     }
   }
 
+  async kakaoOauth() {
+    window.Kakao.init('fbb39da1c8ecc519a63cb8852dc84385');
+    console.log(window.Kakao.isInitialized());
+    const kakaoAuthurl = `https://kauth.kakao.com/oauth/authorize?client_id=${process.env.REACT_APP_KAKAO_RESTKEY}&redirect_uri=${process.env.REACT_APP_KAKAO_REDIRECT}&response_type=code`
+    console.log(kakaoAuthurl)
+    window.location.assign(kakaoAuthurl)
+  }
+
   componentDidMount() {
     this.setState({ errorMessage: null})
+    const url = new URL(window.location.href)
+    const authorizationCode = url.searchParams.get('code')
+    console.log(authorizationCode)
   }
 
   render() {
@@ -72,9 +86,9 @@ class LoginModal extends Component {
                   <img className="googleLogo" src={google} alt='google' />
                   <div className="googleText">구글 계정으로 신규가입</div>
                 </div>
-                <div className="facebook">
-                  <img className="facebookLogo" src={facebook} alt='facebook'/>
-                  <div className="facebookText">페이스북 계정으로 신규가입</div>
+                <div className="facebook" onClick={this.kakaoOauth}>
+                  <img className="facebookLogo" src={kakaotalk} alt='facebook'/>
+                  <div className="facebookText">카카오 계정으로 신규가입</div>
                 </div>
               </div>
             </div>
@@ -83,5 +97,4 @@ class LoginModal extends Component {
     )}}
 
 
-export default LoginModal;
-
+export default LoginModal

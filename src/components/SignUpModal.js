@@ -88,9 +88,7 @@ class SignUpModal extends React.Component {
                         password: this.state.password,
                         mobile: this.state.mobile
                     },
-
                 )
-
                 .then((response) => {
                     //console.log(response)
                     if (response.statuscode === 201) {
@@ -100,17 +98,42 @@ class SignUpModal extends React.Component {
                 .then(() => {
                     this.props.history.push('/');
                 })
+        }
+    }
 
+    kakaoSignup = async () =>  {
+        const { kakaoUserData } = this.props
 
+        if (this.state.password === ""&& this.state.mobile === "") {
+            this.setState({ errorMessage: '모든 항목은 필수입니다.' })
         }
 
+        else if(this.state.formErrors.password && this.state.formErrors.mobile) {
+            this.setState({ errorMessage: '올바르게 입력해주세요.' })
+        }
 
+        else {
+          const signup = await axios.post('http://localhost:4000/user/signup', {
+              email: kakaoUserData.kakao_account.email,
+              name: kakaoUserData.properties.nickname,
+              password: this.state.password,
+              mobile: this.state.mobile
+          })
+            .then((response) => {
+                if (response.statuscode === 201) alert('가입에 성공하셨습니다!')
+            })
+            .then(() => {
+                this.props.history.push('/');
+            })
+        }
     }
 
     render() {
         const { formErrors } = this.state;
+        const { kakaoUserData } = this.props
 
-        return (
+        
+        return !kakaoUserData ? (
             <>
                 <div >
                     <div className="signUpModal">
@@ -188,7 +211,69 @@ class SignUpModal extends React.Component {
                     </div>
                 </div>
             </>
-        );
+        )
+        : (
+            <>
+                <div >
+                    <div className="signUpModal">
+                        <div className="signUpModalContents" >
+                            <h1>회원가입</h1>
+
+                            <form onSubmit={(e) => e.preventDefault()} >
+
+                                <div className="newName">
+                                  <label htmlFor="name">Name</label>
+                                    <div>{kakaoUserData.properties.nickname}</div>
+                                </div>
+
+                                <div className="newEmail">
+                                  <label htmlFor="email">email</label>
+                                    <div>{kakaoUserData.kakao_account.email}</div>
+                                </div>
+                                
+                                <div className="newPassword">
+                                    <label htmlFor="password">Password</label>
+                                    <input
+                                        className={formErrors.password.length > 0 ? "error" : null}
+                                        type="password"
+                                        name="password"
+                                        placeholder="사용하실 password를 입력해주세요"
+                                        
+                                        onChange={this.handleInputValue}
+                                    ></input>
+                                    {formErrors.password.length > 0 && (
+                                        <div className="errorMessage">{formErrors.password}</div>
+                                    )}
+                                </div>
+                  
+                                <div className="phoneNum">
+                                    <label htmlFor="mobile">Mobile</label>
+                                    <input
+                                        className={formErrors.mobile.length > 0 ? "error" : null}
+                                        type='tel'
+                                        name="mobile"
+                                        placeholder="휴대폰 번호를 입력해주세요"
+                                        
+                                        onChange={this.handleInputValue}
+                                    ></input>
+                                    {formErrors.mobile.length > 0 && (
+                                        <div className="errorMessage">{formErrors.mobile}</div>
+                                    )}
+                                </div>
+                                <button
+                                    className="btnSignUp"
+                                    type='submit'
+                                    onClick={this.kakaoSignup}
+                                >
+                                    회원가입
+                                    </button>
+                                {<div className="alert-box">{this.state.errorMessage}</div>}
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </>
+        )
     }
 }
 
