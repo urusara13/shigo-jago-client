@@ -6,10 +6,15 @@ class ListModal extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      hotelDetail: null
+      hotelDetail: null,
     };
+    this.numberWithCommas = this.numberWithCommas.bind(this);
   }
-  
+
+  numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+
   async getDetail() {
     const { contentid, contenttypeid } = this.props.list
     const detail = await axios.post('http://localhost:4000/search/detail',{
@@ -25,17 +30,16 @@ class ListModal extends Component {
   componentDidMount() {
     this.getDetail()
   }
-  
+
   render() {
-    const { close, reservation } = this.props
+    const { close, reservation, list } = this.props
     const { hotelDetail } = this.state
-    
-    const newInfo = {};
+
+    const newInfo = {}; //Payment props 넘겨주기 위함
     newInfo.reservation = reservation;
     newInfo.hotelDetail = hotelDetail;
+    newInfo.totalPrice = list.price
 
-    console.log(hotelDetail)
-     
     return (
       hotelDetail ?
       <>
@@ -49,6 +53,7 @@ class ListModal extends Component {
         <img alt='' src={hotelDetail.firstimage} width='200' height='200'></img>
         <div>예약정보-성인: {reservation.adult}</div>
         <div>예약정보-아동: {reservation.child}</div>
+        <div>총 금액 : {this.numberWithCommas(list.price)}</div>
         <Link to={{
           pathname: '/payment',
           state: {
