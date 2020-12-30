@@ -35,6 +35,7 @@ class Mainpage extends Component {
           <ResultList reservation={reservation}/>
       )}  />
       <Route 
+        exact
         path='/'
         render={() => (
           <Search setReservation={this.setReservation} isLogin={isLogin}/>
