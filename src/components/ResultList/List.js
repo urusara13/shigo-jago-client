@@ -5,7 +5,6 @@ import Listentry from "./Listentry"
 import ListMap from "./ListMap"
 import ListModal from "./ListModal"
 
-
 class List extends Component {
   constructor(props) {
     super(props);

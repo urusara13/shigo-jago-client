@@ -8,6 +8,7 @@ class ListModal extends Component {
     super(props);
     this.state = {
       hotelDetail: null,
+      review: null
     };
     this.numberWithCommas = this.numberWithCommas.bind(this);
   }
@@ -23,31 +24,38 @@ class ListModal extends Component {
       contenttypeid: contenttypeid
     })
 
-
     if (!detail.data.firstimage) {
       detail.data.firstimage = 'http://image.pensionlife.co.kr/penimg/pen_1/pen_19/1977/9734f7418fcc01a2321ba800b1f2c7ee.jpg'
     }
 
+    this.setState({ hotelDetail: detail.data })
+  }
 
-    this.setState({
-      hotelDetail: detail.data
+  async getReview() {
+    const { list } = this.props;
+
+    const review = await axios.post('http://localhost:4000/detail/review', { 
+      contenttypeid: list.contenttypeid,
+      contentid: list.contentid 
     })
+    console.log(review)
+
+    this.setState({review: review})
   }
 
   componentDidMount() {
     this.getDetail()
+    this.getReview()
   }
 
   render() {
     const { close, reservation, list } = this.props
-    const { hotelDetail } = this.state
+    const { hotelDetail, review } = this.state
 
     const newInfo = {}; //Payment props 넘겨주기 위함
     newInfo.reservation = reservation;
     newInfo.hotelDetail = hotelDetail;
     newInfo.totalPrice = list.price
-
-    console.log(hotelDetail)
 
     return (
       hotelDetail ?
@@ -66,6 +74,10 @@ class ListModal extends Component {
               <div>예약정보-성인: {reservation.adult}</div>
               <div>예약정보-아동: {reservation.child}</div>
               <div>총 금액 : {this.numberWithCommas(list.price)}</div>
+              <h2>리뷰</h2>
+              {review && review.map((ele, idx) => (
+                <div key={idx}>{idx}.{ele}</div>
+              ))}
               <div className="reservation__btn">
                 <Link to={{
                   pathname: '/payment',

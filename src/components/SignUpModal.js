@@ -118,7 +118,7 @@ class SignUpModal extends React.Component {
         }
 
         else {
-          const signup = await axios.post('http://localhost:4000/user/signup', {
+          axios.post('http://localhost:4000/user/signup', {
               email: kakaoUserData.kakao_account.email,
               name: kakaoUserData.properties.nickname,
               password: this.state.password,

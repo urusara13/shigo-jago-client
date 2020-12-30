@@ -1,29 +1,49 @@
 import React, { Component } from 'react';
 import './Search.css';
-import { Link } from "react-router-dom";
-//import ResultList from '../ResultList/ResultList';
+import { Link, withRouter } from "react-router-dom";
+import sigungu from './sigunguData/sigungu'
 
 class Search extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            areacode: "",
-            sigungucode: "",
+            areacode: null,
+            sigungucode: null,
             checkIn: "",
             checkOut: "",
             adult: 0,
-            child: 0
+            child: 0,
+
         };
 
         this.searchInputValue = this.searchInputValue.bind(this);
-
+        this.sigunguSelect = this.sigunguSelect.bind(this);
     }
     searchInputValue = (key) => (e) => {
         this.setState({ [key]: e.target.value });
     };
+    
+    sigunguSelect(areacode) {
+        const si = sigungu.filter(ele => ele.si.value === Number(areacode))
+        
+        return si[0].gungu.map((ele, idx) => (
+             <option value={ele.value} key={idx}>{ele.name}</option> )) 
+    }
+
+    goSearch = () => {
+        const { setReservation } = this.props
+        if(this.state.adult + this.state.child > 0) {
+            setReservation(this.state)
+        }
+        else {
+            alert('인원을 지정해주세요.')
+        }
+    }
+    
 
     render() {
-        const { setReservation } = this.props
+        const { areacode } = this.state
+        
         return (
             <div className="section">
                 <div className="search__box">
@@ -38,10 +58,19 @@ class Search extends Component {
                                     <td className="search__sub__title">구</td>
                                 </tr>
                                 <tr>
-                                    <td><input className="search__input" type="text" placeholder=" 시 "
-                                        onChange={this.searchInputValue("areacode")} /></td>
-                                    <td><input className="search__input" type="text" placeholder=" 구 "
-                                        onChange={this.searchInputValue("sigungucode")} /></td>
+                                    <td>
+                                      <select className="search__input" name="areacode" onChange={this.searchInputValue("areacode")} >
+                                        <option value=''>어디로갈까요?</option>
+                                        { sigungu.map((ele, idx) => (
+                                            <option value={ele.si.value} key={idx}>{ele.si.name}</option> ))}
+                                      </select>
+                                    </td>
+                                    <td>
+                                    <select className="search__input" name="sigungucode" onChange={this.searchInputValue("sigungucode")} >
+                                        <option value=''>골라골라~</option>
+                                        { areacode && this.sigunguSelect(areacode) }
+                                    </select>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td className="search__sub__title">체크인</td>
@@ -49,9 +78,9 @@ class Search extends Component {
                                 </tr>
                                 <tr>
                                     <td><input className="search__input" type="date"
-                                        onChange={this.searchInputValue("checkIn")} /></td>
+                                        name="date" onChange={this.searchInputValue("checkIn")} /></td>
                                     <td><input className="search__input" type="date"
-                                        onChange={this.searchInputValue("checkOut")} /></td>
+                                        name="date" onChange={this.searchInputValue("checkOut")} /></td>
                                 </tr>
                                 <tr>
                                     <td className="search__sub__title">성인</td>
@@ -59,7 +88,8 @@ class Search extends Component {
                                 </tr>
                                 <tr>
                                     <td>
-                                        <select className="search__input" onChange={this.searchInputValue("adult")}>
+                                        <select className="search__input" type='number'
+                                            name="성인" onChange={this.searchInputValue("adult")}>
                                             <option>0</option>
                                             <option>1</option>
                                             <option>2</option>
@@ -69,7 +99,8 @@ class Search extends Component {
                                         </select>
                                     </td>
                                     <td>
-                                        <select className="search__input" onChange={this.searchInputValue("child")}>
+                                        <select className="search__input" type='number'
+                                            name="아동" onChange={this.searchInputValue("child")}>
                                             <option>0</option>
                                             <option>1</option>
                                             <option>2</option>
@@ -82,11 +113,10 @@ class Search extends Component {
                             </tbody>
                         </table>
 
-                        <div className="search__button" onClick={() => {
-                            setReservation(this.state)
-                        }}>
-                            <Link to='/resultlist'>검색</Link>
-                        </div>
+
+                        <div className="search__button" onClick={this.goSearch}>
+                           <button>검색</button>
+                        </div>   
                     </form>
                 </div>
             </div>
@@ -94,4 +124,4 @@ class Search extends Component {
     }
 }
 
-export default Search
+export default withRouter(Search)
