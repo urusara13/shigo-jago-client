@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 
 import Listentry from "./Listentry"
-import ListModal from "./ListModal"
+//import ListModal from "./ListModal"
 
 
 class List extends Component {
