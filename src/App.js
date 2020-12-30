@@ -11,6 +11,7 @@ import GetHelp from "./components/SiteMapSection/GetHelp";
 import Hire from "./components/SiteMapSection/Hire";
 import Refund from "./components/SiteMapSection/Refund";
 import Payment from "./components/Payment/Payment";
+require('dotenv').config();
 
 class App extends React.Component {
   constructor(props) {
@@ -29,7 +30,7 @@ class App extends React.Component {
   kakaoToken(token) {
     const newthis = this
  
-    window.Kakao.init('fbb39da1c8ecc519a63cb8852dc84385')
+    window.Kakao.init(process.env.REACT_APP_KAKAO_JSKEY)
     console.log(window.Kakao.isInitialized())
     window.Kakao.Auth.setAccessToken(token)
     window.Kakao.API.request({

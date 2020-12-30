@@ -3,16 +3,20 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
 import DeleteAccountModal from "./DeleteUserModal";
+import DeleteKakao from './DeleteKakaoModal'
 
 class UserInfo extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isDeleteAccountModalOpen: false
+      isDeleteAccountModalOpen: false,
+      isDeleteKakaoAccount: false
     };
 
-  this.openDeleteAccountModal = this.openDeleteAccountModal.bind(this);  
-  this.closeDeleteAccountModal = this.closeDeleteAccountModal.bind(this);
+  this.openDeleteAccountModal = this.openDeleteAccountModal.bind(this)
+  this.closeDeleteAccountModal = this.closeDeleteAccountModal.bind(this)
+  this.openDeleteKakaoModal = this.openDeleteKakaoModal.bind(this)
+  this.closeDeleteKakaoModal = this.closeDeleteKakaoModal.bind(this)
   }
 
   openDeleteAccountModal() {
@@ -24,6 +28,18 @@ class UserInfo extends Component {
   closeDeleteAccountModal() {
     this.setState({
       isDeleteAccountModalOpen: false
+    })
+  }
+
+  openDeleteKakaoModal() {
+    this.setState({
+      isDeleteKakaoAccount: true
+    })
+  }
+
+  closeDeleteKakaoModal() {
+    this.setState({
+      isDeleteKakaoAccount: false
     })
   }
 
@@ -41,7 +57,7 @@ class UserInfo extends Component {
 
   render() {
       const { userInfo, logoutHandlerSimple, accessToken } = this.props;
-      const { isDeleteAccountModalOpen } = this.state;
+      const { isDeleteAccountModalOpen, isDeleteKakaoAccount } = this.state;
 
       return (
         <div className='userInfoContainer'>
@@ -52,6 +68,12 @@ class UserInfo extends Component {
             <div className='mobile'>전화번호 : {userInfo.mobile}</div>
           </div>
           <Link to='/mypage/useredit'>회원정보수정</Link>
+          <button className='deleteKakao' onClick={this.openDeleteKakaoModal}>카카오계정 연결해제</button>
+          { isDeleteKakaoAccount && 
+          <DeleteKakao 
+            isOpen={isDeleteKakaoAccount}
+            close={this.closeDeleteKakaoModal} />}
+            
           <button className='deleteAccount' onClick={this.openDeleteAccountModal}>탈퇴하기</button>
           <DeleteAccountModal 
             isOpen={isDeleteAccountModalOpen} 
