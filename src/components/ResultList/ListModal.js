@@ -23,6 +23,12 @@ class ListModal extends Component {
       contenttypeid: contenttypeid
     })
 
+
+    if (!detail.data.firstimage) {
+      detail.data.firstimage = 'http://image.pensionlife.co.kr/penimg/pen_1/pen_19/1977/9734f7418fcc01a2321ba800b1f2c7ee.jpg'
+    }
+
+
     this.setState({
       hotelDetail: detail.data
     })

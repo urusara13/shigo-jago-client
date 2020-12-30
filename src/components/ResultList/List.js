@@ -53,6 +53,13 @@ class List extends Component {
       ele.price = this.getPrice()
     ))
 
+    await hotelList.data.data.forEach(ele => {
+      if(!ele.image1) {
+        ele.image1 = 'http://image.pensionlife.co.kr/penimg/pen_1/pen_19/1977/9734f7418fcc01a2321ba800b1f2c7ee.jpg'      
+      }
+      
+    });
+
     this.setState({
       list: hotelList.data.data
     })
