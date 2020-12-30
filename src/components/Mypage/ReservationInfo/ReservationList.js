@@ -23,7 +23,7 @@ class ReservationList extends Component {
   render() {
       const { userInfo } = this.state;
       const { accessToken } = this.props;
-
+      console.log(userInfo)
       return (
         <div className='reservationInfoContainer'>
           <div>예약 내역</div>

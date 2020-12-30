@@ -49,11 +49,15 @@ class ReservationListEntry extends Component {
         close={this.closePaymentModal} 
         accessToken={accessToken} 
         reservationinfo={ele} />}
+      {ele.isReviewd ? 
+      <button onClick={this.openReviewModal}>리뷰수정</button> :
+      <>
       <button onClick={this.openReviewModal}>리뷰작성</button>
       {isReviewModalOpen && <WriteReviewModal 
         close={this.closeReviewModal} 
         accessToken={accessToken} 
         reservationid={ele.id} />}
+      </>}
       </>
       )
   }
