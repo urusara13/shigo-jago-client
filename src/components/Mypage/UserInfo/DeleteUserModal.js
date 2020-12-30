@@ -27,6 +27,7 @@ class DeleteUserModal extends Component {
     
     logoutHandlerSimple()
     history.push('/')
+    window.open('/','_self') //새로고침
   }
  
   render() {

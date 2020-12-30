@@ -1,13 +1,12 @@
 import axios from "axios"; //axios 초기 설정 필요
 import React, { Component } from "react"; 
 
-class WriteReviewlModal extends Component  {
+class EditReviewlModal extends Component  {
   constructor(props) {
     super(props);
     this.state = {
       title: null,
-      description: null,
-      message: null
+      description: null
     };
 
     this.handleInputValue = this.handleInputValue.bind(this);
@@ -19,7 +18,7 @@ class WriteReviewlModal extends Component  {
   }
 
   writeReview() {
-    const { accessToken, reservationid } = this.props;
+    const { accessToken, reservationid, close } = this.props;
     const { title, description } = this.state;
 
     axios.post('http://localhost:4000/mypage/writereview',
@@ -27,24 +26,17 @@ class WriteReviewlModal extends Component  {
       description: description,
       reservationId: reservationid },
     { headers: {"Authorization": `Bearer ${accessToken}`}})
-    .then(this.setState({message: '성공적으로 작성되었습니다!'}))
+    .then(close)
   }
   //to-do : 제목, 후기 작성안됐을때, 후기 인풋 키우기 
 
   render() {
   const { close } = this.props;
-  const { message } = this.state;
   
   return (
     <div className="modal1">
       <div className="loginModal">
         <span className="btnClose" onClick={close}>&times;</span>
-          {message ?
-          <> 
-          <div>{message}</div>
-          <button onClick={close}>확인</button>
-          </> :
-          <>
           <input
             className="title"
             type="text"
@@ -65,12 +57,11 @@ class WriteReviewlModal extends Component  {
             }}
             onChange={this.handleInputValue("description")} />
           </div>
-          <button onClick={this.writeReview}>업로드</button> 
-          </> }
+          <button onClick={this.writeReview}>업로드</button>
       </div>
     </div>
     )
   }
 }
-export default WriteReviewlModal;
+export default EditReviewlModal;
 
