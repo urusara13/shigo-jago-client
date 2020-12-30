@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from "react-router-dom";
 import './Nav.css';
+import shigojago from '../images/sgjg.png'
 import LoginModal from './LoginModal'
 import axios from 'axios';
 require('dotenv').config();
@@ -16,7 +17,7 @@ class Nav extends Component {
     this.openLoginModal = this.openLoginModal.bind(this)
     this.closeLoginModal = this.closeLoginModal.bind(this)
     this.changeMypage = this.changeMypage.bind(this)
-    
+
   }
 
   async componentDidMount() {
@@ -80,27 +81,29 @@ class Nav extends Component {
 
     return (
       <nav>
-          <div className="logo"><Link to="/">쉬고자고</Link></div>
-          <div className="menu">
-            <ul>
-              { 
-                isLogin ? 
+        <div className="logo">
+          <Link to="/"><img className="mainLogo" src={shigojago} alt='shigojago' /></Link>
+        </div>
+        <div className="menu">
+          <ul>
+            {
+              isLogin ?
                 <>
                   <Link to="/mypage" className='mypageLink' >My page</Link>
                   <button className='menuLogoutBtn' onClick={logoutHandler}>Log out</button>
                 </> :
                 <>
                   <button className='menuLoginBtn' onClick={this.openLoginModal}>Sign in</button>
-                  {isModalOpen && <LoginModal 
-                    isLogin={isLogin} 
+                  {isModalOpen && <LoginModal
+                    isLogin={isLogin}
                     close={this.closeLoginModal}
                     changeMypage={this.changeMypage}
-                    loginHandler={loginHandler} /> }
+                    loginHandler={loginHandler} />}
                   <Link to="/user/signup">Sign up</Link>
                 </>
-              }
-            </ul>
-          </div>
+            }
+          </ul>
+        </div>
       </nav>
     )
   }
