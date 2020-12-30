@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import './Search.css';
-import { withRouter } from "react-router-dom";
-//import ResultList from '../ResultList/ResultList';
+import { Link, withRouter } from "react-router-dom";
+import sigungu from './sigunguData/sigungu'
 
 class Search extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            areacode: "",
-            sigungucode: "",
+            areacode: null,
+            sigungucode: null,
             checkIn: "",
             checkOut: "",
             adult: 0,
@@ -17,12 +17,17 @@ class Search extends Component {
         };
 
         this.searchInputValue = this.searchInputValue.bind(this);
-        
-    } 
-
- 
+        this.sigunguSelect = this.sigunguSelect.bind(this);
+    }
     searchInputValue = (key) => (e) => {
         this.setState({ [key]: e.target.value });
+    };
+    
+    sigunguSelect(areacode) {
+        const si = sigungu.filter(ele => ele.si.value === Number(areacode))
+        
+        return si[0].gungu.map((ele, idx) => (
+             <option value={ele.value} key={idx}>{ele.name}</option> )) 
     }
 
     goSearch = () => {
@@ -37,6 +42,8 @@ class Search extends Component {
     
 
     render() {
+        const { areacode } = this.state
+        
         return (
             <div className="section">
                 <div className="search__box">
@@ -51,15 +58,19 @@ class Search extends Component {
                                     <td className="search__sub__title">구</td>
                                 </tr>
                                 <tr>
-                                    <td><input className="search__input"
-                                        type="text"
-                                        name="시"
-                                        placeholder=" 시 "
-                                        onChange={this.searchInputValue("areacode")} />
+                                    <td>
+                                      <select className="search__input" name="areacode" onChange={this.searchInputValue("areacode")} >
+                                        <option value=''>어디로갈까요?</option>
+                                        { sigungu.map((ele, idx) => (
+                                            <option value={ele.si.value} key={idx}>{ele.si.name}</option> ))}
+                                      </select>
                                     </td>
-                                    <td><input className="search__input" type="text"
-                                        name="구" placeholder=" 구 "
-                                        onChange={this.searchInputValue("sigungucode")} /></td>
+                                    <td>
+                                    <select className="search__input" name="sigungucode" onChange={this.searchInputValue("sigungucode")} >
+                                        <option value=''>골라골라~</option>
+                                        { areacode && this.sigunguSelect(areacode) }
+                                    </select>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td className="search__sub__title">체크인</td>
