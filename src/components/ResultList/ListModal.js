@@ -7,8 +7,13 @@ class ListModal extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      hotelDetail: null
+      hotelDetail: null,
     };
+    this.numberWithCommas = this.numberWithCommas.bind(this);
+  }
+
+  numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
 
   async getDetail() {
@@ -28,12 +33,13 @@ class ListModal extends Component {
   }
 
   render() {
-    const { close, reservation } = this.props
+    const { close, reservation, list } = this.props
     const { hotelDetail } = this.state
 
-    const newInfo = {};
+    const newInfo = {}; //Payment props 넘겨주기 위함
     newInfo.reservation = reservation;
     newInfo.hotelDetail = hotelDetail;
+    newInfo.totalPrice = list.price
 
     console.log(hotelDetail)
 
@@ -53,6 +59,7 @@ class ListModal extends Component {
 
               <div>예약정보-성인: {reservation.adult}</div>
               <div>예약정보-아동: {reservation.child}</div>
+              <div>총 금액 : {this.numberWithCommas(list.price)}</div>
               <div className="reservation__btn">
                 <Link to={{
                   pathname: '/payment',

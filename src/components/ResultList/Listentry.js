@@ -10,20 +10,18 @@ class Listentry extends Component {
     };
     this.openListModal = this.openListModal.bind(this);
     this.closeListModal = this.closeListModal.bind(this);
+    this.numberWithCommas = this.numberWithCommas.bind(this);
   }
 
   openListModal() {
-    this.setState({
-      isModalOpen: true
-    })
+    this.setState({ isModalOpen: true })
   }
-
   closeListModal() {
-    this.setState({
-      isModalOpen: false
-    })
+    this.setState({ isModalOpen: false })
   }
-
+  numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
   render() {
     const { list, reservation } = this.props
     const { isModalOpen } = this.state
@@ -44,6 +42,7 @@ class Listentry extends Component {
               <div className="listings__address" onClick={this.openListModal}>
                 <span>{list.addr1} </span>
               </div>
+              <span>금액 : {this.numberWithCommas(list.price)} </span>
               <div className="listings__details">
                 <div className="listings__rating">
                   <span>5 <span>(14)</span></span>

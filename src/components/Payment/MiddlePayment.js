@@ -12,18 +12,19 @@ export default class MiddlePayment extends Component {
     this.handleInputValue = this.handleInputValue.bind(this);
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
+    this.numberWithCommas = this.numberWithCommas.bind(this);
   }
   
   openModal() {
-    this.setState({
-      isModalOpen: true
-    })
+    this.setState({ isModalOpen: true })
   }
 
   closeModal() {
-    this.setState({
-      isModalOpen: false
-    })
+    this.setState({ isModalOpen: false })
+  }
+
+  numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
 
   handleInputValue = (key) => (e) => {
@@ -31,7 +32,7 @@ export default class MiddlePayment extends Component {
   }
 
   render() {
-    const { hotelDetail, reservation } = this.props.location.state.reservationInfo
+    const { hotelDetail, reservation, totalPrice } = this.props.location.state.reservationInfo
     const { accessToken } = this.props;
     const { howPay, isModalOpen } = this.state
     
@@ -47,7 +48,7 @@ export default class MiddlePayment extends Component {
           <div>예약정보-아동: {reservation.child}</div>
           <div>예약정보-체크인: {reservation.checkIn}</div>
           <div>예약정보-체크아웃: {reservation.checkOut}</div>
-          <div>금액: 100000 </div>
+          <div>금액: {this.numberWithCommas(totalPrice)}</div>
         </div>
         <div className='howPay'>
           <select className="search__input" value={this.state.howPay} onChange={this.handleInputValue("howPay")} >
@@ -60,6 +61,7 @@ export default class MiddlePayment extends Component {
             accessToken ={accessToken} 
             close={this.closeModal}
             res={reservation}
+            price={totalPrice}
             hotelName={hotelDetail.title} /> }
           <div></div>  
         </div>
