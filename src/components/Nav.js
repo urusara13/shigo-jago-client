@@ -40,18 +40,22 @@ class Nav extends Component {
         isDelete: true
       })
       console.log('token', getkakaoToken.data.data.access_token)
-      if(!window.Kakao.isInitialized()) window.Kakao.init(process.env.REACT_APP_KAKAO_JSKEY)
+      if(!window.Kakao.isInitialized()) {
+        window.Kakao.init(process.env.REACT_APP_KAKAO_JSKEY)
+      } 
       console.log(window.Kakao.isInitialized())
       window.Kakao.Auth.setAccessToken(getkakaoToken.data.data.access_token)
       window.Kakao.API.request({
         url: '/v1/user/unlink',
         success: function(response) {
           console.log('success', response)
+          window.open('/','_self')
         },
         fail: function(error) {
             console.log(error)
         }
       })
+      
       this.props.history.push('/')
     }
   }
