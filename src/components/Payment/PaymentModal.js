@@ -7,11 +7,13 @@ class PaymentModal extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      cardCompany: null,
       cardNumber1: null,
       cardNumber2: null,
       cardNumber3: null,
       cardNumber4: null,
       validThru: null,
+      bank: null,
       accountNumber: null,
       message: null
     };
@@ -83,7 +85,12 @@ class PaymentModal extends Component {
           <span className="btnClose" onClick={close}>&times;</span>
           {howPay === 'card' && 
           <>
-          <div>카드결제</div>
+          <h1>카드결제</h1>
+          <div>카드사</div>
+          <input
+            className="cardCompany" type="text"
+            onChange={this.handleInputValue("cardCompany")} />
+          <div>카드번호</div>
           <input
             className="cardNumber" type="text"
             onChange={this.handleInputValue("cardNumber1")} />
@@ -96,13 +103,19 @@ class PaymentModal extends Component {
           <input
             className="cardNumber" type="text"
             onChange={this.handleInputValue("cardNumber4")} />
+          <div>유효기간</div> 
           <input
-            className="cardNumber" type="text" placeholder='유효기간'
+            className="cardNumber" type="text" placeholder='mm/yy'
             onChange={this.handleInputValue("validThru")} />
           </> }
           {howPay === 'account' && 
           <>
-          <div>계좌결제</div>
+          <h1>계좌결제</h1>
+          <div>은행</div> 
+          <input
+            className="bank" type="text"
+            onChange={this.handleInputValue("bank")} />
+          <div>계좌번호</div> 
           <input
             className="accountNumber" type="text"
             onChange={this.handleInputValue("accountNumber")} /> 

@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { Component } from "react"; 
 import { Link } from "react-router-dom";
 
-import DeleteAccountModal from "./DeleteUserModal";
+import DeleteUserModal from "./DeleteUserModal";
 import DeleteKakao from './DeleteKakaoModal'
 
 class UserInfo extends Component {
@@ -75,11 +75,11 @@ class UserInfo extends Component {
             close={this.closeDeleteKakaoModal} />}
             
           <button className='deleteAccount' onClick={this.openDeleteAccountModal}>탈퇴하기</button>
-          <DeleteAccountModal 
-            isOpen={isDeleteAccountModalOpen} 
+          { isDeleteAccountModalOpen && 
+          <DeleteUserModal 
             close={this.closeDeleteAccountModal} 
             logoutHandlerSimple={logoutHandlerSimple}
-            accessToken={accessToken} />
+            accessToken={accessToken} />}
         </div>
       )
   }
