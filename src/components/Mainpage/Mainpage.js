@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Route } from "react-router-dom"; 
-
+import { Route , withRouter } from "react-router-dom"; 
 import Search from './Search'
 import ResultList from '../ResultList/ResultList'
 
@@ -21,6 +20,8 @@ class Mainpage extends Component {
     this.setState({
       reservation: data
     })
+
+    this.props.history.push('/resultlist')
   }
 
   render() {
@@ -45,4 +46,4 @@ class Mainpage extends Component {
 }
 
 
-export default Mainpage;
+export default withRouter(Mainpage)

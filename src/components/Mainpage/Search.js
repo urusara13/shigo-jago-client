@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './Search.css';
-import { Link } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 //import ResultList from '../ResultList/ResultList';
 
 class Search extends Component {
@@ -12,18 +12,31 @@ class Search extends Component {
             checkIn: "",
             checkOut: "",
             adult: 0,
-            child: 0
+            child: 0,
+
         };
 
         this.searchInputValue = this.searchInputValue.bind(this);
+        
+    } 
 
-    }
+ 
     searchInputValue = (key) => (e) => {
         this.setState({ [key]: e.target.value });
-    };
+    }
+
+    goSearch = () => {
+        const { setReservation } = this.props
+        if(this.state.adult + this.state.child > 0) {
+            setReservation(this.state)
+        }
+        else {
+            alert('인원을 지정해주세요.')
+        }
+    }
+    
 
     render() {
-        const { setReservation } = this.props
         return (
             <div className="section">
                 <div className="search__box">
@@ -38,9 +51,14 @@ class Search extends Component {
                                     <td className="search__sub__title">구</td>
                                 </tr>
                                 <tr>
-                                    <td><input className="search__input" type="text" placeholder=" 시 "
-                                        onChange={this.searchInputValue("areacode")} /></td>
-                                    <td><input className="search__input" type="text" placeholder=" 구 "
+                                    <td><input className="search__input"
+                                        type="text"
+                                        name="시"
+                                        placeholder=" 시 "
+                                        onChange={this.searchInputValue("areacode")} />
+                                    </td>
+                                    <td><input className="search__input" type="text"
+                                        name="구" placeholder=" 구 "
                                         onChange={this.searchInputValue("sigungucode")} /></td>
                                 </tr>
                                 <tr>
@@ -49,9 +67,9 @@ class Search extends Component {
                                 </tr>
                                 <tr>
                                     <td><input className="search__input" type="date"
-                                        onChange={this.searchInputValue("checkIn")} /></td>
+                                        name="date" onChange={this.searchInputValue("checkIn")} /></td>
                                     <td><input className="search__input" type="date"
-                                        onChange={this.searchInputValue("checkOut")} /></td>
+                                        name="date" onChange={this.searchInputValue("checkOut")} /></td>
                                 </tr>
                                 <tr>
                                     <td className="search__sub__title">성인</td>
@@ -59,7 +77,8 @@ class Search extends Component {
                                 </tr>
                                 <tr>
                                     <td>
-                                        <select className="search__input" onChange={this.searchInputValue("adult")}>
+                                        <select className="search__input" type='number'
+                                            name="성인" onChange={this.searchInputValue("adult")}>
                                             <option>0</option>
                                             <option>1</option>
                                             <option>2</option>
@@ -69,7 +88,8 @@ class Search extends Component {
                                         </select>
                                     </td>
                                     <td>
-                                        <select className="search__input" onChange={this.searchInputValue("child")}>
+                                        <select className="search__input" type='number'
+                                            name="아동" onChange={this.searchInputValue("child")}>
                                             <option>0</option>
                                             <option>1</option>
                                             <option>2</option>
@@ -82,11 +102,10 @@ class Search extends Component {
                             </tbody>
                         </table>
 
-                        <div className="search__button" onClick={() => {
-                            setReservation(this.state)
-                        }}>
-                            <Link to='/resultlist'>검색</Link>
-                        </div>
+
+                        <div className="search__button" onClick={this.goSearch}>
+                           <button>검색</button>
+                        </div>   
                     </form>
                 </div>
             </div>
@@ -94,4 +113,4 @@ class Search extends Component {
     }
 }
 
-export default Search
+export default withRouter(Search)

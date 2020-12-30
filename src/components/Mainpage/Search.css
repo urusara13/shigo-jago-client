@@ -41,17 +41,14 @@ table {
     padding: 20px 0;
 }
   
-.search__button a {
+.search__button button {
     background-color: #FF5A5F;
     color:white;
     width: 70px;
     height: 45px;
     font-size: 15px;
-    font-weight: 700; 
+    font-weight: 700; /*굵기*/
     border-radius: 6px;
     border: 0;
     cursor: pointer;
-    text-align: center;
-    line-height: 45px;
-    text-decoration: none;
 }
