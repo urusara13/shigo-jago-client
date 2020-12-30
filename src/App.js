@@ -27,11 +27,9 @@ class App extends React.Component {
     this.kakaoToken = this.kakaoToken.bind(this)
   }
 
-  kakaoToken(token) {
+  async kakaoToken(token) {
     const newthis = this
  
-    window.Kakao.init(process.env.REACT_APP_KAKAO_JSKEY)
-    console.log(window.Kakao.isInitialized())
     window.Kakao.Auth.setAccessToken(token)
     window.Kakao.API.request({
       url: '/v2/user/me',
@@ -45,12 +43,24 @@ class App extends React.Component {
         newthis.setState({
           kakaoUserData: response
         })
+        const isSignup = axios.post('http://localhost:4000/user/kakao', {
+          email: response.kakao_account.email, 
+          kakaoId: response.id
+        }).then(res => {
+          if(res.data.message === "ok") {
+            newthis.loginHandler(res.data.data.accessToken)
+            newthis.props.history.push('/')
+          } 
+          else {
+            newthis.props.history.push('/user/signup')
+          }
+        }) 
       },
       fail: function(error) {
           console.log(error)
       }
     })
-    this.props.history.push('/user/signup')
+    
   }
 
   loginHandler(data) {
@@ -80,6 +90,22 @@ class App extends React.Component {
     .then(() => {
       this.props.history.push('/');
     }) 
+    if(!window.Kakao.isInitialized()) {
+      window.Kakao.init(process.env.REACT_APP_KAKAO_JSKEY)
+    } 
+    if(window.Kakao.Auth.getAccessToken()) {
+      console.log('토큰 있음',window.Kakao.Auth.getAccessToken())
+      window.Kakao.Auth.logout(() => {
+        console.log('로그아웃됨', window.Kakao.Auth.getAccessToken())
+      })
+    }
+
+  }
+  
+  componentDidMount() {
+    if(!window.Kakao.isInitialized()) {
+      window.Kakao.init(process.env.REACT_APP_KAKAO_JSKEY)
+    } 
   }
 
   render() {

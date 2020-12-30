@@ -45,18 +45,15 @@ class LoginModal extends Component {
   }
 
   async kakaoOauth() {
-    window.Kakao.init(process.env.REACT_APP_KAKAO_JSKEY);
-    console.log(window.Kakao.isInitialized());
+    if(!window.Kakao.isInitialized()) {
+      window.Kakao.init(process.env.REACT_APP_KAKAO_JSKEY)
+    } 
     const kakaoAuthurl = `https://kauth.kakao.com/oauth/authorize?client_id=${process.env.REACT_APP_KAKAO_RESTKEY}&redirect_uri=${process.env.REACT_APP_KAKAO_REDIRECT}&response_type=code`
-    console.log(kakaoAuthurl)
     window.location.assign(kakaoAuthurl)
   }
 
   componentDidMount() {
     this.setState({ errorMessage: null})
-    const url = new URL(window.location.href)
-    const authorizationCode = url.searchParams.get('code')
-    console.log(authorizationCode)
   }
 
   render() {
