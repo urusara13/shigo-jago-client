@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import axios from "axios";
 
 import Listentry from "./Listentry"
-//import ListModal from "./ListModal"
-
+import ListMap from "./ListMap"
+import ListModal from "./ListModal"
 
 class List extends Component {
   constructor(props) {
@@ -63,7 +63,6 @@ class List extends Component {
     this.setState({
       list: hotelList.data.data
     })
-    console.log(hotelList.data.data)
   }
   
   render() {
@@ -71,9 +70,12 @@ class List extends Component {
     const { reservation } = this.props
  
     return (
-      list.map((ele, idx) => (
+      <>
+      {list.map((ele, idx) => (
         <Listentry list={ele} reservation={reservation} key={idx} />
-      ))
+      ))}
+      {list.length > 0 && <ListMap list={list} />}
+      </>
     )
   }
 
