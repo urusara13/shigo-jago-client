@@ -37,8 +37,9 @@ class PaymentDetailModal extends Component {
           <div >인원 상세: 성인 {reservationinfo.adult} /아동 {reservationinfo.child}</div>
           <div >예약 날짜: {reservationinfo.createdAt.substr(0,10)}</div> 
           <div>결제 금액: {paymentDetail.price}</div>
-          <div>결제 수단: {paymentDetail.howToPaid}</div>
+          <div>결제 수단: {paymentDetail.howPaid}</div>
           <div>카드 번호: {paymentDetail.cardNumber}</div>
+          <div>계좌 번호: {paymentDetail.accountNumber}</div>
         </div>
       </div>
     )
