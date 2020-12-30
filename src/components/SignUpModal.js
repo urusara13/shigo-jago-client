@@ -13,6 +13,10 @@ const pwRegex = RegExp(
     /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{6,9}$/ //  6 ~ 9자 영문, 숫자 조합
 );
 
+const phoneRegex = RegExp(
+    /^01(?:0|1|[6-9])-(?:\d{3}|\d{4})-\d{4}$/ 
+);
+
 
 class SignUpModal extends React.Component {
     constructor(props) {
@@ -55,8 +59,9 @@ class SignUpModal extends React.Component {
                     : "6 ~ 9자 영문, 숫자 조합을 사용해주세요.";
                 break;
             case "mobile":
-                formErrors.mobile =
-                    value.length < 11 ? "minimum 11 characaters required" : "";
+                formErrors.mobile = phoneRegex.test(value)
+                    ? ""
+                    : "하이픈을 이용해주세요";
                 break;
             default:
                 break;
@@ -188,7 +193,7 @@ class SignUpModal extends React.Component {
                                     <label htmlFor="mobile">Mobile</label>
                                     <input
                                         className={formErrors.mobile.length > 0 ? "error" : null}
-                                        type='tel'
+                                        type='text'
                                         name="mobile"
                                         placeholder="휴대폰 번호를 입력해주세요"
                                         noValidate
