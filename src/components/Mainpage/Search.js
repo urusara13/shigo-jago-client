@@ -44,7 +44,7 @@ class Search extends Component {
             const odate = checkOut.substr(8,10);
         
             const outDate = new Date(Number(oyear), Number(omonth)-1, Number(odate));
-            console.log(outDate - inDate)
+            
             if(inDate - outDate >= 0) {
                 alert('체크아웃 시간보다 앞 시간을 선택해주세요.')
             } else {
@@ -75,7 +75,7 @@ class Search extends Component {
             const idate = checkIn.substr(8,10);
         
             const inDate = new Date(Number(iyear), Number(imonth)-1, Number(idate));
-            console.log(outDate - inDate)
+            
             if(outDate - inDate <= 0) {
                 alert('체크인 시간보다 뒷 시간을 선택해주세요.')
             } else {
