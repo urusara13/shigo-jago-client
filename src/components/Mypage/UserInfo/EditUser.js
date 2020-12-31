@@ -40,23 +40,26 @@ class UserEdit extends Component {
       });
     }
     else {
-    axios.post('http://localhost:4000/mypage/useredit',
-    { name: name,
-      mobile: mobile,
-      password: password },
-    { headers: {"Authorization": `Bearer ${accessToken}`} })
-    .then(this.setState({ 
-      name: null,
-      password: null,
-      mobile: null,
-      errorMessage: '성공적으로 처리되었습니다.' })) //서버 요청 후 state 정보 삭제
-    .then(() => {
-      history.push('/mypage')
-      //window.open('/mypage','_self') //로그인 유지 기능 필요
-    }) 
-    .catch(err => console.log(err))
+      const newUserInfo = {
+        name: name,
+        mobile: mobile,
+        password: password
+      }
+      if(!name) delete newUserInfo.name
+      if(!mobile) delete newUserInfo.mobile
+      if(!password) delete newUserInfo.password
+
+      axios.post('http://localhost:4000/mypage/useredit', newUserInfo,
+      { headers: {"Authorization": `Bearer ${accessToken}`} })
+      .then(this.setState({ 
+        name: null,
+        password: null,
+        mobile: null,
+        errorMessage: '성공적으로 처리되었습니다.' })) //서버 요청 후 state 정보 삭제
+      .then(() => {
+        history.push('/mypage')}) 
+      .catch(err => console.log(err))
     }
-    
   }
 
   render() {
