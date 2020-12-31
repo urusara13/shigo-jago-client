@@ -21,41 +21,50 @@ class Nav extends Component {
   }
 
   async componentDidMount() {
-    const { kakaoToken } = this.props
+    const { kakaoToken, googleToken } = this.props
     const url = new URL(window.location.href)
-    
+
     const authorizationCode = url.searchParams.get('code')
-    
+
+    if (window.location.pathname === "/google") {
+      const getGoogleToken = await axios.post(`http://localhost:4000/social/google/callback`, {
+        authorizationCode: authorizationCode,
+        isDelete: false
+      })
+      console.log(getGoogleToken)
+      googleToken(getGoogleToken.data.data.access_token)
+    }
+
     if (authorizationCode && url.pathname !== "/mypage") {
       console.log(authorizationCode)
-      const getkakaoToken = await axios.post('http://localhost:4000/social/kakao/callback',{
+      const getkakaoToken = await axios.post('http://localhost:4000/social/kakao/callback', {
         authorizationCode: authorizationCode,
         isDelete: false
       })
       kakaoToken(getkakaoToken.data.data.access_token)
     }
-    else if(authorizationCode && url.pathname === "/mypage") {
-      const getkakaoToken = await axios.post('http://localhost:4000/social/kakao/callback',{
+    else if (authorizationCode && url.pathname === "/mypage") {
+      const getkakaoToken = await axios.post('http://localhost:4000/social/kakao/callback', {
         authorizationCode: authorizationCode,
         isDelete: true
       })
       console.log('token', getkakaoToken.data.data.access_token)
-      if(!window.Kakao.isInitialized()) {
+      if (!window.Kakao.isInitialized()) {
         window.Kakao.init(process.env.REACT_APP_KAKAO_JSKEY)
-      } 
+      }
       console.log(window.Kakao.isInitialized())
       window.Kakao.Auth.setAccessToken(getkakaoToken.data.data.access_token)
       window.Kakao.API.request({
         url: '/v1/user/unlink',
-        success: function(response) {
+        success: function (response) {
           console.log('success', response)
-          window.open('/','_self')
+          window.open('/', '_self')
         },
-        fail: function(error) {
-            console.log(error)
+        fail: function (error) {
+          console.log(error)
         }
       })
-      
+
       this.props.history.push('/')
     }
   }
