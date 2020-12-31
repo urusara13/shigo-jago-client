@@ -19,17 +19,37 @@ class App extends React.Component {
     this.state = {
       isLogin: false,
       accessToken: '',
-      kakaoUserData: null
+      kakaoUserData: null,
+      googleUserData: null
+
     }
     this.logoutHandler = this.logoutHandler.bind(this)
     this.logoutHandlerSimple = this.logoutHandlerSimple.bind(this)
     this.loginHandler = this.loginHandler.bind(this)
     this.kakaoToken = this.kakaoToken.bind(this)
+    this.googleToken = this.googleToken.bind(this)
   }
+
+  async googleToken(token) {
+    console.log("token :" + token)
+    const newthis = this
+    const userInfo = await axios({
+      method: 'get',
+      url: `https://www.googleapis.com/auth/userinfo.profile`,
+    }, {
+      headers: { "Authorization": `Bearer ${token}` }
+    })
+
+    console.log(userInfo)
+    newthis.setState({
+      googleUserData: userInfo
+    })
+  }
+
 
   async kakaoToken(token) {
     const newthis = this
- 
+
     window.Kakao.Auth.setAccessToken(token)
     window.Kakao.API.request({
       url: '/v2/user/me',
@@ -39,28 +59,28 @@ class App extends React.Component {
           'kakao_account.email',
         ],
       },
-      success: function(response) {
+      success: function (response) {
         newthis.setState({
           kakaoUserData: response
         })
         const isSignup = axios.post('http://localhost:4000/user/kakao', {
-          email: response.kakao_account.email, 
+          email: response.kakao_account.email,
           kakaoId: response.id
         }).then(res => {
-          if(res.data.message === "ok") {
+          if (res.data.message === "ok") {
             newthis.loginHandler(res.data.data.accessToken)
             newthis.props.history.push('/')
-          } 
+          }
           else {
             newthis.props.history.push('/user/signup')
           }
-        }) 
+        })
       },
-      fail: function(error) {
-          console.log(error)
+      fail: function (error) {
+        console.log(error)
       }
     })
-    
+
   }
 
   loginHandler(data) {
@@ -79,52 +99,53 @@ class App extends React.Component {
 
   logoutHandler() {
     const { accessToken } = this.props;
-    axios.post('http://localhost:4000/user/logout',{},
-    { headers: {"Authorization": `Bearer ${accessToken}`}})
-    .then((res) => {
-      this.setState({
-        isLogin: false,
-        accessToken: null
+    axios.post('http://localhost:4000/user/logout', {},
+      { headers: { "Authorization": `Bearer ${accessToken}` } })
+      .then((res) => {
+        this.setState({
+          isLogin: false,
+          accessToken: null
+        })
       })
-    })
-    .then(() => {
-      this.props.history.push('/');
-    }) 
-    if(!window.Kakao.isInitialized()) {
+      .then(() => {
+        this.props.history.push('/');
+      })
+    if (!window.Kakao.isInitialized()) {
       window.Kakao.init(process.env.REACT_APP_KAKAO_JSKEY)
-    } 
-    if(window.Kakao.Auth.getAccessToken()) {
-      console.log('토큰 있음',window.Kakao.Auth.getAccessToken())
+    }
+    if (window.Kakao.Auth.getAccessToken()) {
+      console.log('토큰 있음', window.Kakao.Auth.getAccessToken())
       window.Kakao.Auth.logout(() => {
         console.log('로그아웃됨', window.Kakao.Auth.getAccessToken())
       })
     }
 
   }
-  
+
   componentDidMount() {
-    if(!window.Kakao.isInitialized()) {
+    if (!window.Kakao.isInitialized()) {
       window.Kakao.init(process.env.REACT_APP_KAKAO_JSKEY)
-    } 
+    }
   }
 
   render() {
     const { isLogin, accessToken } = this.state;
 
     return (
-        <div className="container">
+      <div className="container">
         <Nav
           isLogin={isLogin}
-          loginHandler={this.loginHandler} 
+          loginHandler={this.loginHandler}
           logoutHandler={this.logoutHandler}
           kakaoToken={this.kakaoToken}
+          googleToken={this.googleToken}
         />
         <Switch>
           <Route path='/user/signup' render={() => <SignUpModal isLogin={isLogin} kakaoUserData={this.state.kakaoUserData} />} />
-          <Route path="/about" render={() =><About />}/>
-          <Route path="/gethelp"render={() =><GetHelp />}/>
-          <Route path="/hire"render={() =><Hire />}/>
-          <Route path="/refund"render={() =><Refund />}/>
+          <Route path="/about" render={() => <About />} />
+          <Route path="/gethelp" render={() => <GetHelp />} />
+          <Route path="/hire" render={() => <Hire />} />
+          <Route path="/refund" render={() => <Refund />} />
           <Route
             path='/payment'
             render={(obj) => (
@@ -133,7 +154,7 @@ class App extends React.Component {
                 location={obj.location}
                 accessToken={accessToken} />
             )} />
-            <Route
+          <Route
             path='/mypage'
             render={() => (
               <Mypage
@@ -141,16 +162,16 @@ class App extends React.Component {
                 accessToken={accessToken}
                 logoutHandlerSimple={this.logoutHandlerSimple} />
             )} />
-            <Route
-              path='/'
-              render={() => (
-                <Mainpage
-                  accessToken={accessToken} 
-                  loginHandler={this.loginHandler} />
-              )} />
-            </Switch>
-            <Sitemap />
-          </div>
+          <Route
+            path='/'
+            render={() => (
+              <Mainpage
+                accessToken={accessToken}
+                loginHandler={this.loginHandler} />
+            )} />
+        </Switch>
+        <Sitemap />
+      </div>
     );
   };
 }
