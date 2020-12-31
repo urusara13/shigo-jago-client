@@ -97,10 +97,12 @@ class Search extends Component {
     goSearch = () => {
         const { setReservation } = this.props
         const { adult, child, checkIn, checkOut } = this.state
-        if(adult + child > 0) {
-            setReservation(this.state)
-        } else if(!(checkIn || checkOut)) {
+        
+        if(!(checkIn || checkOut)) {
             alert('날짜를 바르게 지정해주세요.')
+        }
+        else if(adult + child > 0) {
+            setReservation(this.state)
         }
         else {
             alert('인원을 지정해주세요.')
