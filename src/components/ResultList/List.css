@@ -206,7 +206,7 @@
 }
 
 #map {
+  left: 45%;
   display: flex;
-  left: 1400px;
-  bottom: 3000px;
+  position: absolute;
 }

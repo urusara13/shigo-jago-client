@@ -7,7 +7,6 @@ class ReservationList extends Component {
     super(props);
     this.state = {
       userInfo : [],
-
     };
   }
   
@@ -16,6 +15,7 @@ class ReservationList extends Component {
 
     axios.get('http://localhost:4000/mypage/reserveinfo', 
     { headers: { "Authorization" : `Bearer ${accessToken}`} })
+    //.then(res => console.log(res.data))
     .then(res => { this.setState({ userInfo : res.data.data }) })
     .catch(err => console.log(err))
   }
@@ -29,7 +29,7 @@ class ReservationList extends Component {
           <div>예약 내역</div>
           {userInfo.map((ele, idx) => {
             return(
-              <ReservationListEntry key={idx} ele={ele} accessToken={accessToken} ></ReservationListEntry>
+              <ReservationListEntry key={idx} ele={ele} accessToken={accessToken} reload={this.reload} />
           )})}
         </div>
       )
