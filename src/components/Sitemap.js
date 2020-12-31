@@ -12,7 +12,7 @@ class Sitemap extends Component {
                             <li><Link to="/about">소개</Link></li>
                             <li><Link to="/gethelp">문의</Link></li>
                             <li><Link to="/hire">채용정보</Link></li>
-                            <li><Link to="/refund">환불 및 개인정보방침</Link></li>
+                            <li><Link to="/refund">이용약관 및 개인정보방침</Link></li>
                         </ul>
                     </div>
                     <div className="map__menu2">
