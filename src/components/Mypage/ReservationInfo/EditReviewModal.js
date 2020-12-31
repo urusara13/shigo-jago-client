@@ -1,18 +1,20 @@
-import axios from "axios"; //axios 초기 설정 필요
+import axios from "axios"; 
 import React, { Component } from "react"; 
+import { withRouter } from "react-router-dom";
 
 class EditReviewlModal extends Component  {
   constructor(props) {
     super(props);
+    const { title, description } = this.props.originReview;
     this.state = {
-      title: null,
-      description: null,
+      title: title,
+      description: description,
       message: null,
       errorMessage: null
     };
 
     this.handleInputValue = this.handleInputValue.bind(this);
-    this.editReview = this.writeReview.bind(this)
+    this.editReview = this.editReview.bind(this)
   };
 
   handleInputValue = (key) => (e) => {
@@ -41,9 +43,11 @@ class EditReviewlModal extends Component  {
     
   }
 
+
   render() {
   const { close } = this.props;
   const { message, errorMessage } = this.state;
+  const { title, description } = this.props.originReview;
   
   return (
     <div className="modal1">
@@ -56,6 +60,8 @@ class EditReviewlModal extends Component  {
           </> :
           <>
           <input
+            defaultValue={title}
+            placeholder={title}
             className="title"
             type="text"
             style={{
@@ -65,6 +71,8 @@ class EditReviewlModal extends Component  {
             onChange={this.handleInputValue("title")} />
           <div>
           <textarea
+            defaultValue={description}
+            placeholder={description}
             className="description"
             type="textarea"
             style={{
@@ -82,5 +90,5 @@ class EditReviewlModal extends Component  {
     )
   }
 }
-export default EditReviewlModal;
+export default withRouter(EditReviewlModal);
 

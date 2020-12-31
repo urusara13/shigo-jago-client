@@ -88,7 +88,11 @@ class PaymentModal extends Component {
           <h1>카드결제</h1>
           <div>카드사</div>
           <input
-            className="cardCompany" type="text"
+            className="cardCompany" type="number" 
+            maxLength="4"
+            style={{
+              width:50
+            }}
             onChange={this.handleInputValue("cardCompany")} />
           <div>카드번호</div>
           <input

@@ -34,12 +34,11 @@ class WriteReviewlModal extends Component  {
     .then(this.setState({message: '성공적으로 작성되었습니다!'}))
     }
   }
-  //to-do : 제목, 후기 작성안됐을때, 
 
   render() {
   const { close } = this.props;
   const { message, errorMessage } = this.state;
-  
+
   return (
     <div className="modal1">
       <div className="loginModal">
