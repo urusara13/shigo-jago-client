@@ -10,7 +10,7 @@
     position: relative;
     padding-top: 80px;
     padding-bottom: 80px;
-    background: pink;
+    background: aliceblue;
 }
 
 .main__content {
@@ -205,7 +205,7 @@
 }
 
 #map {
+  left: 45%;
   display: flex;
-  left: 1400px;
-  bottom: 3000px;
+  position: absolute;
 }
