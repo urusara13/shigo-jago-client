@@ -31,7 +31,7 @@ class UserEdit extends Component {
   }
 
   editUserInfo() {
-    const { accessToken } = this.props;
+    const { accessToken, history } = this.props;
     const { name, password, mobile } = this.state;
 
     if(!(name || password || mobile)) {
@@ -50,7 +50,10 @@ class UserEdit extends Component {
       password: null,
       mobile: null,
       errorMessage: '성공적으로 처리되었습니다.' })) //서버 요청 후 state 정보 삭제
-    .then(this.props.history.push('/mypage')) // 서버 통신 확인 후 테스트
+    .then(() => {
+      history.push('/mypage')
+      //window.open('/mypage','_self') //로그인 유지 기능 필요
+    }) 
     .catch(err => console.log(err))
     }
     

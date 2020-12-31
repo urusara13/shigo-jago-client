@@ -7,7 +7,8 @@ class WriteReviewlModal extends Component  {
     this.state = {
       title: null,
       description: null,
-      message: null
+      message: null,
+      errorMessage: null
     };
 
     this.handleInputValue = this.handleInputValue.bind(this);
@@ -21,19 +22,23 @@ class WriteReviewlModal extends Component  {
   writeReview() {
     const { accessToken, reservationid } = this.props;
     const { title, description } = this.state;
-
+    
+    if(!(title && description)) {
+      this.setState({errorMessage: '제목과 내용 모두 작성해주세요.'})
+    } else {
     axios.post('http://localhost:4000/mypage/writereview',
     { title: title,
       description: description,
       reservationId: reservationid },
     { headers: {"Authorization": `Bearer ${accessToken}`}})
     .then(this.setState({message: '성공적으로 작성되었습니다!'}))
+    }
   }
-  //to-do : 제목, 후기 작성안됐을때, 후기 인풋 키우기 
+  //to-do : 제목, 후기 작성안됐을때, 
 
   render() {
   const { close } = this.props;
-  const { message } = this.state;
+  const { message, errorMessage } = this.state;
   
   return (
     <div className="modal1">
@@ -45,6 +50,7 @@ class WriteReviewlModal extends Component  {
           <button onClick={close}>확인</button>
           </> :
           <>
+          {errorMessage && <div>{errorMessage}</div>}
           <input
             className="title"
             type="text"
