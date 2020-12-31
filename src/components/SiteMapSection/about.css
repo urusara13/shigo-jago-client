@@ -1,0 +1,103 @@
+:root {
+    --grey-med: #ddd;
+    --grey-light: #f7f7f7;
+    --grey-text-light: #717171;
+    --grey-text-dark: #222;
+    --pink: #ff385c;
+}
+
+.sg-main {
+    position: relative;
+    padding-top: 80px;
+    padding-bottom: 80px;
+    background: white;
+}
+
+.sg-content {
+    min-height: calc(100vh - 80px);
+    width: 840px;
+    padding: 60px 24px 0;
+}
+
+.sg-content h1 {
+    margin-top: 18px;
+    font-size: 34px;
+}
+
+.sg-main__scarcity {
+    display: flex;
+    align-items: center;
+    padding-top: 30px;
+    padding-bottom: 20px;
+}
+
+.job-board {
+    box-sizing: border-box;
+    color: rgb(34,34, 34);
+    display: block;
+    font-family: sans-serif;
+    font-size: 18px;
+    line-height: 30.0001px;
+    margin-bottom: 0px;
+    margin-top: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+    padding-left: 48px;
+    padding-right: 48px;
+    text-rendering: optimizeLegibility;
+    text-size-adjust: 100%;   
+}
+
+.jobs-board__departments {
+    box-sizing: border-box;
+    border-right-color: rgb(235,235, 235);
+    border-right-style: solid;
+    border-right-width: 1px;
+    color: rgb( 34, 34, 34);
+    display: block;
+    font-family: sans-serif;
+    font-size: 18px;
+    line-height: 30.0001px;
+    min-height: 500px;
+    text-rendering: optimizeLegibility;
+    text-size-adjust: 100%;
+
+
+}
+
+.jobs-board__departments__list {
+    margin: 0px;
+    padding: 0px;
+}
+
+.jobs-board__departments__item {
+
+    box-sizing: border-box;
+    color: rgb( 34, 34, 34);
+    display: list-item;
+    font-family: sans-serif;
+    font-size: 18px;
+    list-style-image: none;
+    list-style-position: outside;
+    list-style-type: none;
+    margin-bottom: 30px;
+    text-align: left;
+    line-height: 30.0001px;
+    text-rendering: optimizeLegibility;
+    text-size-adjust: 100%;
+}
+
+.jobs-board__departments__item__button {
+    align-items: flex-start;
+    appearance: none;
+    background-attachment: scroll;
+    background-clip: border-box;
+    background-color: rgba(0, 0, 0, 0);
+    background-image: none;
+    background-origin: padding-box;
+    display: inline-block;
+    cursor: pointer;
+    font-weight: 400;
+    line-height: 20.7px;
+    text-align: center;
+}
