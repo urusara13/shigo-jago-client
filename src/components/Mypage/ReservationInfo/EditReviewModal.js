@@ -1,46 +1,69 @@
-import axios from "axios"; //axios 초기 설정 필요
+import axios from "axios"; 
 import React, { Component } from "react"; 
+import { withRouter } from "react-router-dom";
 
 class EditReviewlModal extends Component  {
   constructor(props) {
     super(props);
+    const { title, description } = this.props.originReview;
     this.state = {
-      title: null,
-      description: null
+      title: title,
+      description: description,
+      message: null,
+      errorMessage: null
     };
 
     this.handleInputValue = this.handleInputValue.bind(this);
-    this.writeReview = this.writeReview.bind(this)
+    this.editReview = this.editReview.bind(this)
   };
 
   handleInputValue = (key) => (e) => {
     this.setState({ [key] : e.target.value })
   }
 
-  writeReview() {
-    const { accessToken, reservationid, close } = this.props;
+  editReview() {
+    const { accessToken, reservationid } = this.props;
     const { title, description } = this.state;
-
+    
+    if(!(title || description)) {
+      this.setState({errorMessage: '수정 사항이 없습니다.'})
+    }
     axios.post('http://localhost:4000/mypage/writereview',
     { title: title,
       description: description,
       reservationId: reservationid },
     { headers: {"Authorization": `Bearer ${accessToken}`}})
-    .then(close)
+    .then(res => {
+      if(res.status === 201) {
+        this.setState({message: '수정되었습니다.'})
+      } else if(res.status === 200) {
+        this.setState({message: '새로 생성되었습니다.'})
+      }
+    })
+    
   }
-  //to-do : 제목, 후기 작성안됐을때, 후기 인풋 키우기 
+
 
   render() {
   const { close } = this.props;
+  const { message, errorMessage } = this.state;
+  const { title, description } = this.props.originReview;
   
   return (
     <div className="modal1">
       <div className="loginModal">
         <span className="btnClose" onClick={close}>&times;</span>
+        {message ? 
+          <>
+          <div>{message}</div>
+          <button onClick={close}>확인</button>
+          </> :
+          <>
           <input
+            defaultValue={title}
+            placeholder={title}
             className="title"
             type="text"
-            placeholder="리뷰 제목을 작성해주세요."
             style={{
               width:400,
               height:40
@@ -48,20 +71,24 @@ class EditReviewlModal extends Component  {
             onChange={this.handleInputValue("title")} />
           <div>
           <textarea
+            defaultValue={description}
+            placeholder={description}
             className="description"
             type="textarea"
-            placeholder="숙박 후기를 남겨주세요!"
             style={{
               width:400,
               height:200
             }}
             onChange={this.handleInputValue("description")} />
           </div>
-          <button onClick={this.writeReview}>업로드</button>
+          <button onClick={this.editReview}>수정하기</button>
+          {errorMessage && <div>{errorMessage}</div>}
+          </>
+        }
       </div>
     </div>
     )
   }
 }
-export default EditReviewlModal;
+export default withRouter(EditReviewlModal);
 

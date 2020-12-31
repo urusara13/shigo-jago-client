@@ -32,15 +32,13 @@ class ListModal extends Component {
   }
 
   async getReview() {
-    const { list } = this.props;
-
+    const { contentid, contenttypeid } = this.props.list
     const review = await axios.post('http://localhost:4000/detail/review', { 
-      contenttypeid: list.contenttypeid,
-      contentid: list.contentid 
+      contentId: contentid,
+      contenttypeId: contenttypeid
     })
-    console.log(review)
 
-    this.setState({review: review})
+    this.setState({review: review.data.data})
   }
 
   componentDidMount() {
@@ -76,7 +74,10 @@ class ListModal extends Component {
               <div>총 금액 : {this.numberWithCommas(list.price)}</div>
               <h2>리뷰</h2>
               {review && review.map((ele, idx) => (
-                <div key={idx}>{idx}.{ele}</div>
+                <div key={idx}>
+                <div>{idx}.{ele.title}</div>
+                <div>{ele.description}</div>
+                </div>
               ))}
               <div className="reservation__btn">
                 <Link to={{
