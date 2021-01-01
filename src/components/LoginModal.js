@@ -89,11 +89,11 @@ class LoginModal extends Component {
             <div className="socialBox">
               <div className="google" onClick={this.googleOauth}>
                 <img className="googleLogo" src={google} alt='google' />
-                <div className="googleText">구글 계정으로 신규가입</div>
+                <div className="googleText">구글 계정으로 로그인</div>
               </div>
               <div className="facebook" onClick={this.kakaoOauth}>
                 <img className="facebookLogo" src={kakaotalk} alt='facebook' />
-                <div className="facebookText">카카오 계정으로 신규가입</div>
+                <div className="facebookText">카카오 계정으로 로그인</div>
               </div>
             </div>
           </div>

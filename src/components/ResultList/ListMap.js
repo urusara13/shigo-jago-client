@@ -1,6 +1,5 @@
 import React, { Component } from "react"
 let lastScrollY = 0
-let ticking = false
 
 export default class ListMap extends React.Component {
 
@@ -8,41 +7,25 @@ export default class ListMap extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-
     }
     this.handleScroll = this.handleScroll.bind(this)
   }
 
   handleScroll() {
-
     const { list } = this.props
     lastScrollY = window.scrollY
-    console.log(lastScrollY)
-
+  
     const ele = document.querySelectorAll('.listings__item')
 
-
-    // if(lastScrollY < list.length * 110 ) {
     const map = document.querySelector('#map')
     const pre = Number(map.style.top.split('px')[0])
 
     map.style.top = `${lastScrollY}px`
-    console.log('map', map.style.top)
-
-
-
-
-
-
-    //   console.log('변경후', map.style.bottom)
-    // ticking = false
-
-    // ticking = true
   }
 
   componentDidMount() {
     const { list } = this.props
-    window.addEventListener('scroll', this.handleScroll);
+    window.addEventListener('scroll', this.handleScroll)
 
     let positions = []
     let mapx = 0, mapy = 0
@@ -106,6 +89,10 @@ export default class ListMap extends React.Component {
         infowindow.close();
       }
     }
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.handleScroll)
   }
 
   render() {
