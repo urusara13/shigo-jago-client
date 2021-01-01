@@ -1,0 +1,52 @@
+.ERMctn {
+    width: 600px;
+    height: 450px;
+    border-radius: 6px;
+    position: relative;
+    margin: 200px auto;
+    padding: 50px;
+    padding-top: 60px;
+    background: #fff;   
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.ERMctnMid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.ERMtitle {
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
+}
+.ERMcontent {
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
+}
+.ERMtitle:focus, .ERMcontent:focus {
+    outline: none;
+    box-shadow: 0 0 1px 1px rgb(123,123,253)
+}
+.btnERMctn {
+    display: flex;
+    flex-direction: row;
+}
+.btnERM {
+    color: black;
+    padding: 6px;
+    margin: 15px;
+    margin-top: 25px;
+    margin-bottom: 0px;
+    font-size: 90%;
+    border-radius: 8px;
+    background-color: rgb(234,234,234);
+    transition: background-color 0.5s;
+}
+.btnERM:hover {
+    background-color: rgb(123,123,253);
+    color: white;
+}

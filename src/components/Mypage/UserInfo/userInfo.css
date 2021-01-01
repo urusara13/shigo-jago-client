@@ -19,6 +19,13 @@
 .userInfoCTtitle {
     padding-top: 30px;
     font-size: 90%;
+    color: rgb(123,123,253)
+}
+.userInfoCTsocial {
+    padding-top: 30px;
+    padding-bottom: 0;
+    font-size: 90%;
+    color: black;
 }
 .btnUInfoCtn {
     list-style: none;
@@ -40,7 +47,7 @@
     transition: background-color 0.5s
 }
 .btnUInfo:hover {
-    background-color: black;
+    background-color: rgb(123,123,253);
     color: white;
-    
+    font-weight: bold;
 }

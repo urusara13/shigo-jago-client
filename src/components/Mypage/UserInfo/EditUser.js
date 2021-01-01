@@ -1,7 +1,8 @@
 import axios from "axios";
 import React, { Component } from "react"; 
 import "./editUser.css"
-import { withRouter } from "react-router-dom"; //withRouter: history 사용하기 위해
+import { withRouter } from "react-router-dom"; 
+import SHA256 from '../../../lib/SHA256'
 import EditModal from "./EditUserModal"
 
 class UserEdit extends Component {
@@ -31,9 +32,8 @@ class UserEdit extends Component {
     this.props.history.push('/mypage/userinfo')
   }
 
-
   editUserInfo() {
-    const { accessToken, history } = this.props;
+    const { accessToken } = this.props;
     const { name, password, mobile } = this.state;
 
     if(!(name || password || mobile)) {
@@ -50,6 +50,7 @@ class UserEdit extends Component {
       if(!name) delete newUserInfo.name
       if(!mobile) delete newUserInfo.mobile
       if(!password) delete newUserInfo.password
+      if(password) newUserInfo.password = SHA256(password)
 
       axios.post('http://localhost:4000/mypage/useredit', newUserInfo,
       { headers: {"Authorization": `Bearer ${accessToken}`} })
@@ -57,9 +58,7 @@ class UserEdit extends Component {
         name: null,
         password: null,
         mobile: null,
-        errorMessage: '성공적으로 처리되었습니다.' })) //서버 요청 후 state 정보 삭제
-      .then(() => {
-        history.push('/mypage')}) 
+        errorMessage: '성공적으로 수정되었습니다.' })) 
       .catch(err => console.log(err))
     }
   }
@@ -98,7 +97,7 @@ class UserEdit extends Component {
       <div className='btnEUCtn'>
       <button className="btnEdit" onClick={this.editUserInfo}>수정하기</button>
       <button className="btnEdit" onClick={this.goToUserInfo}>뒤로가기</button>
-      {errorMessage && <EditModal close={this.closeModal} errorMessage={errorMessage} />}
+      {errorMessage && <EditModal gotoUI={this.goToUserInfo} close={this.closeModal} errorMessage={errorMessage} />}
       </div>
       </div>
     )
