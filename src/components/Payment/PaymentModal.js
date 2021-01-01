@@ -1,4 +1,5 @@
 import axios from "axios";
+import "./paymentModal.css"
 import React, { Component } from "react"; 
 import { withRouter } from "react-router-dom";
 
@@ -72,44 +73,41 @@ class PaymentModal extends Component {
     return (
       message ? 
         <div className='modal1'>
-          <div className='loginModal'>      
+          <div className='PMMCtn'>      
           <div>{message}</div> 
           {message === '성공적으로 예약되었습니다.' && 
             <button className="btnClose" onClick={this.goToMypage}>확인</button>}
           {message === '로그인을 먼저 진행해주세요.' && 
             <button className="btnClose" onClick={close}>확인</button>}
           </div>
-        </div> :
+        </div> 
+        :
         <div className='modal1'>
-          <div className='loginModal'>       
+          <div className='PMMCtn'>       
           <span className="btnClose" onClick={close}>&times;</span>
           {howPay === 'card' && 
           <>
           <h1>카드결제</h1>
           <div>카드사</div>
           <input
-            className="cardCompany" type="number" 
-            maxLength="4"
-            style={{
-              width:50
-            }}
+            className="cardCompany" type="text" 
             onChange={this.handleInputValue("cardCompany")} />
           <div>카드번호</div>
           <input
-            className="cardNumber" type="text"
+            className="cardNumber" type="text" maxLength="4"
             onChange={this.handleInputValue("cardNumber1")} />
           <input
-            className="cardNumber" type="text"
+            className="cardNumber" type="text" maxLength="4"
             onChange={this.handleInputValue("cardNumber2")} />
           <input
-            className="cardNumber" type="text"
+            className="cardNumber" type="text" maxLength="4"
             onChange={this.handleInputValue("cardNumber3")} />
           <input
-            className="cardNumber" type="text"
+            className="cardNumber" type="text" maxLength="4"
             onChange={this.handleInputValue("cardNumber4")} />
           <div>유효기간</div> 
           <input
-            className="cardNumber" type="text" placeholder='mm/yy'
+            className="cardNumber" type="text" placeholder='mm/yy' maxLength="4"
             onChange={this.handleInputValue("validThru")} />
           </> }
           {howPay === 'account' && 
