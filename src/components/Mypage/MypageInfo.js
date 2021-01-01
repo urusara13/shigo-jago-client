@@ -12,36 +12,28 @@ class MypageInfo extends Component {
       userInfo: {
         name: '',
         loginId: '',
-        mobile: ''
-      },
-      socialInfo: []
+        mobile: '',
+        social: null
+      }
     };
     
     this.userInfoHandler = this.userInfoHandler.bind(this);
-    this.socialInfoHandler = this.socialInfoHandler.bind(this);
   }
-
 
   userInfoHandler(data) {
     this.setState({
       userInfo: {
         name: data.name,
         loginId: data.loginId,
-        mobile: data.mobile
+        mobile: data.mobile,
+        social: data.Social
       },
     })
   }
 
-  socialInfoHandler(data) {
-    this.setState({
-      socialInfo: data,
-    })
-  }
-
-
   render() {
       const { logoutHandlerSimple, accessToken } = this.props;
-      const { userInfo, socialInfo } = this.state;
+      const { userInfo } = this.state;
 
       return (
         <Router>
@@ -76,9 +68,7 @@ class MypageInfo extends Component {
                   logoutHandlerSimple={logoutHandlerSimple}
                   accessToken={accessToken}
                   userInfoHandler={this.userInfoHandler}
-                  socialInfoHandler={this.socialInfoHandler}
-                  userInfo={userInfo}
-                  socialInfo={socialInfo}/>
+                  userInfo={userInfo} />
             )}  />
           </Switch>
         </Router>

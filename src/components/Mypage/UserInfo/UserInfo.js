@@ -57,19 +57,15 @@ class UserInfo extends Component {
     })
     .then(res => {
       console.log(res.data.data)
-      userInfoHandler(res.data.data[0])
-      // res.data.data.(ele => {
-      //   ele.Socials 
-      // })
-      //socialInfoHandler(res.data.data)
+      userInfoHandler(res.data.data)
     })
     .catch(err => console.log(err))
   }
 
   render() {
-      const { userInfo, socialInfo, logoutHandlerSimple, accessToken } = this.props;
+      const { userInfo, logoutHandlerSimple, accessToken } = this.props;
       const { isDeleteAccountModalOpen, isDeleteKakaoAccount } = this.state;
-
+     console.log(userInfo.social)
       return (
         <div className='userInfoContainer'>
           <div className='userInfo'>
@@ -79,10 +75,15 @@ class UserInfo extends Component {
             <div className='userInfoCT'>{userInfo.loginId}</div>
             <div className='userInfoCTtitle'>전화번호</div>
             <div className='userInfoCT'>{userInfo.mobile}</div>
-            {socialInfo && socialInfo}
             <div className='userInfoCTtitle'>소셜 연결 계정</div>
-            <div className='userInfoCTtitle'>{}</div>
-            <div className='userInfoCT'>{userInfo.mobile}</div>
+            { userInfo.social && 
+              userInfo.social.map((ele,idx) => {
+                return (
+                  <div key={idx}>
+                  <div className='userInfoCTtitle'>{ele.corporation}</div>
+                  <div className='userInfoCT'>social account : {ele.socialAccount}</div>
+                  <div className='userInfoCT'>email : {ele.socialEmail}</div>
+                  </div>) })}
           </div>
           <div className='btnUInfoCtn'> 
           <button className='btnUInfo' onClick={this.goToEditUserInfo}>회원정보수정</button>
