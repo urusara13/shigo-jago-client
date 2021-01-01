@@ -50,12 +50,13 @@ class UserInfo extends Component {
   }
 
   componentDidMount() {
-    const { accessToken, userInfoHandler } = this.props;
+    const { accessToken, userInfoHandler, socialInfoHandler } = this.props;
     
     axios.get('http://localhost:4000/mypage/userinfo', {
       headers: {"Authorization": `Bearer ${accessToken}`}
     })
     .then(res => {
+      console.log(res.data.data)
       userInfoHandler(res.data.data)
     })
     .catch(err => console.log(err))
@@ -64,16 +65,25 @@ class UserInfo extends Component {
   render() {
       const { userInfo, logoutHandlerSimple, accessToken } = this.props;
       const { isDeleteAccountModalOpen, isDeleteKakaoAccount } = this.state;
-
+     console.log(userInfo.social)
       return (
         <div className='userInfoContainer'>
           <div className='userInfo'>
             <div className='userInfoCTtitle'>이름</div>
             <div className='userInfoCT'>{userInfo.name}</div>
             <div className='userInfoCTtitle'>이메일</div>
-            <div className='userInfoCT'>{userInfo.email}</div>
+            <div className='userInfoCT'>{userInfo.loginId}</div>
             <div className='userInfoCTtitle'>전화번호</div>
             <div className='userInfoCT'>{userInfo.mobile}</div>
+            <div className='userInfoCTtitle'>소셜 연결 계정</div>
+            { userInfo.social && 
+              userInfo.social.map((ele,idx) => {
+                return (
+                  <div key={idx}>
+                  <div className='userInfoCTtitle'>{ele.corporation}</div>
+                  <div className='userInfoCT'>social account : {ele.socialAccount}</div>
+                  <div className='userInfoCT'>email : {ele.socialEmail}</div>
+                  </div>) })}
           </div>
           <div className='btnUInfoCtn'> 
           <button className='btnUInfo' onClick={this.goToEditUserInfo}>회원정보수정</button>

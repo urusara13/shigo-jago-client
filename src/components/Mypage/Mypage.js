@@ -14,7 +14,7 @@ class Mypage extends Component {
 
       return (
         isLogin ? 
-        <div className="main">
+        <div className="MPmain">
           <MypageInfo 
             accessToken={accessToken}
             logoutHandlerSimple={logoutHandlerSimple} />
