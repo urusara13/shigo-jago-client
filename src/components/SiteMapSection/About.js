@@ -12,7 +12,10 @@ class About extends Component {
                                     <img className="_1kvgpz1" src="https://image.freepik.com/free-vector/natural-winter-christmas-background-with-blue-sky-heavy-snowfall-snowflakes-snowy-coniferous-forest-snowdrifts-winter-landscape-with-falling-christmas-shining-beautiful-snow_209425-473.jpg" alt=""></img>
                                     <div className="_v748os9">
                                         <h1 className="_tqukbm">쉬고자고를 만나보세요.</h1>
-                                        <div className="_1hd0eby">쉬고자고 커뮤니티에 오신 것을 환영합니다. 여행지가 어디이든 쉬고자고에서는 내게 꼭 맞는 숙소를 찾을 수 있습니다.</div>
+                                        <div className="_1hd0eby">쉬고자고 커뮤니티에 오신 것을 환영합니다.
+                                        여행 좀 해본 분들이 찾고 또 찾는 예약사이트.
+                                        쉬고자고에서 나만의 멋진 숙소를 찾아보세요!
+                                        </div>
                                     </div>
 
 
@@ -27,12 +30,16 @@ class About extends Component {
                                         <div className="_1gae5lh">
                                             <div className="_62ifho">
                                                 <img className="_1qm0zaj" src="https://cf.bstatic.com/images/hotel/max1024x768/183/183762813.jpg" alt=""></img>
-                                                <h2 className="_1qikkmp">모든 여행에 적합한 숙소</h2>
+                                                <h2 className="_1qikkmp">여행에 적합한 숙소</h2>
                                                 <p className="_uz7gpd">찾으시는 숙소가 주말 여행을 위한 펜션이든 온 가족이 편히 머물 수 있는 공간이든, 호스트님의 따뜻한 환대는 여행의 즐거움을 더해줍니다. 쉬고자고의 모든 숙소에는 체크인 및 편안한 숙박을 위해 필요한 정보를 알려줄 수 있는 호스트가 있다는 사실을 기억하세요.</p></div>
                                             <div className="_62ifho">
                                                 <img className="_1qm0zaj" src="https://modo-phinf.pstatic.net/20180107_246/1515305308461CDEdi_PNG/mosa5ErRLp.png?type=f353_353" alt=""></img>
                                                 <h2 className="_1qikkmp">독특한 체험</h2>
                                                 <p className="_uz7gpd">쉬고자고 체험은 흔하디 흔한 투어 상품이 아닙니다. 여행 중이든, 내 도시를 둘러보는 중이든, 집에 머물고 있든, 전문가로부터 새로운 것을 배워보세요. 댄스 레슨, 파스타 만들기, 심지어 염소와 함께하는 요가를 배우실 수 있습니다.</p></div>
+                                            <div className="_62ifho">
+                                                <img className="_1qm0zaj" src="https://cf.bstatic.com/images/hotel/max1024x768/183/183762813.jpg" alt=""></img>
+                                                <h2 className="_1qikkmp">합리적인 선택</h2>
+                                                <p className="_uz7gpd">쉬고자고에서 여러 숙박업체를 한눈에 비교할 수 있습니다. 각종 프로모션 진행으로 같은 장소를 다른 사이트들보다 저렴하게 예약할 수 있습니다. 다른사람의 후기를 확인하여 숙소 예약에 필요한 정보를 얻을 수 있습니다.</p></div>
                                         </div>
                                     </div>
                                 </div>
