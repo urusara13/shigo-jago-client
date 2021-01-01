@@ -1,4 +1,5 @@
 import axios from "axios";
+import "./paymentModal.css"
 import React, { Component } from "react"; 
 import { withRouter } from "react-router-dom";
 
@@ -72,45 +73,49 @@ class PaymentModal extends Component {
     return (
       message ? 
         <div className='modal1'>
-          <div className='loginModal'>      
+          <div className='PMMCtn'>      
           <div>{message}</div> 
           {message === '성공적으로 예약되었습니다.' && 
             <button className="btnClose" onClick={this.goToMypage}>확인</button>}
           {message === '로그인을 먼저 진행해주세요.' && 
             <button className="btnClose" onClick={close}>확인</button>}
           </div>
-        </div> :
+        </div> 
+        :
         <div className='modal1'>
-          <div className='loginModal'>       
-          <span className="btnClose" onClick={close}>&times;</span>
+          <div className='PMMCtn'>       
+          <span className="btnPMClose" onClick={close}>&times;</span>
           {howPay === 'card' && 
           <>
           <h1>카드결제</h1>
-          <div>카드사</div>
+          <div className='PMcardNumberCtn'>
+          <div className='PMtitle'>카드번호</div>
           <input
-            className="cardCompany" type="number" 
-            maxLength="4"
-            style={{
-              width:50
-            }}
-            onChange={this.handleInputValue("cardCompany")} />
-          <div>카드번호</div>
-          <input
-            className="cardNumber" type="text"
+            className="cardNumber" type="text" maxLength="4"
             onChange={this.handleInputValue("cardNumber1")} />
           <input
-            className="cardNumber" type="text"
+            className="cardNumber" type="text" maxLength="4"
             onChange={this.handleInputValue("cardNumber2")} />
           <input
-            className="cardNumber" type="text"
+            className="cardNumber" type="text" maxLength="4"
             onChange={this.handleInputValue("cardNumber3")} />
           <input
-            className="cardNumber" type="text"
+            className="cardNumber" type="text" maxLength="4"
             onChange={this.handleInputValue("cardNumber4")} />
-          <div>유효기간</div> 
+          </div>
+          <div className='PMetc'>
+          <div className='PMtitle'>카드사</div>
+          <select className="cardCompany" onChange={this.handleInputValue("cardCompany")}>
+            <option value=""></option>
+            <option value="현대">현대</option>
+            <option value="삼성">삼성</option>
+            <option value="롯데">롯데</option>
+          </select>
+          <div className='PMtitle'>유효기간</div> 
           <input
-            className="cardNumber" type="text" placeholder='mm/yy'
+            className="cardNumber" type="text" placeholder='mm/yy' maxLength="4"
             onChange={this.handleInputValue("validThru")} />
+          </div>
           </> }
           {howPay === 'account' && 
           <>
@@ -124,7 +129,7 @@ class PaymentModal extends Component {
             className="accountNumber" type="text"
             onChange={this.handleInputValue("accountNumber")} /> 
           </> }
-          <button onClick={this.pay}>결제하기</button>
+          <button className='btnPMpay' onClick={this.pay}>결제하기</button>
           </div>
         </div>
       

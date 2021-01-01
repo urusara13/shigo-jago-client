@@ -9,6 +9,7 @@
   display: grid;
   grid-template-columns: auto auto;
   justify-content: space-between;
+  opacity: 0.9;
 }
 
 .map__menu1 ul {
@@ -29,12 +30,26 @@
   
 .map__menu1 ul a {
   text-decoration: none;
+  font-size: large;
   color: #222222;
   font-weight: 800;
-}
   
+}
+
+.map__menu1 ul a:hover{
+  text-decoration: underline;
+
+}
+
 .map__menu2 ul a {
+  font-size: large;
   text-decoration: none;
   color: #222222;
   font-weight: 800;
+
+}
+
+.map__menu2 ul a:hover{
+  text-decoration: underline;
+
 }

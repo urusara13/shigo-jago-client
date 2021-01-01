@@ -120,7 +120,7 @@
     margin-top: 0;
     font-size: 64px ;
     line-height: 64px ;
-    margin-bottom: 12px ;
+    margin-bottom: 22px ;
     font-weight: 800 ;
     letter-spacing: -1px ;
 
@@ -129,7 +129,7 @@
 ._1hd0eby {
     font-size: 26px ;
     line-height: 30px ;
-    max-width: 470px ;
+    max-width: 540px ;
 }
 
 ._vmvmolb {
@@ -156,7 +156,7 @@
     padding-bottom: 0px ;
     border-bottom: 0px ;
     margin-bottom: 0px ;
-    margin-right: 48px ;
+    margin-right: 58px ;
 }
 
 ._1qm0zaj {
@@ -173,7 +173,7 @@
     letter-spacing: -1px ;
     margin-top: 24px ;
     margin-bottom: 16px ;
-    max-width: 350px ;
+    max-width: 380px ;
 }
 
 ._1qikkmp h2 {
@@ -184,10 +184,15 @@
     margin-inline-end: 0px;
 }
 
+._uz7gpd{
+    width:500px;
+}
 
 ._19h11reb {
     padding-bottom: 80px ;
     border-bottom: 1px solid #DDDDDD ;
+    justify-content: space-evenly;
+
 }
 
 ._x2xwu5 {

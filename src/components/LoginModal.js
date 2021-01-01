@@ -3,7 +3,9 @@ import axios from "axios";
 import './Login.css';
 import google from '../images/google.png'
 import kakaotalk from '../images/kakao.png'
+import SHA256 from '../lib/SHA256'
 require('dotenv').config();
+
 
 axios.defaults.withCredentials = true;
 
@@ -33,7 +35,7 @@ class LoginModal extends Component {
       this.setState({ errorMessage: '아이디와 비밀번호를 모두 채워주세요.' })
     } else {
       axios.post('http://localhost:4000/user/login',
-        { loginId: this.state.loginId, password: this.state.password },
+        { loginId: this.state.loginId, password: SHA256(this.state.password) },
         { headers: { "Content-Type": "application/json" } })
         .then(res => {
           loginHandler(res.data.data.accessToken)
@@ -100,6 +102,5 @@ class LoginModal extends Component {
     )
   }
 }
-
 
 export default LoginModal

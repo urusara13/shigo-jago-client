@@ -1,0 +1,63 @@
+.container1{
+    display:flex;
+    width:900px;
+    height:600px;
+    margin:0px auto;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    background-color: beige;
+    box-shadow:2px 2px 2px 2px;
+}
+
+.hotelImage{
+    width: 400px;
+    height: 400px;
+}
+
+.hotelImage > img{
+    box-shadow:inset 1px 1px 0px 0px #efdcfb;
+
+}
+
+.reservationInfo{
+    width:400px;
+    height: 400px;
+    margin-left: 20px;
+    background-color: #fff;
+    opacity: 0.7;
+    
+
+}
+
+.reservationInfo div{
+    font-size: 20px;
+    line-height: 30px;
+       
+}
+
+.howPay{
+    display:flex;
+    width:820px;
+    height:70px;
+    justify-content: flex-end;
+    flex-flow: row wrap;
+    
+}
+
+.PI_payment__input{
+    font-size: 20px;
+    margin-right: 10px;
+
+}
+
+.howPay > button{
+    font-size:30px;   
+    cursor:pointer;
+    background-color:#dfbdfa;
+    border-radius: 6px;
+    box-shadow:inset 0px 1px 0px 0px #efdcfb;
+
+}
+
+
