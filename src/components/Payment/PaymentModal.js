@@ -84,13 +84,12 @@ class PaymentModal extends Component {
         :
         <div className='modal1'>
           <div className='PMMCtn'>       
-          <span className="btnClose" onClick={close}>&times;</span>
+          <span className="btnPMClose" onClick={close}>&times;</span>
           {howPay === 'card' && 
           <>
           <h1>카드결제</h1>
-          
-          <div>카드번호</div>
           <div className='PMcardNumberCtn'>
+          <div className='PMtitle'>카드번호</div>
           <input
             className="cardNumber" type="text" maxLength="4"
             onChange={this.handleInputValue("cardNumber1")} />
@@ -105,11 +104,14 @@ class PaymentModal extends Component {
             onChange={this.handleInputValue("cardNumber4")} />
           </div>
           <div className='PMetc'>
-          <div>카드사</div>
-          <input
-            className="cardCompany" type="text" 
-            onChange={this.handleInputValue("cardCompany")} />
-          <div>유효기간</div> 
+          <div className='PMtitle'>카드사</div>
+          <select className="cardCompany" onChange={this.handleInputValue("cardCompany")}>
+            <option value=""></option>
+            <option value="현대">현대</option>
+            <option value="삼성">삼성</option>
+            <option value="롯데">롯데</option>
+          </select>
+          <div className='PMtitle'>유효기간</div> 
           <input
             className="cardNumber" type="text" placeholder='mm/yy' maxLength="4"
             onChange={this.handleInputValue("validThru")} />
@@ -127,7 +129,7 @@ class PaymentModal extends Component {
             className="accountNumber" type="text"
             onChange={this.handleInputValue("accountNumber")} /> 
           </> }
-          <button onClick={this.pay}>결제하기</button>
+          <button className='btnPMpay' onClick={this.pay}>결제하기</button>
           </div>
         </div>
       

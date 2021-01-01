@@ -1,6 +1,6 @@
 .PMMCtn {
     width: 480px;
-    height: 621px;
+    height: 300px;
     position: relative;
     box-sizing: border-box;
     margin: 50px auto;
@@ -8,64 +8,56 @@
     background: #fff;   
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
-
+.PMtitle {
+    padding: 10px;
+}
 .PMcardNumberCtn {
     display: flex;
     flex-direction: row;
+    padding: 20px;
+    padding-bottom: 5px;
 }
 .cardNumber {
     width: 50px;
     padding: 3px;
     margin: 3px;
 }
+.cardNumber:focus {
+    outline: 1px solid black
+}
 .PMetc {
     display: flex;
     flex-direction: row;
+    padding: 20px;
+    padding-top:5px;
+}
+.cardCompany {
+    width: 50px;
+    padding: 3px;
+    margin: 3px;
+}
+.cardCompany:focus {
+    outline: 1px solid black
 }
 
-.EUCtn {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+.btnPMpay {
+    border: 1px solid grey;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 10px;
+    width: 80px;
+    font-size: 15px;
+    transition: background-color 0.5s;
 }
-.EUCtnMid {
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin: 0;
-    padding: 0;
-}
-.userInfoCT {
-    padding-top: 20px;
-    font-weight: lighter;
-}
-.userInfoCTtitle {
-    padding-top: 30px;
-    font-size: 90%;
-}
-
-.btnEUCtn {
-    list-style: none;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: flex-start;
-    margin: 0;
-    margin-top: 60px;
-    padding: 0;
-}
-.btnEdit {
-    background-color: rgb(234,234,234);
-    padding: 8px;
-    margin: 15px;
-    margin-bottom: 0px;
-    font-size: 85%;
-    border-radius: 10px;
-    transition: background-color 0.5s
-}
-.btnEdit:hover {
+.btnPMpay:hover {
     background-color: black;
-    color: white;
+    color: white
 }
+.btnPMClose {
+    align-self: flex-end;
+    font-size: 25px;
+    cursor: pointer;
+}
+
