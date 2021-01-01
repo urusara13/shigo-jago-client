@@ -11,3 +11,5 @@
   background-position: center;
   background-size: cover;
 }
+/* 버튼 초기화 */
+button {border:0 none; background-color:transparent; cursor:pointer;} 

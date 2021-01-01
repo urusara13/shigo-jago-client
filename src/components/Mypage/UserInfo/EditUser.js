@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { Component } from "react"; 
-
+import "./editUser.css"
 import { withRouter } from "react-router-dom"; //withRouter: history 사용하기 위해
 import EditModal from "./EditUserModal"
 
@@ -16,6 +16,7 @@ class UserEdit extends Component {
 
   this.handleInputValue = this.handleInputValue.bind(this);
   this.closeModal = this.closeModal.bind(this);
+  this.goToUserInfo = this.goToUserInfo.bind(this);
   this.editUserInfo = this.editUserInfo.bind(this);
   
   }
@@ -23,12 +24,13 @@ class UserEdit extends Component {
   handleInputValue = (key) => (e) => {
     this.setState({ [key]: e.target.value });
   }
-
   closeModal() {
-    this.setState({
-      errorMessage: null
-    })
+    this.setState({ errorMessage: null })
   }
+  goToUserInfo() {
+    this.props.history.push('/mypage/userinfo')
+  }
+
 
   editUserInfo() {
     const { accessToken, history } = this.props;
@@ -67,10 +69,8 @@ class UserEdit extends Component {
     const { errorMessage } = this.state;
 
     return(
-      <>
-      <div>회원정보 수정</div>
-      <div>이메일</div>
-      <div className="email">{userInfo.email}</div>
+      <div className='EUCtn'>
+      <div className='EUCtnMid'>
       <div>이름</div>
       <input
         className="name"
@@ -78,6 +78,10 @@ class UserEdit extends Component {
         placeholder={userInfo.name}
         onChange={this.handleInputValue("name")}
       />
+
+      <div>이메일</div>
+      <div className="email">{userInfo.email}</div>
+      
       <div>전화번호</div>
       <input
         className="mobile"
@@ -93,10 +97,13 @@ class UserEdit extends Component {
         placeholder="새로운 비밀번호"
         onChange={this.handleInputValue("password")}
       />
-
+      </div>
+      <div className='btnEUCtn'>
       <button className="btnEdit" onClick={this.editUserInfo}>수정하기</button>
+      <button className="btnEdit" onClick={this.goToUserInfo}>뒤로가기</button>
       {errorMessage && <EditModal close={this.closeModal} errorMessage={errorMessage} />}
-      </>
+      </div>
+      </div>
     )
      
   }
