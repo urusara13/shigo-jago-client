@@ -1,0 +1,27 @@
+
+
+.sg-main{
+    width:800px;
+    height:700px;
+    margin: 0 auto;
+    list-style-type:none;
+}
+
+li{
+    list-style-type:none;
+}
+
+.sg-content{
+    width: 700px;
+    height:600px;
+    position: relative;
+    top: 10%;
+    margin: 0 auto;
+    overflow: auto;
+    background-color: cornsilk;
+}
+
+.sg-content>h1{
+    margin-bottom: 20px;
+}
+
