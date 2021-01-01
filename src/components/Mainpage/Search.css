@@ -1,54 +1,146 @@
 .search__box {
-    width: 430px;
-    display: inline-block;
-    background-color: white;
-    padding: 20px 30px;
-    position: relative;
-    top: 50px;
-    left: 50px;
-    border-radius: 6px;
-    box-shadow: 0 2px 2px 0 rgb(214,214,214);
+    border: 1px solid #DDDDDD; 
+    border-radius: 36px; 
+    color: #222222; 
+    display: -webkit-box;
+    display: -moz-box ;
+    display: -ms-flexbox ;
+    display: -webkit-flex ;
+    display: flex ;
+    height: 88px ;
+    position: absolute ;
+    width: 1010px ;
+    box-shadow: 0px 16px 32px rgba(0, 0, 0, 0.15), 0px 3px 8px rgba(0, 0, 0, 0.1) ;
+    --big-search-form-background: #FFFFFF ;
+    background-color: #FFFFFF ;
+    top:15%; left:50%;
+    transform: translate(-50%, -50%);
 }
   
 .search__title {
     padding: 10px 0;
-    font-size: 30px;
+    font-size: 50px;
     font-weight: 800;
+    font-family: sans-serif;
     color: rgb(75, 75, 75);
+    position:absolute;
+    top:40%; left:70%;
+    transform: translate(-50%, -50%);   
 }
   
-table {
-    width: 100%;
+.where_area {
+ 
+    position:absolute;
+    width: 150px;
+    height: 65px;
+    
+    
 }
-  
-.search__sub__title {
-    padding: 10px 0;
-    font-size: 12px;
-    font-weight: 600;
+
+.where_sigungu {
+    position:absolute;
+    width: 150px;
+    height: 65px;
+   
+    left: 150px ;
 }
+
+.check_in_div {
+    position:absolute;
+    width: 150px;
+    height: 65px;
+   
+    left: 300px ;
+}
+
+.check_out_div {
+    position:absolute;
+    width: 150px;
+    height: 65px;
+   
+    left: 450px ;
+}
+
+.adult_div {
+    position:absolute;
+    width: 150px;
+    height: 65px;
+    
+    left: 600px ;
+}
+
+.child_div {
+    position:absolute;
+    width: 150px;
+    height: 65px;
+   
+    left: 750px ;
+}
+ .fat_text {
+    font-weight: 800 ;
+    font-size: 12px ;
+    text-align: center; 
+    font-family: sans-serif;
+ } 
+
   
 .search__input {
-    height: 45px;
+    border-radius: 36px; 
+    height: 66px;
     width: 100%;
-    color: rgb(100, 98, 98);
+    background-color: #FFFFFF ;
+    color: rgb(34, 34, 34);
     font-size: 15px;
     border: 1px solid rgb(230, 227, 227);
+    border: 0;
+    outline: 0;
+    cursor: pointer;
+    font-family: sans-serif;
+}
+
+.search__date {
+    border-radius: 36px; 
+    height: 66px;
+    width: 100%;
+    background-color: #FFFFFF ;
+    color: rgb(34, 34, 34);
+    font-size: 15px;
+    border: 1px solid rgb(230, 227, 227);
+    border: 0;
+    outline: 0;
+    font-family: sans-serif;
+}
+
+select 
+{   width: 400px; 
+    text-align-last:center; 
+}
+
+.search__input:hover {
+    background-color: #EBEBEB;
 }
   
 .search__button {
-    display: grid;
-    justify-content: end;
-    padding: 20px 0;
+    position: absolute;
+    left: 900px ;
+    margin: 10px 
 }
-  
+
+
 .search__button button {
     background-color: #FF5A5F;
     color:white;
-    width: 70px;
-    height: 45px;
+    width: 85px;
+    height: 66px;
     font-size: 15px;
-    font-weight: 700; /*굵기*/
-    border-radius: 6px;
+    font-weight: 700;
+    font-family: sans-serif;
+    border-radius: 36px;
     border: 0;
+    outline: 0;
     cursor: pointer;
+}
+
+.search__button button:hover {
+    background-color: rgb(215, 4, 102) ;
 }

@@ -51,7 +51,7 @@ export default class MiddlePayment extends Component {
           <div>금액: {this.numberWithCommas(totalPrice)}</div>
         </div>
         <div className='howPay'>
-          <select className="search__input" value={this.state.howPay} onChange={this.handleInputValue("howPay")} >
+          <select className="payment__input" value={this.state.howPay} onChange={this.handleInputValue("howPay")} >
             <option value='card'>카드</option>
             <option value='account'>계좌이체</option>
           </select>
