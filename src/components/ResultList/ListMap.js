@@ -20,9 +20,12 @@ export default class ListMap extends React.Component {
     console.log(lastScrollY)
 
     const ele = document.querySelectorAll('.listings__item')
+
+
+    // if(lastScrollY < list.length * 110 ) {
     const map = document.querySelector('#map')
     const pre = Number(map.style.top.split('px')[0])
-    console.log('pre', pre)
+
     map.style.top = `${lastScrollY}px`
     console.log('map', map.style.top)
 

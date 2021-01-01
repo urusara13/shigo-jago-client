@@ -11,6 +11,7 @@ import GetHelp from "./components/SiteMapSection/GetHelp";
 import Hire from "./components/SiteMapSection/Hire";
 import Refund from "./components/SiteMapSection/Refund";
 import Payment from "./components/Payment/Payment";
+
 require('dotenv').config();
 
 class App extends React.Component {
@@ -31,18 +32,27 @@ class App extends React.Component {
   }
 
   async googleToken(token) {
-    console.log("token :" + token)
+    console.log(token)
     const newthis = this
-    const userInfo = await axios({
-      method: 'get',
-      url: `https://www.googleapis.com/auth/userinfo.profile`,
-    }, {
-      headers: { "Authorization": `Bearer ${token}` }
+    fetch("https://www.googleapis.com/oauth2/v3/userinfo?alt=json",{
+        headers: {
+            "Authorization": `Bearer ${token}`
+        }
     })
-
-    console.log(userInfo)
-    newthis.setState({
-      googleUserData: userInfo
+    .then(res => res.json())
+    .then(async obj => {
+        newthis.setState({
+            googleUserData: obj
+        })
+        const login = await axios.post('http://localhost:4000/user/google', {
+            socialEmail: obj.email,
+            socialAccount: obj.sub
+          })
+        if(login.data.message === "ok") {
+            newthis.loginHandler(login.data.data.accessToken)
+            newthis.props.history.push('/')
+        } 
+        else newthis.props.history.push('/user/signup')
     })
   }
 
@@ -63,9 +73,9 @@ class App extends React.Component {
         newthis.setState({
           kakaoUserData: response
         })
-        const isSignup = axios.post('http://localhost:4000/user/kakao', {
-          email: response.kakao_account.email,
-          kakaoId: response.id
+        axios.post('http://localhost:4000/user/kakao', {
+          socialEmail: response.kakao_account.email,
+          socialAccount: response.id
         }).then(res => {
           if (res.data.message === "ok") {
             newthis.loginHandler(res.data.data.accessToken)
@@ -129,7 +139,7 @@ class App extends React.Component {
   }
 
   render() {
-    const { isLogin, accessToken } = this.state;
+    const { isLogin, accessToken, kakaoUserData, googleUserData } = this.state;
 
     return (
       <div className="container">
@@ -141,7 +151,7 @@ class App extends React.Component {
           googleToken={this.googleToken}
         />
         <Switch>
-          <Route path='/user/signup' render={() => <SignUpModal isLogin={isLogin} kakaoUserData={this.state.kakaoUserData} />} />
+          <Route path='/user/signup' render={() => <SignUpModal isLogin={isLogin} kakaoUserData={kakaoUserData} googleUserData={googleUserData}/>} />
           <Route path="/about" render={() => <About />} />
           <Route path="/gethelp" render={() => <GetHelp />} />
           <Route path="/hire" render={() => <Hire />} />

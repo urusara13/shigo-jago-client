@@ -27,6 +27,7 @@ class Nav extends Component {
     const authorizationCode = url.searchParams.get('code')
 
     if (window.location.pathname === "/google") {
+      console.log(authorizationCode)
       const getGoogleToken = await axios.post(`http://localhost:4000/social/google/callback`, {
         authorizationCode: authorizationCode,
         isDelete: false

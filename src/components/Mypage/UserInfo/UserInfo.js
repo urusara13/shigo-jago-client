@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { Component } from "react"; 
-import { Link } from "react-router-dom";
+import { withRouter } from "react-router-dom";
+import "./userInfo.css";
 
 import DeleteUserModal from "./DeleteUserModal";
 import DeleteKakao from './DeleteKakaoModal'
@@ -17,6 +18,7 @@ class UserInfo extends Component {
   this.closeDeleteAccountModal = this.closeDeleteAccountModal.bind(this)
   this.openDeleteKakaoModal = this.openDeleteKakaoModal.bind(this)
   this.closeDeleteKakaoModal = this.closeDeleteKakaoModal.bind(this)
+  this.goToEditUserInfo = this.goToEditUserInfo.bind(this);
   }
 
   openDeleteAccountModal() {
@@ -43,6 +45,10 @@ class UserInfo extends Component {
     })
   }
 
+  goToEditUserInfo() {
+    this.props.history.push('/mypage/useredit');
+  }
+
   componentDidMount() {
     const { accessToken, userInfoHandler } = this.props;
     
@@ -62,27 +68,31 @@ class UserInfo extends Component {
       return (
         <div className='userInfoContainer'>
           <div className='userInfo'>
-            <div>회원정보</div>
-            <div className='userName'>이름 : {userInfo.name}</div>
-            <div className='email'>이메일 : {userInfo.email}</div>
-            <div className='mobile'>전화번호 : {userInfo.mobile}</div>
+            <div className='userInfoCTtitle'>이름</div>
+            <div className='userInfoCT'>{userInfo.name}</div>
+            <div className='userInfoCTtitle'>이메일</div>
+            <div className='userInfoCT'>{userInfo.email}</div>
+            <div className='userInfoCTtitle'>전화번호</div>
+            <div className='userInfoCT'>{userInfo.mobile}</div>
           </div>
-          <Link to='/mypage/useredit'>회원정보수정</Link>
-          <button className='deleteKakao' onClick={this.openDeleteKakaoModal}>카카오계정 연결해제</button>
+          <div className='btnUInfoCtn'> 
+          <button className='btnUInfo' onClick={this.goToEditUserInfo}>회원정보수정</button>
+          <button className='btnUInfo' onClick={this.openDeleteKakaoModal}>카카오계정 연결해제</button>
           { isDeleteKakaoAccount && 
           <DeleteKakao 
             isOpen={isDeleteKakaoAccount}
             close={this.closeDeleteKakaoModal} />}
             
-          <button className='deleteAccount' onClick={this.openDeleteAccountModal}>탈퇴하기</button>
+          <button className='btnUInfo' onClick={this.openDeleteAccountModal}>탈퇴하기</button>
           { isDeleteAccountModalOpen && 
           <DeleteUserModal 
             close={this.closeDeleteAccountModal} 
             logoutHandlerSimple={logoutHandlerSimple}
             accessToken={accessToken} />}
+          </div>
         </div>
       )
   }
 }
 
-export default UserInfo;
+export default withRouter(UserInfo);

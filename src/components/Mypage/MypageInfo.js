@@ -36,8 +36,16 @@ class MypageInfo extends Component {
 
       return (
         <Router>
-          <Link to='/mypage'>회원정보</Link>
-          <Link to='/mypage/reservationinfo'>예약내역</Link>
+          <nav className='UInav'>
+          <ul className='menu'>
+            <li>
+            <Link to='/mypage' className='UIlink'>회원정보</Link>
+            </li>
+            <li>
+            <Link to='/mypage/reservationinfo' className='UIlink'>예약내역</Link>
+            </li>
+          </ul>
+          </nav>
           <Switch>
             <Route 
               path='/mypage/useredit'
