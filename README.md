@@ -49,14 +49,11 @@
 
 # 🗣 우리를 소개합니다.
 
-✅ [테이블 형식을 통해 깔끔하게 정리해보세요!](https://www.markdownguide.org/cheat-sheet/)
-
-✅ [마크다운이 익숙치 않다면, html을 사용해보세요](https://www.w3schools.com/tags/tag_table.asp)
 <table>
   <tbody>
     <tr>
       <td align="center">
-        <a href="https://github.com/codeFabian">
+        <a href="https://github.com/urusara13">
           <sub>
             <b>안경훈</b>
           </sub>
@@ -69,7 +66,7 @@
     </tr>
      <tr>
       <td align="center">
-        <a href="https://github.com/sokim1616">
+        <a href="https://github.com/jaejin1027">
           <sub>
             <b>이재진</b>
           </sub>
@@ -81,7 +78,7 @@
       </td>
     </tr>
       <td align="center">
-        <a href="https://github.com/bombamong">
+        <a href="https://github.com/Youn-Ji">
           <sub>
             <b>송윤지</b>
           </sub>
@@ -94,7 +91,7 @@
     </tr>
     <tr>
       <td align="center">
-        <a href="https://github.com/Kyung-Douhyun">
+        <a href="https://github.com/unow30?tab=repositories">
           <sub>
             <b>김윤호</b>
           </sub>
