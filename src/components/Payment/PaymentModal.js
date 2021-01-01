@@ -113,7 +113,7 @@ class PaymentModal extends Component {
           </select>
           <div className='PMtitle'>유효기간</div> 
           <input
-            className="cardNumber" type="text" placeholder='mm/yy' maxLength="4"
+            className="cardNumber" type="text" placeholder='mm/yy' maxLength="5"
             onChange={this.handleInputValue("validThru")} />
           </div>
           </> }
