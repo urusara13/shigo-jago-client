@@ -6,25 +6,25 @@
     --pink: #ff385c;
 }
 
-.main {
+.list__main {
     position: relative;
     padding-top: 80px;
     padding-bottom: 80px;
     background: white;
 }
 
-.main__content {
+.list__main__content {
     min-height: calc(100vh - 80px);
     width: 840px;
     padding: 60px 24px 0;
 }
 
-.main__content h1 {
+.list__main__content h1 {
     margin-top: 18px;
     font-size: 34px;
 }
 
-.main__scarcity {
+.list__main__scarcity {
     display: flex;
     align-items: center;
     padding-top: 30px;

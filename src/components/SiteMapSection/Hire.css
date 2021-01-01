@@ -1,0 +1,84 @@
+.hr_main {
+    position: relative;
+    min-width: 1280px;
+    box-sizing: border-box;
+    display: block;
+}
+
+.hr_header {
+    background-color: hsla(0,0%,100%,.95);
+    z-index: 200;
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-width: 960px;
+    height: 88px;
+    background-color: #fff;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-transition: .3s;
+    transition: .3s;
+    font-size: 0;
+    line-height: 1;
+}
+
+.hr_header h1 {
+    display: inline-block;
+    z-index: 100;
+    position: relative;
+    margin: 28px 0 0 32px;
+    vertical-align: top;
+    padding: 0;
+    font-size: 2em;
+    margin-block-start: 0.67em;
+    margin-block-end: 0.67em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+    width: 135px;
+    height: 32px;
+    background-size: contain;
+    text-indent: -9999px;
+}
+
+.gnb_wrap {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.gnb_wrap nav {
+    display: block;
+}
+
+.gnb {
+    padding-left: 30px;
+    font-family: LineSeed,system-ui,-SF Pro Text,Helvetica,Roboto,sans-serif;
+    display: block;
+}
+
+.gnb .dep1 {
+    position: relative;
+    box-sizing: border-box;
+}
+
+.gnb .dep1 ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+}
+
+.gnb .dep1>li {
+    float: left;
+    position: relative;
+    padding: 0 20px;
+    margin: 0;
+    display: list-item;
+    text-align: -webkit-match-parent;
+}
