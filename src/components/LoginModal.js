@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
 import './Login.css';
-import facebook from '../images/facebook.png'
 import google from '../images/google.png'
 import kakaotalk from '../images/kakao.png'
 require('dotenv').config();
