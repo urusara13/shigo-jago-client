@@ -11,14 +11,21 @@
     margin: 0;
     padding: 0;
 }
-.userInfoCT {
-    padding-top: 20px;
-    font-weight: lighter;
-}
-.userInfoCTtitle {
+.userEditCTtitle {
     padding-top: 30px;
     font-size: 90%;
 }
+.EUinput {
+    margin-top: 15px;
+    border-radius: 2px;
+    width: 100%;
+    height: 40px;
+    border: 1px solid #e5e5e5;
+    padding: 9px 12px;
+    outline: none;
+    box-sizing: border-box;
+  }
+
 
 .btnEUCtn {
     list-style: none;
