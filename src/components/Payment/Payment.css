@@ -1,0 +1,64 @@
+.hotelImage img{
+    float: left;
+    width: 400px;
+    height: 400px;
+    margin-left: 240px;
+    margin-bottom: 40px;
+
+}
+
+.reservationInfo{
+    float: left;
+    width: 600px;
+    height: 400px;
+    margin-left: 20px;
+    margin-bottom: 20px;
+    background-color: #fff;
+    opacity: 0.7;
+
+}
+
+.reservationInfo div{
+    font-size: 20px;
+    margin-left: 10px;
+    line-height: 30px;
+       
+}
+
+.howPay select{
+    width: 400px;
+    float: left;
+    margin-left: 670px;
+    bottom:84px;
+    position: relative;
+    font-size: 25px;
+
+}
+
+.howPay > button{
+    float: left;
+    font-size:30px;   
+    position: relative;
+    bottom:85px; 
+    left:5px;
+    cursor:pointer;
+    background-color:#dfbdfa;
+    border-radius: 6px;
+    box-shadow:inset 0px 1px 0px 0px #efdcfb;
+
+}
+
+.loginModal > button{
+    cursor:pointer;
+    background-color:#dfbdfa;
+    border-radius: 6px;
+    box-shadow:inset 0px 1px 0px 0px #efdcfb;
+    font-size:30px;
+    margin-left:10px;
+
+}
+
+.modal1{
+    
+ 
+}

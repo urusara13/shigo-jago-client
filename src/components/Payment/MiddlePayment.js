@@ -1,4 +1,4 @@
-import React, { Component } from "react"; 
+import React, { Component } from "react";
 
 import PaymentModal from "./PaymentModal"
 
@@ -14,7 +14,7 @@ export default class MiddlePayment extends Component {
     this.closeModal = this.closeModal.bind(this);
     this.numberWithCommas = this.numberWithCommas.bind(this);
   }
-  
+
   openModal() {
     this.setState({ isModalOpen: true })
   }
@@ -35,10 +35,10 @@ export default class MiddlePayment extends Component {
     const { hotelDetail, reservation, totalPrice } = this.props.location.state.reservationInfo
     const { accessToken } = this.props;
     const { howPay, isModalOpen } = this.state
-    
+
     return (
       <>
-        <div className='hotelImage'> 
+        <div className='hotelImage'>
           <img alt='' src={hotelDetail.firstimage} width='200' height='200'></img>
         </div>
         <div className='reservationInfo'>
@@ -51,19 +51,19 @@ export default class MiddlePayment extends Component {
           <div>금액: {this.numberWithCommas(totalPrice)}</div>
         </div>
         <div className='howPay'>
-          <select className="search__input" value={this.state.howPay} onChange={this.handleInputValue("howPay")} >
+          <select className="payment__input" value={this.state.howPay} onChange={this.handleInputValue("howPay")} >
             <option value='card'>카드</option>
             <option value='account'>계좌이체</option>
           </select>
           <button onClick={this.openModal}>결제하기</button>
-          { isModalOpen && <PaymentModal 
-            howPay={howPay} 
-            accessToken ={accessToken} 
+          {isModalOpen && <PaymentModal
+            howPay={howPay}
+            accessToken={accessToken}
             close={this.closeModal}
             res={reservation}
             price={totalPrice}
-            hotelName={hotelDetail.title} /> }
-          <div></div>  
+            hotelName={hotelDetail.title} />}
+          <div></div>
         </div>
       </>
     )
