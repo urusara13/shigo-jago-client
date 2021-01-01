@@ -11,7 +11,9 @@ class UserInfo extends Component {
     super(props);
     this.state = {
       isDeleteAccountModalOpen: false,
-      isDeleteKakaoAccount: false
+      isDeleteKakaoAccount: false,
+      isGoogle: false,
+      isKakao: false,
     };
 
   this.openDeleteAccountModal = this.openDeleteAccountModal.bind(this)
@@ -48,6 +50,14 @@ class UserInfo extends Component {
   goToEditUserInfo() {
     this.props.history.push('/mypage/useredit');
   }
+  
+  buttonUpKaKao() {
+    this.setState({isKakao: true})
+  }
+
+  buttonUpGoogle() {
+    this.setState({isGoogle: true})
+  }
 
   componentDidMount() {
     const { accessToken, userInfoHandler, socialInfoHandler } = this.props;
@@ -55,17 +65,26 @@ class UserInfo extends Component {
     axios.get('http://localhost:4000/mypage/userinfo', {
       headers: {"Authorization": `Bearer ${accessToken}`}
     })
-    .then(res => {
-      console.log(res.data.data)
-      userInfoHandler(res.data.data)
+    .then(res => { 
+      if(res.data.data.Social) {
+        res.data.data.Social.map((ele) => {
+          if(ele.corporation ==='kakao') {
+            this.buttonUpKaKao()
+          }
+          if(ele.corporation ==='google') {
+            this.buttonUpGoogle()
+          }
+        })
+      }
+      userInfoHandler(res.data.data) 
     })
     .catch(err => console.log(err))
   }
 
   render() {
       const { userInfo, logoutHandlerSimple, accessToken } = this.props;
-      const { isDeleteAccountModalOpen, isDeleteKakaoAccount } = this.state;
-     console.log(userInfo.social)
+      const { isDeleteAccountModalOpen, isDeleteKakaoAccount, isGoogle, isKakao } = this.state;       
+
       return (
         <div className='userInfoContainer'>
           <div className='userInfo'>
@@ -81,18 +100,23 @@ class UserInfo extends Component {
                 return (
                   <div key={idx}>
                   <div className='userInfoCTtitle'>{ele.corporation}</div>
-                  <div className='userInfoCT'>social account : {ele.socialAccount}</div>
-                  <div className='userInfoCT'>email : {ele.socialEmail}</div>
+                  <div className='userInfoCT'>{ele.socialEmail}</div>
                   </div>) })}
           </div>
           <div className='btnUInfoCtn'> 
-          <button className='btnUInfo' onClick={this.goToEditUserInfo}>회원정보수정</button>
-          <button className='btnUInfo' onClick={this.openDeleteKakaoModal}>카카오계정 연결해제</button>
+          <button className='btnUInfo' onClick={this.goToEditUserInfo}>회원 정보 수정</button>
+          { isKakao ? 
+          <button className='btnUInfo' onClick={this.openDeleteKakaoModal}>카카오 계정 연결 해제</button> :
+          <button className='btnUInfo'>카카오 계정 연동하기</button>
+          }
+          { isGoogle ? 
+          <button className='btnUInfo'>구글 계정 연결 해제</button> :
+          <button className='btnUInfo'>구글 계정 연동하기</button>
+          } 
           { isDeleteKakaoAccount && 
           <DeleteKakao 
             isOpen={isDeleteKakaoAccount}
             close={this.closeDeleteKakaoModal} />}
-            
           <button className='btnUInfo' onClick={this.openDeleteAccountModal}>탈퇴하기</button>
           { isDeleteAccountModalOpen && 
           <DeleteUserModal 

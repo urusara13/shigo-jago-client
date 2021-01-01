@@ -71,29 +71,26 @@ class UserEdit extends Component {
     return(
       <div className='EUCtn'>
       <div className='EUCtnMid'>
-      <div>이름</div>
+      <div className='userEditCTtitle'>이름</div>
       <input
-        className="name"
-        type="text"
+        className="EUinput" type="text"
         placeholder={userInfo.name}
         onChange={this.handleInputValue("name")}
       />
 
-      <div>이메일</div>
-      <div className="email">{userInfo.email}</div>
+      <div className='userEditCTtitle'>아이디</div>
+      <div className="email">{userInfo.loginId}</div>
       
-      <div>전화번호</div>
+      <div className='userEditCTtitle'>전화번호</div>
       <input
-        className="mobile"
-        type="text"
+        className="EUinput" type="text"
         placeholder={userInfo.mobile}
         onChange={this.handleInputValue("mobile")}
       />
       
-      <div>비밀번호</div>
+      <div className='userEditCTtitle'>비밀번호</div>
       <input
-        className="password"
-        type="text"
+        className="EUinput" type="text"
         placeholder="새로운 비밀번호"
         onChange={this.handleInputValue("password")}
       />
