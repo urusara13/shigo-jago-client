@@ -38,32 +38,34 @@ export default class MiddlePayment extends Component {
 
     return (
       <>
-        <div className='hotelImage'>
-          <img alt='' src={hotelDetail.firstimage} width='200' height='200'></img>
-        </div>
-        <div className='reservationInfo'>
-          <div>숙소명 : {hotelDetail.title} </div>
-          <div>위치 : {hotelDetail.addr1} {hotelDetail.addr2}</div>
-          <div>예약정보-성인: {reservation.adult}</div>
-          <div>예약정보-아동: {reservation.child}</div>
-          <div>예약정보-체크인: {reservation.checkIn}</div>
-          <div>예약정보-체크아웃: {reservation.checkOut}</div>
-          <div>금액: {this.numberWithCommas(totalPrice)}</div>
-        </div>
-        <div className='howPay'>
-          <select className="payment__input" value={this.state.howPay} onChange={this.handleInputValue("howPay")} >
-            <option value='card'>카드</option>
-            <option value='account'>계좌이체</option>
-          </select>
-          <button onClick={this.openModal}>결제하기</button>
-          {isModalOpen && <PaymentModal
-            howPay={howPay}
-            accessToken={accessToken}
-            close={this.closeModal}
-            res={reservation}
-            price={totalPrice}
-            hotelName={hotelDetail.title} />}
-          <div></div>
+        <div className='container1'>
+          <div className='hotelImage'>
+            <img alt='' src={hotelDetail.firstimage} width='400' height='400'></img>
+          </div>
+          <div className='reservationInfo'>
+            <div>숙소명 : {hotelDetail.title} </div>
+            <div>위치 : {hotelDetail.addr1} {hotelDetail.addr2}</div>
+            <div>예약정보-성인: {reservation.adult}</div>
+            <div>예약정보-아동: {reservation.child}</div>
+            <div>예약정보-체크인: {reservation.checkIn}</div>
+            <div>예약정보-체크아웃: {reservation.checkOut}</div>
+            <div>금액: {this.numberWithCommas(totalPrice)}</div>
+          </div>
+          <div className='howPay'>
+            <select className="PI_payment__input" value={this.state.howPay} onChange={this.handleInputValue("howPay")} >
+              <option value='card'>카드</option>
+              <option value='account'>계좌이체</option>
+            </select>
+            <button onClick={this.openModal}>결제하기</button>
+            {isModalOpen && <PaymentModal
+              howPay={howPay}
+              accessToken={accessToken}
+              close={this.closeModal}
+              res={reservation}
+              price={totalPrice}
+              hotelName={hotelDetail.title} />}
+            <div></div>
+          </div>
         </div>
       </>
     )
