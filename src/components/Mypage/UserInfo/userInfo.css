@@ -1,0 +1,45 @@
+.userInfoContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.userInfo {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+}
+.userInfoCT {
+    padding-top: 20px;
+    font-weight: lighter;
+}
+.userInfoCTtitle {
+    padding-top: 30px;
+    font-size: 90%;
+}
+.btnUInfoCtn {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    margin: 0;
+    margin-top: 60px;
+    padding: 0;
+}
+.btnUInfo {
+    background-color: rgb(234,234,234);
+    padding: 8px;
+    margin: 15px;
+    margin-bottom: 0px;
+    font-size: 85%;
+    border-radius: 10px;
+    transition: background-color 0.5s
+}
+.btnUInfo:hover {
+    background-color: black;
+    color: white;
+    
+}

@@ -1,15 +1,12 @@
+import './Mypage.css';
 import React, { Component } from "react"; 
+
 import Mainpage from "../Mainpage/Mainpage";
-
 import MypageInfo from "./MypageInfo"
-
 
 class Mypage extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      
-    };
   }
 
   render() {
@@ -17,10 +14,14 @@ class Mypage extends Component {
 
       return (
         isLogin ? 
+        <div className="main">
           <MypageInfo 
             accessToken={accessToken}
-            logoutHandlerSimple={logoutHandlerSimple} /> :
+            logoutHandlerSimple={logoutHandlerSimple} />
+        </div> 
+        :
           <Mainpage />
+          
       )
   }
 }
