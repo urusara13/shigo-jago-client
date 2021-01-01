@@ -46,7 +46,7 @@ class LoginModal extends Component {
     }
   }
   async googleOauth() {
-    const googleoAuthurl = `https://accounts.google.com/o/oauth2/auth?client_id=88270045748-rpghv716gefg0loa2t073mr09qv7ej8l.apps.googleusercontent.com&redirect_uri=http://localhost:3000/google&response_type=code&scope=https://www.googleapis.com/auth/userinfo.profile`
+    const googleoAuthurl = `https://accounts.google.com/o/oauth2/auth?client_id=${process.env.REACT_APP_GOOGLE_CLIENT_ID}&redirect_uri=${process.env.REACT_APP_GOOGLE_REDIRECT_URI}&response_type=code&scope=https://www.googleapis.com/auth/userinfo.profile email`
 
     window.location.assign(googleoAuthurl)
   }
