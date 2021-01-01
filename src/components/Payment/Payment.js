@@ -1,5 +1,6 @@
-import React, { Component } from "react"; 
+import React, { Component } from "react";
 import MiddlePayment from "./MiddlePayment"
+import './Payment.css'
 
 export default class Payment extends Component {
   constructor(props) {
@@ -11,7 +12,7 @@ export default class Payment extends Component {
 
   render() {
     const { location, accessToken } = this.props;
-    
+
     return (
       <>
         <MiddlePayment location={location} accessToken={accessToken} />
