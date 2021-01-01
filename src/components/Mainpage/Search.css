@@ -18,6 +18,7 @@
 }
   
 .search__title {
+    width: 416px;
     padding: 10px 0;
     font-size: 50px;
     font-weight: 800;
@@ -26,7 +27,17 @@
     position:absolute;
     top:40%; left:70%;
     transform: translate(-50%, -50%);   
+    -webkit-box-direction: normal;
+    -webkit-box-orient: vertical;
+    z-index: 0;
+    display: flex;
+    flex-direction: column;
 }
+
+.main__title {
+    display: block;
+}
+
   
 .where_area {
  

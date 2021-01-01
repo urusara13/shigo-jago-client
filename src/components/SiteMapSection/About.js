@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import './about.css';
+import './About.css';
+
 class About extends Component {
     render() {
         return (
@@ -53,7 +54,7 @@ class About extends Component {
                                         <div className="_1byskwn">
                                             <div className="_1waicp6g">
                                                 <div className="_y7pled">
-                                                    <img className="_audx11w" src="https://lh3.googleusercontent.com/proxy/dsv897EcbsooEjIfdoUO4aZXIchY2phnZgOhM2N3Sxw9ikoVYcLzxVg-NCioGPnvFOXanSkoFqUBdrhlsK_qT4tYIwBHjJ_gzln0X3Nn8_XizyqHteb_MpnB2xvKpLiJapw3EWYGgIVkQmQXbc_9nxwIQI9bKgMQ8CsWQdkFKxiLy_FvajMbK8QPXCjFBGzTLlbwnx3SQszAofDPVfzjXAK2ZR4" alt=""></img>
+                                                    <img className="_audx11w" src="https://img.freepik.com/free-photo/woman-browsing-smartphone-near-window_23-2147769534.jpg?size=626&ext=jpg" alt=""></img>
                                                     <h3 className="_a43cb3">검색 필터를 적용하여 원하는 결과 찾기</h3>
                                                     <div className="_4gelgl">원하는 조건에 맞는 결과를 찾을 수 있도록 가격대나 수영장 같은 필터를 적용하여 검색을 맞춤설정하세요.</div>
                                                 </div>

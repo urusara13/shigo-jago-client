@@ -175,7 +175,7 @@ class Search extends Component {
                     </form >
                 </div >
                 <div className="search__title">
-                    코로나 시국에도 편안하고<br />안전한 숙소를 예약하세요.
+                    <span className="main__title">코로나에도 <br />편안하고 안전한<br /> 숙소를 예약하세요.</span>
                 </div>
             </>
 

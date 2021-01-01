@@ -49,10 +49,10 @@ class Listentry extends Component {
                 </div>
                 <div className="listings__price">
                   <div className="listings__price__night">
-                    £29 <span> / night</span>
+                    20000원 <span> / 1박</span>
                   </div>
                   <div className="listings__price__total">
-                    <span>£57 total</span>
+                    <span>Total {this.numberWithCommas(list.price)}</span>
                   </div>
                 </div>
               </div>
