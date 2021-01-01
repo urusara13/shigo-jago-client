@@ -5,7 +5,7 @@ class Hire extends Component {
     render() {
         return (
             <div className="hr_main">
-                <header id="hr_header" className="hr_header">
+                <div id="hr_header" className="hr_header">
                     <h1>SHIGO JAGO Careers</h1>
                     <div className="gnb_wrap">
                         <nav id="gnb" className="gnb">
@@ -27,7 +27,7 @@ class Hire extends Component {
                     </div><button type="button" className="btn_header_search"><span className="blind">Search</span></button>
 
 
-                </header>
+                </div>
                 <div>
                     <div className="main_top">
                             <div className="text_area">
