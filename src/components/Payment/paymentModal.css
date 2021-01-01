@@ -1,23 +1,28 @@
-.modal1 {
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background: rgba(0, 0, 0, 0.6);
-    z-index: 10000;
-  }
 .PMMCtn {
     width: 480px;
     height: 621px;
-    background-color: white;
     position: relative;
     box-sizing: border-box;
     margin: 50px auto;
     padding: 20px;
     background: #fff;   
+    display: flex;
+    flex-direction: column;
 }
 
+.PMcardNumberCtn {
+    display: flex;
+    flex-direction: row;
+}
+.cardNumber {
+    width: 50px;
+    padding: 3px;
+    margin: 3px;
+}
+.PMetc {
+    display: flex;
+    flex-direction: row;
+}
 
 .EUCtn {
     display: flex;

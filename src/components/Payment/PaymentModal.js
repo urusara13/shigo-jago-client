@@ -88,11 +88,9 @@ class PaymentModal extends Component {
           {howPay === 'card' && 
           <>
           <h1>카드결제</h1>
-          <div>카드사</div>
-          <input
-            className="cardCompany" type="text" 
-            onChange={this.handleInputValue("cardCompany")} />
+          
           <div>카드번호</div>
+          <div className='PMcardNumberCtn'>
           <input
             className="cardNumber" type="text" maxLength="4"
             onChange={this.handleInputValue("cardNumber1")} />
@@ -105,10 +103,17 @@ class PaymentModal extends Component {
           <input
             className="cardNumber" type="text" maxLength="4"
             onChange={this.handleInputValue("cardNumber4")} />
+          </div>
+          <div className='PMetc'>
+          <div>카드사</div>
+          <input
+            className="cardCompany" type="text" 
+            onChange={this.handleInputValue("cardCompany")} />
           <div>유효기간</div> 
           <input
             className="cardNumber" type="text" placeholder='mm/yy' maxLength="4"
             onChange={this.handleInputValue("validThru")} />
+          </div>
           </> }
           {howPay === 'account' && 
           <>
