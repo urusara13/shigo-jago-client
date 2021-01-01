@@ -11,7 +11,7 @@ class LoginModal extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: null,
+      loginId: null,
       password: null,
       errorMessage: null
     };
@@ -29,11 +29,11 @@ class LoginModal extends Component {
   handleLogin() {
     const { loginHandler, close } = this.props;
 
-    if (!(this.state.email && this.state.password)) {
+    if (!(this.state.loginId && this.state.password)) {
       this.setState({ errorMessage: '아이디와 비밀번호를 모두 채워주세요.' })
     } else {
       axios.post('http://localhost:4000/user/login',
-        { email: this.state.email, password: this.state.password },
+        { loginId: this.state.loginId, password: this.state.password },
         { headers: { "Content-Type": "application/json" } })
         .then(res => {
           loginHandler(res.data.data.accessToken)
@@ -77,7 +77,7 @@ class LoginModal extends Component {
               className="email"
               type="text"
               placeholder="E-mail"
-              onChange={this.handleInputValue("email")} />
+              onChange={this.handleInputValue("loginId")} />
             <input
               className="password"
               type="password"

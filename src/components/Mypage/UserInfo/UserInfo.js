@@ -50,19 +50,24 @@ class UserInfo extends Component {
   }
 
   componentDidMount() {
-    const { accessToken, userInfoHandler } = this.props;
+    const { accessToken, userInfoHandler, socialInfoHandler } = this.props;
     
     axios.get('http://localhost:4000/mypage/userinfo', {
       headers: {"Authorization": `Bearer ${accessToken}`}
     })
     .then(res => {
-      userInfoHandler(res.data.data)
+      console.log(res.data.data)
+      userInfoHandler(res.data.data[0])
+      // res.data.data.(ele => {
+      //   ele.Socials 
+      // })
+      //socialInfoHandler(res.data.data)
     })
     .catch(err => console.log(err))
   }
 
   render() {
-      const { userInfo, logoutHandlerSimple, accessToken } = this.props;
+      const { userInfo, socialInfo, logoutHandlerSimple, accessToken } = this.props;
       const { isDeleteAccountModalOpen, isDeleteKakaoAccount } = this.state;
 
       return (
@@ -71,8 +76,12 @@ class UserInfo extends Component {
             <div className='userInfoCTtitle'>이름</div>
             <div className='userInfoCT'>{userInfo.name}</div>
             <div className='userInfoCTtitle'>이메일</div>
-            <div className='userInfoCT'>{userInfo.email}</div>
+            <div className='userInfoCT'>{userInfo.loginId}</div>
             <div className='userInfoCTtitle'>전화번호</div>
+            <div className='userInfoCT'>{userInfo.mobile}</div>
+            {socialInfo && socialInfo}
+            <div className='userInfoCTtitle'>소셜 연결 계정</div>
+            <div className='userInfoCTtitle'>{}</div>
             <div className='userInfoCT'>{userInfo.mobile}</div>
           </div>
           <div className='btnUInfoCtn'> 

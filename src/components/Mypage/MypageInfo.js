@@ -11,12 +11,14 @@ class MypageInfo extends Component {
     this.state = {
       userInfo: {
         name: '',
-        email: '',
+        loginId: '',
         mobile: ''
       },
+      socialInfo: []
     };
     
     this.userInfoHandler = this.userInfoHandler.bind(this);
+    this.socialInfoHandler = this.socialInfoHandler.bind(this);
   }
 
 
@@ -24,15 +26,22 @@ class MypageInfo extends Component {
     this.setState({
       userInfo: {
         name: data.name,
-        email: data.email,
+        loginId: data.loginId,
         mobile: data.mobile
-      }
+      },
     })
   }
 
+  socialInfoHandler(data) {
+    this.setState({
+      socialInfo: data,
+    })
+  }
+
+
   render() {
       const { logoutHandlerSimple, accessToken } = this.props;
-      const { userInfo } = this.state;
+      const { userInfo, socialInfo } = this.state;
 
       return (
         <Router>
@@ -67,7 +76,9 @@ class MypageInfo extends Component {
                   logoutHandlerSimple={logoutHandlerSimple}
                   accessToken={accessToken}
                   userInfoHandler={this.userInfoHandler}
-                  userInfo={userInfo}/>
+                  socialInfoHandler={this.socialInfoHandler}
+                  userInfo={userInfo}
+                  socialInfo={socialInfo}/>
             )}  />
           </Switch>
         </Router>
