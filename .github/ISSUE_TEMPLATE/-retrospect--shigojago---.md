@@ -1,8 +1,8 @@
 ---
 name: "[Retrospect] shigojago 회고"
 about: "[Retrospect] N주차 회고"
-title: '[Retrospect]'
-labels: ''
+title: '[Retrospect] N주차 회고'
+labels: 'Retrospect'
 assignees: ''
 
 ---
