@@ -10,7 +10,9 @@ import About from "./components/SiteMapSection/About";
 import GetHelp from "./components/SiteMapSection/GetHelp";
 import Hire from "./components/SiteMapSection/Hire";
 import Refund from "./components/SiteMapSection/Refund";
+import Chat from "./components/SiteMapSection/Chat"
 import Payment from "./components/Payment/Payment";
+
 
 require('dotenv').config();
 
@@ -29,10 +31,12 @@ class App extends React.Component {
     this.loginHandler = this.loginHandler.bind(this)
     this.kakaoToken = this.kakaoToken.bind(this)
     this.googleToken = this.googleToken.bind(this)
+    this.tokenLoadLocal = this.tokenLoadLocal.bind(this)
+    this.deleteKakao = this.deleteKakao.bind(this)
+    this.deleteGoogle = this.deleteGoogle.bind(this)
   }
 
-  async googleToken(token) {
-    console.log(token)
+  async googleToken(token, pathname) {
     const newthis = this
     fetch("https://www.googleapis.com/oauth2/v3/userinfo?alt=json",{
         headers: {
@@ -44,20 +48,34 @@ class App extends React.Component {
         newthis.setState({
             googleUserData: obj
         })
-        const login = await axios.post('http://localhost:4000/user/google', {
+        if(pathname === "/google/auth") {
+          await axios.post('http://localhost:4000/user/google', {
+            socialEmail: obj.email,
+            socialAccount: obj.sub,
+            token: newthis.state.accessToken
+          })
+          .then(res => {
+            newthis.loginHandler(res.data.data.accessToken)
+            window.open('/','_self')
+          })
+        }
+        else {
+          const login = await axios.post('http://localhost:4000/user/google', {
             socialEmail: obj.email,
             socialAccount: obj.sub
           })
-        if(login.data.message === "ok") {
+          if(login.data.message === "ok") {
             newthis.loginHandler(login.data.data.accessToken)
             newthis.props.history.push('/')
-        } 
-        else newthis.props.history.push('/user/signup')
+          } 
+          else newthis.props.history.push('/user/signup')
+        }
+
     })
   }
 
 
-  async kakaoToken(token) {
+  async kakaoToken(token, pathname) {
     const newthis = this
 
     window.Kakao.Auth.setAccessToken(token)
@@ -73,27 +91,78 @@ class App extends React.Component {
         newthis.setState({
           kakaoUserData: response
         })
-        axios.post('http://localhost:4000/user/kakao', {
-          socialEmail: response.kakao_account.email,
-          socialAccount: response.id
-        }).then(res => {
-          if (res.data.message === "ok") {
+        if(pathname === '/kakao') {
+          axios.post('http://localhost:4000/user/kakao', {
+            socialEmail: response.kakao_account.email,
+            socialAccount: response.id,
+            token: newthis.state.accessToken
+          })
+          .then(res => {
             newthis.loginHandler(res.data.data.accessToken)
-            newthis.props.history.push('/')
-          }
-          else {
-            newthis.props.history.push('/user/signup')
-          }
-        })
+            window.open('/','_self')
+          })
+        }
+        else {
+          axios.post('http://localhost:4000/user/kakao', {
+            socialEmail: response.kakao_account.email,
+            socialAccount: response.id,
+            token: null
+          })
+          .then(res => {
+            if (res.data.message === "ok") {
+              newthis.loginHandler(res.data.data.accessToken)
+              window.open('/','_self')
+            }
+            else {
+              newthis.props.history.push('/user/signup')
+            }
+          })
+        }
+
       },
       fail: function (error) {
         console.log(error)
       }
     })
+  }
 
+  async tokenLoadLocal() {
+    const load = JSON.parse(sessionStorage.getItem("accessToken"))
+    if(load) {
+      const login = await axios.get('http://localhost:4000/mypage/userInfo',{
+        headers: {
+          "Authorization": `Bearer ${load}`
+        }
+      })
+      if(login.data.message === "ok") {
+        this.setState({
+          isLogin: true,
+          accessToken: load
+        })
+      }
+    }
+  }
+
+  deleteKakao () {
+    fetch('http://localhost:4000/social/kakao/revoke',{
+      method: 'POST',
+      headers: {
+        "Authorization": `Bearer ${this.state.accessToken}`
+      }
+    })
+  }
+
+  deleteGoogle () {
+    fetch('http://localhost:4000/social/google/revoke',{
+      method: 'POST',
+      headers: {
+        "Authorization": `Bearer ${this.state.accessToken}`
+      }
+    })
   }
 
   loginHandler(data) {
+    sessionStorage.setItem("accessToken",JSON.stringify(data))
     this.setState({
       isLogin: true,
       accessToken: data
@@ -101,6 +170,7 @@ class App extends React.Component {
   }
 
   logoutHandlerSimple() {
+    sessionStorage.clear()
     this.setState({
       isLogin: false,
       accessToken: null
@@ -108,6 +178,7 @@ class App extends React.Component {
   }
 
   logoutHandler() {
+    sessionStorage.clear()
     const { accessToken } = this.props;
     axios.post('http://localhost:4000/user/logout', {},
       { headers: { "Authorization": `Bearer ${accessToken}` } })
@@ -132,10 +203,24 @@ class App extends React.Component {
 
   }
 
-  componentDidMount() {
+  async componentDidMount() {
+    this.tokenLoadLocal()
+
+    const url = new URL(window.location.href)
+    const authorizationCode = url.searchParams.get('code')
+
     if (!window.Kakao.isInitialized()) {
       window.Kakao.init(process.env.REACT_APP_KAKAO_JSKEY)
     }
+    if(authorizationCode && url.pathname === "/kakao") {
+      const userInfo = await axios.get('http://localhost:4000/mypage/userinfo',{
+        headers: {
+          "Authorization": `Bearer ${this.state.accessToken}`
+        }
+      })
+
+    }
+
   }
 
   render() {
@@ -149,6 +234,8 @@ class App extends React.Component {
           logoutHandler={this.logoutHandler}
           kakaoToken={this.kakaoToken}
           googleToken={this.googleToken}
+          deleteKakao={this.deleteKakao}
+          deleteGoogle={this.deleteGoogle}
         />
         <Switch>
           <Route path='/user/signup' render={() => <SignUpModal isLogin={isLogin} kakaoUserData={kakaoUserData} googleUserData={googleUserData}/>} />
@@ -156,6 +243,7 @@ class App extends React.Component {
           <Route path="/gethelp" render={() => <GetHelp />} />
           <Route path="/hire" render={() => <Hire />} />
           <Route path="/refund" render={() => <Refund />} />
+          <Route path="/chat" render={() => <Chat />} />
           <Route
             path='/payment'
             render={(obj) => (

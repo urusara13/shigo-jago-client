@@ -17,55 +17,64 @@ class Nav extends Component {
     this.openLoginModal = this.openLoginModal.bind(this)
     this.closeLoginModal = this.closeLoginModal.bind(this)
     this.changeMypage = this.changeMypage.bind(this)
-
   }
 
   async componentDidMount() {
-    const { kakaoToken, googleToken } = this.props
+    const { kakaoToken, googleToken, deleteKakao, deleteGoogle } = this.props
     const url = new URL(window.location.href)
-
     const authorizationCode = url.searchParams.get('code')
 
-    if (window.location.pathname === "/google") {
-      console.log(authorizationCode)
+    if (authorizationCode && (url.pathname === "/google" || url.pathname === "/google/auth")) {
       const getGoogleToken = await axios.post(`http://localhost:4000/social/google/callback`, {
         authorizationCode: authorizationCode,
-        isDelete: false
+        isDelete: false,
+        pathname: url.pathname
       })
-      console.log(getGoogleToken)
-      googleToken(getGoogleToken.data.data.access_token)
+      googleToken(getGoogleToken.data.data.access_token, url.pathname)
     }
 
-    if (authorizationCode && url.pathname !== "/mypage") {
-      console.log(authorizationCode)
+    else if(authorizationCode && url.pathname === "/google/mypage") {
+      const getGoogleToken = await axios.post(`http://localhost:4000/social/google/callback`, {
+        authorizationCode: authorizationCode,
+        isDelete: true
+      })
+      setTimeout(() => {
+        window.open('/','_self')
+        alert('구글 소셜 계정 연결을 해지했습니다.')
+      }, 3000)
+      deleteGoogle()
+      await axios.post(`https://accounts.google.com/o/oauth2/revoke?token=${getGoogleToken.data.data.access_token}`)
+    }
+
+    if (authorizationCode && (url.pathname === "/" || url.pathname === '/kakao')) {
       const getkakaoToken = await axios.post('http://localhost:4000/social/kakao/callback', {
         authorizationCode: authorizationCode,
-        isDelete: false
+        isDelete: false,
+        pathname: url.pathname
       })
-      kakaoToken(getkakaoToken.data.data.access_token)
+      kakaoToken(getkakaoToken.data.data.access_token, url.pathname)
     }
     else if (authorizationCode && url.pathname === "/mypage") {
       const getkakaoToken = await axios.post('http://localhost:4000/social/kakao/callback', {
         authorizationCode: authorizationCode,
         isDelete: true
       })
-      console.log('token', getkakaoToken.data.data.access_token)
+      
       if (!window.Kakao.isInitialized()) {
         window.Kakao.init(process.env.REACT_APP_KAKAO_JSKEY)
       }
-      console.log(window.Kakao.isInitialized())
+      
       window.Kakao.Auth.setAccessToken(getkakaoToken.data.data.access_token)
       window.Kakao.API.request({
         url: '/v1/user/unlink',
         success: function (response) {
-          console.log('success', response)
+          deleteKakao()
           window.open('/', '_self')
         },
         fail: function (error) {
           console.log(error)
         }
       })
-
       this.props.history.push('/')
     }
   }

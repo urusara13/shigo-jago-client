@@ -17,6 +17,7 @@ class Sitemap extends Component {
                     </div>
                     <div className="map__menu2">
                         <ul>
+                            <li><Link to="/chat">채팅</Link></li>
                             <li><Link to="/mypage/reservationinfo">예약내역</Link></li>
                             <li><Link to="/mypage/userinfo">마이페이지</Link></li>
                         </ul>
