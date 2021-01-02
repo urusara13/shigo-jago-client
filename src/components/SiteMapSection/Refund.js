@@ -3,8 +3,8 @@ import './Refund.css'
 class Refund extends Component {
     render() {
         return (
-            <div className="sg-main">
-                <div className="sg-content">
+            <div className="sg-main3">
+                <div className="sg-content2">
                     <h1>이용약관 및 개인정보방침</h1>
                     <div className="sg-main__scarcity">
                         <span>개인정보 보호정책</span>
