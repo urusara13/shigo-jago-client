@@ -1,4 +1,5 @@
-import axios from "axios"; //axios 초기 설정 필요
+import axios from "axios";
+import "./writeReviewModal.css";
 import React, { Component } from "react"; 
 
 class WriteReviewlModal extends Component  {
@@ -41,17 +42,16 @@ class WriteReviewlModal extends Component  {
 
   return (
     <div className="modal1">
-      <div className="loginModal">
-        <span className="btnClose" onClick={close}>&times;</span>
+      <div className="WRMctn">
           {message ?
           <> 
           <div>{message}</div>
-          <button onClick={close}>확인</button>
+          <button className="btnWRM" onClick={close}>확인</button>
           </> :
-          <>
-          {errorMessage && <div>{errorMessage}</div>}
+          <div className="WRMctnMid">
+          {errorMessage && <div className="WRMerrorMsg">{errorMessage}</div>}
           <input
-            className="title"
+            className="WRMtitle"
             type="text"
             placeholder="리뷰 제목을 작성해주세요."
             style={{
@@ -61,7 +61,7 @@ class WriteReviewlModal extends Component  {
             onChange={this.handleInputValue("title")} />
           <div>
           <textarea
-            className="description"
+            className="WRMcontent"
             type="textarea"
             placeholder="숙박 후기를 남겨주세요!"
             style={{
@@ -70,8 +70,11 @@ class WriteReviewlModal extends Component  {
             }}
             onChange={this.handleInputValue("description")} />
           </div>
-          <button onClick={this.writeReview}>업로드</button> 
-          </> }
+          <div clssName="btnWRMctn">
+          <button className="btnWRM" onClick={this.writeReview}>업로드</button> 
+          <button className="btnWRM" onClick={close}>닫기</button>
+          </div>
+          </div> }
       </div>
     </div>
     )

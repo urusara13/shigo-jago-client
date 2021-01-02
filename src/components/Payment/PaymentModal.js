@@ -76,7 +76,7 @@ class PaymentModal extends Component {
           <div className='PMMCtn'>      
           <div className='PMMmessage'>{message}</div> 
           {message === '성공적으로 예약되었습니다.' && 
-            <button className="btnClose" onClick={this.goToMypage}>확인</button>}
+            <button className="btnPMpay" onClick={this.goToMypage}>확인</button>}
           {message === '로그인을 먼저 진행해주세요.' && 
             <button className="btnPMpay" onClick={close}>확인</button>}
           </div>
