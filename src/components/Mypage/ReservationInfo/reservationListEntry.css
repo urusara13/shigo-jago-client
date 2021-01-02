@@ -4,9 +4,9 @@
     justify-content: space-between;
     border: 1px solid rgb(204,204,204);
     border-radius: 10px;
-    width: 1200px;
     padding: 20px;
     margin: 20px;
+    position: relative;
 }
 .RLEctn:hover {
     border: 1px solid rgb(123,123,253);
