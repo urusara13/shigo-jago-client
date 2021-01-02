@@ -26,7 +26,6 @@ class ReservationList extends Component {
       console.log(userInfo)
       return (
         <div className='reservationInfoContainer'>
-          <div>예약 내역</div>
           {userInfo.map((ele, idx) => {
             return(
               <ReservationListEntry key={idx} ele={ele} accessToken={accessToken} reload={this.reload} />

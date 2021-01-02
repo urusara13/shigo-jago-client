@@ -74,11 +74,11 @@ class PaymentModal extends Component {
       message ? 
         <div className='modal1'>
           <div className='PMMCtn'>      
-          <div>{message}</div> 
+          <div className='PMMmessage'>{message}</div> 
           {message === '성공적으로 예약되었습니다.' && 
             <button className="btnClose" onClick={this.goToMypage}>확인</button>}
           {message === '로그인을 먼저 진행해주세요.' && 
-            <button className="btnClose" onClick={close}>확인</button>}
+            <button className="btnPMpay" onClick={close}>확인</button>}
           </div>
         </div> 
         :
@@ -104,7 +104,7 @@ class PaymentModal extends Component {
             onChange={this.handleInputValue("cardNumber4")} />
           </div>
           <div className='PMetc'>
-          <div className='PMtitle'>카드사</div>
+          <div className='PMtitleCardCompany'>카드사</div>
           <select className="cardCompany" onChange={this.handleInputValue("cardCompany")}>
             <option value=""></option>
             <option value="현대">현대</option>
@@ -120,15 +120,25 @@ class PaymentModal extends Component {
           {howPay === 'account' && 
           <>
           <h1>계좌결제</h1>
-          <div>은행</div> 
-          <input
-            className="bank" type="text"
-            onChange={this.handleInputValue("bank")} />
-          <div>계좌번호</div> 
-          <input
-            className="accountNumber" type="text"
-            onChange={this.handleInputValue("accountNumber")} /> 
+          <div className='PMaccount'>
+          <div className='PMbank'>
+            <div className='PMaccTitle'>은행</div> 
+            <div className='PMaccTitle'>계좌번호</div> 
+          </div>
+          <div className='PMinput'>
+            <select className='PMaccContent' onChange={this.handleInputValue("bank")}>
+              <option value='' ></option>
+              <option value='신한'>신한</option>
+              <option value='우리'>우리</option>
+              <option value='국민'>국민</option>
+            </select>
+            <input
+              className="PMaccContent" type="text"
+              onChange={this.handleInputValue("accountNumber")} /> 
+          </div>
+          </div>
           </> }
+          
           <button className='btnPMpay' onClick={this.pay}>결제하기</button>
           </div>
         </div>

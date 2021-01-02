@@ -1,4 +1,5 @@
 import axios from "axios"; 
+import "./editReviewModal.css"
 import React, { Component } from "react"; 
 import { withRouter } from "react-router-dom";
 
@@ -35,14 +36,9 @@ class EditReviewlModal extends Component  {
     { headers: {"Authorization": `Bearer ${accessToken}`}})
     .then(res => {
       if(res.status === 201) {
-        this.setState({message: '수정되었습니다.'})
-      } else if(res.status === 200) {
-        this.setState({message: '새로 생성되었습니다.'})
-      }
+        this.setState({message: '수정되었습니다.'})}
     })
-    
   }
-
 
   render() {
   const { close } = this.props;
@@ -51,39 +47,39 @@ class EditReviewlModal extends Component  {
   
   return (
     <div className="modal1">
-      <div className="loginModal">
-        <span className="btnClose" onClick={close}>&times;</span>
+      <div className="ERMctn">
         {message ? 
           <>
           <div>{message}</div>
-          <button onClick={close}>확인</button>
+          <button className="btnERM" onClick={close}>확인</button>
           </> :
-          <>
+          <div className="ERMctnMid">
           <input
             defaultValue={title}
             placeholder={title}
-            className="title"
+            className="ERMtitle"
             type="text"
             style={{
               width:400,
               height:40
             }}
             onChange={this.handleInputValue("title")} />
-          <div>
           <textarea
             defaultValue={description}
             placeholder={description}
-            className="description"
+            className="ERMcontent"
             type="textarea"
             style={{
               width:400,
               height:200
             }}
             onChange={this.handleInputValue("description")} />
+          <div className="btnERMctn">
+          <button className="btnERM" onClick={this.editReview}>수정하기</button>
+          <button className="btnERM" onClick={close}>닫기</button>
           </div>
-          <button onClick={this.editReview}>수정하기</button>
           {errorMessage && <div>{errorMessage}</div>}
-          </>
+          </div>
         }
       </div>
     </div>

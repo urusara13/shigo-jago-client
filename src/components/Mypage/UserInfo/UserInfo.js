@@ -99,7 +99,7 @@ class UserInfo extends Component {
               userInfo.social.map((ele,idx) => {
                 return (
                   <div key={idx}>
-                  <div className='userInfoCTtitle'>{ele.corporation}</div>
+                  <div className='userInfoCTsocial'>{ele.corporation}</div>
                   <div className='userInfoCT'>{ele.socialEmail}</div>
                   </div>) })}
           </div>

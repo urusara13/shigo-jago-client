@@ -1,4 +1,5 @@
-import axios from "axios"; //axios 초기 설정 필요
+import axios from "axios"; 
+import "./paymentDetailModal.css"
 import React, { Component } from "react"; 
 
 class PaymentDetailModal extends Component {
@@ -20,7 +21,7 @@ class PaymentDetailModal extends Component {
       { reservationId: reservationinfo.id },
       { headers: {"Authorization": `Bearer ${accessToken}`}})
     .then(res => {
-      this.setState({paymentDetail: res.data.data}) })
+      this.setState({ paymentDetail: res.data.data }) })
   }
 
   render() {
@@ -29,23 +30,39 @@ class PaymentDetailModal extends Component {
   
     return (
       <div className="modal1">
-        <div className="loginModal">
-          <span className="btnClose" onClick={close}>&times;</span>
-          <div>숙소명: {reservationinfo.hotelName}</div>
-          <div >체크인: {reservationinfo.checkedin}</div>
-          <div >체크아웃: {reservationinfo.checkedout}</div>
-          <div >인원 상세: 성인 {reservationinfo.adult} /아동 {reservationinfo.child}</div>
-          <div >예약 날짜: {reservationinfo.createdAt.substr(0,10)}</div> 
-          <div>결제 금액: {paymentDetail.price}</div>
-          <div>결제 수단: {paymentDetail.howPaid}</div>
-          <div>카드 번호: {paymentDetail.cardNumber}</div>
-          <div>계좌 번호: {paymentDetail.accountNumber}</div>
+        <div className="PDMctn">
+          <div className="PDMctnMid">
+          <div className="PDMtitle">
+          <div className="PDMtot">숙소명</div>
+          <div className="PDMtot">체크인</div>
+          <div className="PDMtot">체크아웃</div>
+          <div className="PDMtot">인원상세</div>
+          <div className="PDMtot">예약날짜</div>
+          <div className="PDMtot">결제금액</div>
+          <div className="PDMtot">결제수단</div>
+          {paymentDetail.howPaid === 'card' ?
+          <div className="PDMtot">카드번호</div> :
+          <div className="PDMtot">계좌번호</div> }
+          </div>
+          <div className='PDMcontent'>
+          <div className="PDMtoc">{reservationinfo.hotelName}</div>
+          <div className="PDMtoc">{reservationinfo.checkedin}</div>
+          <div className="PDMtoc">{reservationinfo.checkedout}</div>
+          <div className="PDMtoc">성인 {reservationinfo.adult} /아동 {reservationinfo.child}</div>
+          <div className="PDMtoc">{reservationinfo.createdAt.substr(0,10)}</div> 
+          <div className="PDMtoc">{paymentDetail.price}</div>
+          <div className="PDMtoc">{paymentDetail.howPaid}</div>
+          {paymentDetail.howPaid === 'card' ? 
+          <div className="PDMtoc">{paymentDetail.cardNumber}</div> :
+          <div className="PDMtoc">{paymentDetail.accountNumber}</div> }
+          </div>
+          </div>
+          <div className="btnPDM" onClick={close}>닫기</div>
         </div>
       </div>
     )
   }
 }
 
-//카드 번호와 계좌번호따로따로 다루는 것 확인 필요. (api 문서에는 카드 넘버만 있음)
 export default PaymentDetailModal;
 

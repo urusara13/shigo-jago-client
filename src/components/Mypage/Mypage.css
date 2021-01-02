@@ -8,9 +8,11 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 80px;
+    margin: 250px;
+    margin-top: 0;
+    margin-bottom: 120px;
+    
 }
-
 ul.menu  {
     list-style: none;
     display: flex;
@@ -20,7 +22,6 @@ ul.menu  {
     justify-content: center;
     border-bottom: 1px solid var(--grey-med);
 }
-
 .UIlink {
     text-decoration: none;
     color: grey;
@@ -28,7 +29,7 @@ ul.menu  {
     padding-top: 0px;
 }
 .UIlink:hover {
-    color: black;
+    color: rgb(123,123,253);
 }
 
 

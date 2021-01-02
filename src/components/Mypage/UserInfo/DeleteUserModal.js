@@ -1,4 +1,5 @@
 import axios from "axios"; //axios 초기 설정 필요
+import "./deleteUserModal.css"
 import React, { Component } from "react"; 
 import { withRouter } from "react-router";
 
@@ -37,16 +38,18 @@ class DeleteUserModal extends Component {
       return (
         message ? 
         <div className='modal1'>
-          <div className='loginModal'>
+          <div className='DUMctn'>
             <div>{message}</div>
-            <button onClick={this.goToMainpage}>확인</button>
+            <button className='btnDUM' onClick={this.goToMainpage}>확인</button>
           </div>
         </div> : 
         <div className='modal1'>
-          <div className='loginModal'>
+          <div className='DUMctn'>
             <div>정말 탈퇴하시겠습니까?</div>
-              <button className='deleteAccount' onClick={this.deleteAccount}>예</button>
-              <button className='close' onClick={close}>아니오</button>
+              <div className='btnDUMctn'>
+              <button className='btnDUM' onClick={this.deleteAccount}>예</button>
+              <button className='btnDUM' onClick={close}>아니오</button>
+              </div>
           </div>
         </div>
       )
