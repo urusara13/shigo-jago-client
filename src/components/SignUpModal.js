@@ -86,7 +86,7 @@ class SignUpModal extends React.Component {
             axios.post(
                     'http://localhost:4000/user/signup',
                     {   
-                        email: this.state.email,
+                        loginId: this.state.email,
                         name: this.state.name,
                         password: SHA256(this.state.password),
                         mobile: this.state.mobile
