@@ -5,7 +5,7 @@ import './Sitemap.css';
 class Sitemap extends Component {
     render() {
         return (
-            <div className="section">
+        
                 <div className="sitemap">
                     <div className="map__menu1">
                         <ul>
@@ -24,7 +24,7 @@ class Sitemap extends Component {
                     </div>
                 </div>
 
-            </div>
+            
         )
     }
 }

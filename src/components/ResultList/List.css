@@ -177,8 +177,22 @@
     width: 100%;
 }
 
-.hotelAdd, .hotelNum, .hotelDetail {
+.hotelAddr, .hotelNum, .hotelDetail {
     border-bottom: 1px solid #ebebeb;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.booking_info {
+    border-bottom: 1px solid #ebebeb;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    display: grid;
+    grid-template-columns: auto auto auto;
+
+}
+
+.review_reading {
     padding-top: 15px;
     padding-bottom: 15px;
 }

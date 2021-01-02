@@ -1,4 +1,5 @@
 import React from "react";
+import './index.css';
 import { withRouter, Switch, Route } from "react-router-dom";
 import axios from "axios";
 import Mainpage from './components/Mainpage/Mainpage';
