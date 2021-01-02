@@ -34,15 +34,17 @@ class Nav extends Component {
     }
 
     else if(authorizationCode && url.pathname === "/google/mypage") {
-      const getGoogleToken = await axios.post(`http://localhost:4000/social/google/callback`, {
+      try{
+        const getGoogleToken = await axios.post(`http://localhost:4000/social/google/callback`, {
         authorizationCode: authorizationCode,
         isDelete: true
       })
-      setTimeout(() => {
-        window.open('/mypage','_self')
-      }, 3000)
       deleteGoogle()
       await axios.post(`https://accounts.google.com/o/oauth2/revoke?token=${getGoogleToken.data.data.access_token}`)
+    }
+      catch (err) {
+        window.open('/mypage', '_self')
+      }
     }
 
     if (authorizationCode && (url.pathname === "/" || url.pathname === '/kakao')) {
@@ -104,7 +106,7 @@ class Nav extends Component {
     return (
       <nav>
         <div className="logo">
-          <Link to="/"><img className="mainLogo" src={shigojago} alt='shigojago' /></Link>
+         <img className="mainLogo" onClick={()=> window.open('/', '_self')} src={shigojago} alt='shigojago' />
         </div>
         <div className="menu">
           <ul>

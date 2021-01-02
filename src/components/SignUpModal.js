@@ -161,7 +161,7 @@ class SignUpModal extends React.Component {
           this.props.history.push('/');
         }
         else {
-            alert('현재 사용중인 로그인 이메일 주소입니다. \n소셜 로그인의 경우 마이페이지에서 추가 연동 하십시오. ')
+          alert('현재 사용중인 로그인 이메일 주소입니다. \n소셜 로그인의 경우 마이페이지에서 추가 연동 하십시오. ')
         }
       }
     }
