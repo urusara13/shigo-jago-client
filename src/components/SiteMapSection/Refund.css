@@ -1,27 +1,40 @@
 
 
-.sg-main{
+.sg-main3{
     width:800px;
     height:700px;
     margin: 0 auto;
     list-style-type:none;
+    background-color: #fff;
+
 }
 
 li{
     list-style-type:none;
 }
 
-.sg-content{
+.sg-content2{
     width: 700px;
     height:600px;
     position: relative;
     top: 10%;
     margin: 0 auto;
     overflow: auto;
-    background-color: cornsilk;
+    background-color: #fff;
+
 }
 
-.sg-content>h1{
+.sg-content2>h1{
     margin-bottom: 20px;
 }
+.sg-main__scarcity span{
+    font-weight: 800;
+    font-size:20px;
+    line-height: 190%;
+}
 
+.sg-content2 p{
+    font-weight: 800;
+    font-size:20px;
+    line-height: 150%;
+}
