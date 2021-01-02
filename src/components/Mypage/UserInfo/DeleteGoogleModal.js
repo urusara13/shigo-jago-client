@@ -1,3 +1,4 @@
+import "./deleteKakaoGoogleModal.css"
 import React, { Component } from "react"
 import { withRouter } from "react-router"
 require('dotenv').config();
@@ -19,10 +20,13 @@ class DeleteGoogleModal extends Component {
         <>
         {isOpen ? 
           (<div className='modal1'>
-             <div className='loginModal'>
-               <div>정말 탈퇴하시겠습니까?</div>
-               <button className='deleteAccount' onClick={this.deleteAccount}>예</button>
-               <button className='close' onClick={close}>아니오</button>
+             <div className='DKMctn'>
+             <div className='DKMcontent'>구글 계정을</div> 
+               <div className='DKMcontent'>연결 해제하시겠습니까?</div>
+               <div className='btnDKMctn'>
+               <button className='btnDKM' onClick={this.deleteAccount}>예</button>
+               <button className='btnDKM' onClick={close}>아니오</button>
+               </div>
              </div>
            </div> ) :
           null

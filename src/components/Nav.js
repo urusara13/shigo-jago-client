@@ -70,7 +70,7 @@ class Nav extends Component {
         url: '/v1/user/unlink',
         success: function (response) {
           deleteKakao()
-          window.open('/', '_self')
+          window.open('/mypage', '_self')
         },
         fail: function (error) {
           console.log(error)

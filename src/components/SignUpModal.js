@@ -78,9 +78,7 @@ class SignUpModal extends React.Component {
             this.setState({ errorMessage: '모든 항목은 필수다' });
         }
         else if (formErrors.email || formErrors.name || formErrors.password || formErrors.mobile) {
-
             this.setState({ errorMessage: '다 시 해 ~ ' });
-
         }
         else {
             axios.post(
@@ -94,7 +92,7 @@ class SignUpModal extends React.Component {
                 )
                 .then((response) => {
                     //console.log(response)
-                    if (response.statuscode === 201) {
+                    if (response.status === 201) {
                         alert('가입에 성공하셨습니다!');
                     }
                 })

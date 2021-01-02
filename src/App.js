@@ -56,7 +56,7 @@ class App extends React.Component {
           })
           .then(res => {
             newthis.loginHandler(res.data.data.accessToken)
-            window.open('/','_self')
+            window.open('/mypage','_self')
           })
         }
         else {
@@ -99,7 +99,7 @@ class App extends React.Component {
           })
           .then(res => {
             newthis.loginHandler(res.data.data.accessToken)
-            window.open('/','_self')
+            window.open('/mypage','_self')
           })
         }
         else {
