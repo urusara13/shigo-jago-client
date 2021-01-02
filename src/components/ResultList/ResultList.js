@@ -7,7 +7,11 @@ class ResultList extends Component {
     super(props);
     this.state = {
 
-    };
+    }
+  }
+
+  componentWillUnmount() {
+    window.open('/', '_self')
   }
 
   render() {

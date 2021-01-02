@@ -1,6 +1,6 @@
 .DKMctn {
     width: 280px;
-    height: 150px;
+    height: 180px;
     border-radius: 6px;
     position: relative;
     margin: 200px auto;
@@ -10,6 +10,9 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+.DKMcontent {
+    padding-top: 5px;
 }
 .btnDKMctn {
     display:flex;

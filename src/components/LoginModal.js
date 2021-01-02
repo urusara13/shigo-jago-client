@@ -73,7 +73,6 @@ class LoginModal extends Component {
         <div className="loginModal">
           <span className="btnClose" onClick={close}>&times;</span>
           <div className="loginModalContents" >
-            <div>로그인</div>
             {errorMessage ? <div>{errorMessage}</div> : null}
             <input
               className="email"

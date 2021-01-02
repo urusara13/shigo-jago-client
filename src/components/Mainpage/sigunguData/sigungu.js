@@ -11,7 +11,6 @@ const sigungu = [{
     {name: '구로구', value: 7},
     {name: '금천구', value: 8},
     {name: '노원구', value: 9},
-    {name: '도봉구', value: 10},
     {name: '동대문구', value: 11},
     {name: '동작구', value: 12},
     {name: '마포구', value: 13},
@@ -26,7 +25,6 @@ const sigungu = [{
     {name: '은평구', value: 22},
     {name: '종로구', value: 23},
     {name: '중구', value: 24},
-    {name: '중랑구', value: 25},
   ]}, {
   si: {name: '인천', value: 2}, 
   gungu: [
@@ -44,7 +42,6 @@ const sigungu = [{
   si: {name: '대전', value: 3}, 
   gungu: [
     {name: '대덕구', value: 1}, 
-    {name: '동구', value: 2},
     {name: '서구', value: 3},
     {name: '유성구', value: 4},
     {name: '중구', value: 5},
@@ -172,7 +169,6 @@ const sigungu = [{
   si: {name: '충청남도', value: 34}, 
   gungu: [
     {name: '공주시', value: 1}, 
-    {name: '금산군', value: 2},
     {name: '논산시', value: 3},
     {name: '당진시', value: 4},
     {name: '보령시', value: 5},

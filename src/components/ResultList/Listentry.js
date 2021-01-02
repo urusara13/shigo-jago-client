@@ -33,7 +33,7 @@ class Listentry extends Component {
           <div className="listings__item">
 
             <div className="listings__image" onClick={this.openListModal}>
-              <img alt='' src={list.image1}></img>
+              <img alt='' src={list.firstimage || list.image1}></img>
             </div>
             <div className="listings__content">
               <div className="listings__title" onClick={this.openListModal}>

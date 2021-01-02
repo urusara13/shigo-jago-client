@@ -7,18 +7,17 @@
   background: rgba(0, 0, 0, 0.6);
   z-index: 10000;
 }
-  
 .loginModal {
-  width: 480px;
-  height: 621px;
+  width: 320px;
+  height: 400px;
   background-color: white;
+  border-radius: 15px;
   position: relative;
   box-sizing: border-box;
-  margin: 50px auto;
+  margin: 200px auto;
   padding: 20px;
   background: #fff;   
 }
-  
 .btnClose {
   float: right;
   font-size: 25px;
@@ -77,8 +76,8 @@
 }
   
 .google {
-  background-color: #e5e5e5;
-  border-color: #e5e5e5;
+  background-color: white;
+  border: 1px solid black;
   height: 40px;
   display: flex;
   align-items: center;
@@ -91,8 +90,8 @@
   
 .googleLogo {
   padding-top: 3px;
-  width: 40px;
-  height: 40px;
+  width: 38px;
+  height: 38px;
 }
   
 .googleText {
@@ -127,6 +126,7 @@
   
 .facebookLogo {
   padding-top: 7px;
+  padding-left: 6px;
   width: 30px;
   height: 30px;
 }

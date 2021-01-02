@@ -20,7 +20,6 @@ class Mainpage extends Component {
     this.setState({
       reservation: data
     })
-
     this.props.history.push('/resultlist')
   }
 

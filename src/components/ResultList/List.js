@@ -42,27 +42,36 @@ class List extends Component {
   }
 
   async componentDidMount() {
-    const { reservation } = this.props
 
-    const hotelList = await axios.post('http://localhost:4000/search/list', {
-      areacode: reservation.areacode,
-      sigungucode: reservation.sigungucode
-    })
+    try{
+      const { reservation } = this.props
+    
+      const hotelList = await axios.post('http://localhost:4000/search/list', {
+        areacode: reservation.areacode,
+        sigungucode: reservation.sigungucode
+      },{
+        timeout: 5000
+        })
+    
+      await hotelList.data.data.map((ele) => (
+        ele.price = this.getPrice()
+      ))
 
-    await hotelList.data.data.map((ele) => (
-      ele.price = this.getPrice()
-    ))
+      await hotelList.data.data.forEach(ele => {
+        if(!ele.image1) {
+          ele.image1 = 'http://image.pensionlife.co.kr/penimg/pen_1/pen_19/1977/9734f7418fcc01a2321ba800b1f2c7ee.jpg'      
+        }
+      })
 
-    await hotelList.data.data.forEach(ele => {
-      if(!ele.image1) {
-        ele.image1 = 'http://image.pensionlife.co.kr/penimg/pen_1/pen_19/1977/9734f7418fcc01a2321ba800b1f2c7ee.jpg'      
-      }
-      
-    });
-
-    this.setState({
-      list: hotelList.data.data
-    })
+      this.setState({
+        list: hotelList.data.data
+      })
+    }
+    
+    catch{
+      alert('네트워크 오류입니다.')
+      window.open('/', '_self')
+    }
   }
   
   render() {
