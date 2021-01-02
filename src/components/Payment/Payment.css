@@ -1,31 +1,57 @@
+.middlePayModal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 10000;
+}
+
 .container1{
     display:flex;
     width:900px;
     height:600px;
-    margin:0px auto;
+    position: relative;
+    margin: 50px auto;
     flex-flow: row wrap;
     justify-content: center;
     align-items: center;
-    background-color: beige;
-    box-shadow:2px 2px 2px 2px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    overflow: auto;
+    box-sizing: border-box;
+    background: #fff;   
 }
 
 .hotelImage{
+    margin-top: 18px;
     width: 400px;
     height: 400px;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    border-right: 1px solid #ddd;
 }
 
-.hotelImage > img{
-    box-shadow:inset 1px 1px 0px 0px #efdcfb;
+
+.hotelImage img {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
 
 }
+
 
 .reservationInfo{
+    border-left: 1px solid #ddd;
     width:400px;
     height: 400px;
     margin-left: 20px;
     background-color: #fff;
     opacity: 0.7;
+    padding : 20PX;
     
 
 }
@@ -40,15 +66,13 @@
     display:flex;
     width:820px;
     height:70px;
-    justify-content: flex-end;
+    justify-content: center;
     flex-flow: row wrap;
-    
 }
 
 .PI_payment__input{
     font-size: 20px;
     margin-right: 10px;
-
 }
 
 .howPay > button{

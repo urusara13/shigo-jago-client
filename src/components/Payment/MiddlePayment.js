@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import './Payment.css';
 import PaymentModal from "./PaymentModal"
 
 export default class MiddlePayment extends Component {
@@ -38,9 +38,10 @@ export default class MiddlePayment extends Component {
 
     return (
       <>
+      <div className='middlePayModal'>
         <div className='container1'>
           <div className='hotelImage'>
-            <img alt='' src={hotelDetail.firstimage} width='400' height='400'></img>
+            <img alt='' src={hotelDetail.firstimage}></img>
           </div>
           <div className='reservationInfo'>
             <div>숙소명 : {hotelDetail.title} </div>
@@ -66,6 +67,7 @@ export default class MiddlePayment extends Component {
               hotelName={hotelDetail.title} />}
             <div></div>
           </div>
+        </div>
         </div>
       </>
     )

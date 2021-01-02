@@ -9,7 +9,7 @@ class About extends Component {
                     <div className="about-content">
                         <div className="landing_page_section">
                             <div className="_1gw6tte">
-                                <div class="_18zex8c">
+                                <div className="_18zex8c">
                                     <img className="_1kvgpz1" src="https://image.freepik.com/free-vector/natural-winter-christmas-background-with-blue-sky-heavy-snowfall-snowflakes-snowy-coniferous-forest-snowdrifts-winter-landscape-with-falling-christmas-shining-beautiful-snow_209425-473.jpg" alt=""></img>
                                     <div className="_v748os9">
                                         <h1 className="_tqukbm">쉬고자고를 만나보세요.</h1>

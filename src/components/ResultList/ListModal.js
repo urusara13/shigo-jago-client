@@ -65,14 +65,16 @@ class ListModal extends Component {
               <div className="hotelImg">
                 <img alt='' src={hotelDetail.firstimage} ></img>
               </div>
-              <div className="hotelAdd">{hotelDetail.addr1} {hotelDetail.addr2}</div>
+              <div className="hotelAddr">{hotelDetail.addr1} {hotelDetail.addr2}</div>
               <div className="hotelNum">{hotelDetail.telname} {hotelDetail.tel}</div>
               <div className="hotelDetail">{hotelDetail.overview} </div>
 
-              <div>예약정보-성인: {reservation.adult}</div>
-              <div>예약정보-아동: {reservation.child}</div>
-              <div>총 금액 : {this.numberWithCommas(list.price)}</div>
-              <h2>리뷰</h2>
+              <div className="booking_info">
+              <span>예약정보-성인: {reservation.adult}</span>
+              <span>예약정보-아동: {reservation.child}</span>
+              <span>총 금액 : {this.numberWithCommas(list.price)}</span>
+              </div>
+              <h2 className="review_reading">리뷰</h2>
               {review && review.map((ele, idx) => (
                 <div key={idx}>
                 <div>{idx}.{ele.title}</div>
