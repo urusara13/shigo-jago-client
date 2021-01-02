@@ -18,27 +18,36 @@ class ListModal extends Component {
   }
 
   async getDetail() {
-    const { contentid, contenttypeid } = this.props.list
-    const detail = await axios.post('http://localhost:4000/search/detail', {
-      contentid: contentid,
-      contenttypeid: contenttypeid
-    })
+    try{    
+      const { contentid, contenttypeid } = this.props.list
+      const detail = await axios.post('http://localhost:4000/search/detail', {
+        contentid: contentid,
+        contenttypeid: contenttypeid
+      })
 
-    if (!detail.data.firstimage) {
-      detail.data.firstimage = 'http://image.pensionlife.co.kr/penimg/pen_1/pen_19/1977/9734f7418fcc01a2321ba800b1f2c7ee.jpg'
-    }
+      if (!detail.data.firstimage) {
+        detail.data.firstimage = 'http://image.pensionlife.co.kr/penimg/pen_1/pen_19/1977/9734f7418fcc01a2321ba800b1f2c7ee.jpg'
+      }
 
-    this.setState({ hotelDetail: detail.data })
+      this.setState({ hotelDetail: detail.data })}
+      catch {
+
+      }
+
   }
 
   async getReview() {
-    const { contentid, contenttypeid } = this.props.list
-    const review = await axios.post('http://localhost:4000/detail/review', { 
-      contentId: contentid,
-      contenttypeId: contenttypeid
-    })
-
-    this.setState({review: review.data.data})
+    
+    try{
+      const { contentid, contenttypeid } = this.props.list
+      const review = await axios.post('http://localhost:4000/detail/review', { 
+        contentId: contentid,
+        contenttypeId: contenttypeid
+      })
+      this.setState({review: review.data.data})
+    }
+    catch{
+    }
   }
 
   componentDidMount() {
