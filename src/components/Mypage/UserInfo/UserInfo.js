@@ -5,6 +5,9 @@ import "./userInfo.css";
 
 import DeleteUserModal from "./DeleteUserModal";
 import DeleteKakao from './DeleteKakaoModal'
+import DeleteGoogle from './DeleteGoogleModal'
+import AuthKakao from './AuthKakaoModal'
+import AuthGoogle from './AuthGoogleModal'
 
 class UserInfo extends Component {
   constructor(props) {
@@ -12,15 +15,47 @@ class UserInfo extends Component {
     this.state = {
       isDeleteAccountModalOpen: false,
       isDeleteKakaoAccount: false,
+      isDeleteGoogleAccount: false,
       isGoogle: false,
       isKakao: false,
-    };
+      isAuthKaKao: false,
+      isAuthGoogle: false
+    }
+    this.openDeleteAccountModal = this.openDeleteAccountModal.bind(this)
+    this.closeDeleteAccountModal = this.closeDeleteAccountModal.bind(this)
+    this.openDeleteKakaoModal = this.openDeleteKakaoModal.bind(this)
+    this.closeDeleteKakaoModal = this.closeDeleteKakaoModal.bind(this)
+    this.openDeleteGoogleModal = this.openDeleteGoogleModal.bind(this)
+    this.closeDeleteGoogleModal = this.closeDeleteGoogleModal.bind(this)
+    this.openAuthGoogleModal = this.openAuthGoogleModal.bind(this)
+    this.closeAuthGoogleModal = this.closeAuthGoogleModal.bind(this)
+    this.openAuthKakaoModal = this.openAuthKakaoModal.bind(this)
+    this.closeAuthKakaoModal = this.closeAuthKakaoModal.bind(this)
+    this.goToEditUserInfo = this.goToEditUserInfo.bind(this)
+  }
 
-  this.openDeleteAccountModal = this.openDeleteAccountModal.bind(this)
-  this.closeDeleteAccountModal = this.closeDeleteAccountModal.bind(this)
-  this.openDeleteKakaoModal = this.openDeleteKakaoModal.bind(this)
-  this.closeDeleteKakaoModal = this.closeDeleteKakaoModal.bind(this)
-  this.goToEditUserInfo = this.goToEditUserInfo.bind(this);
+  openAuthGoogleModal() {
+    this.setState({
+      isAuthGoogle: true
+    })
+  }
+
+  closeAuthGoogleModal() {
+    this.setState({
+      isAuthGoogle: false
+    })
+  }
+
+  openAuthKakaoModal() {
+    this.setState({
+      isAuthKaKao: true
+    })
+  }
+
+  closeAuthKakaoModal() {
+    this.setState({
+      isAuthKaKao: false
+    })
   }
 
   openDeleteAccountModal() {
@@ -44,6 +79,18 @@ class UserInfo extends Component {
   closeDeleteKakaoModal() {
     this.setState({
       isDeleteKakaoAccount: false
+    })
+  }
+
+  openDeleteGoogleModal() {
+    this.setState({
+      isDeleteGoogleAccount: true
+    })
+  }
+
+  closeDeleteGoogleModal() {
+    this.setState({
+      isDeleteGoogleAccount: false
     })
   }
 
@@ -83,7 +130,7 @@ class UserInfo extends Component {
 
   render() {
       const { userInfo, logoutHandlerSimple, accessToken } = this.props;
-      const { isDeleteAccountModalOpen, isDeleteKakaoAccount, isGoogle, isKakao } = this.state;       
+      const { isDeleteAccountModalOpen, isDeleteKakaoAccount, isDeleteGoogleAccount, isGoogle, isKakao, isAuthGoogle, isAuthKaKao } = this.state;       
 
       return (
         <div className='userInfoContainer'>
@@ -107,12 +154,25 @@ class UserInfo extends Component {
           <button className='btnUInfo' onClick={this.goToEditUserInfo}>회원 정보 수정</button>
           { isKakao ? 
           <button className='btnUInfo' onClick={this.openDeleteKakaoModal}>카카오 계정 연결 해제</button> :
-          <button className='btnUInfo'>카카오 계정 연동하기</button>
+          <button className='btnUInfo'onClick={this.openAuthKakaoModal}>카카오 계정 연동하기</button>
           }
           { isGoogle ? 
-          <button className='btnUInfo'>구글 계정 연결 해제</button> :
-          <button className='btnUInfo'>구글 계정 연동하기</button>
-          } 
+          <button className='btnUInfo' onClick={this.openDeleteGoogleModal}>구글 계정 연결 해제</button> :
+          <button className='btnUInfo'onClick={this.openAuthGoogleModal}>구글 계정 연동하기</button>
+          }
+          { isAuthGoogle &&
+          <AuthGoogle
+            isOpen={isAuthGoogle}
+            close={this.closeAuthGoogleModal} />}
+          { isAuthKaKao && 
+          <AuthKakao
+            isOpen={isAuthKaKao}
+            close={this.closeAuthKakaoModal}
+            userInfo={userInfo} />}
+          { isDeleteGoogleAccount &&
+          <DeleteGoogle 
+            isOpen={isDeleteGoogleAccount}
+            close={this.closeDeleteGoogleModal} />}
           { isDeleteKakaoAccount && 
           <DeleteKakao 
             isOpen={isDeleteKakaoAccount}

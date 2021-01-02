@@ -2,6 +2,7 @@ import React from "react";
 import { withRouter } from "react-router-dom";
 import axios from "axios";
 import './SignUp.css';
+import SHA256 from '../lib/SHA256'
 
 axios.defaults.withCredentials = true;
 
@@ -87,7 +88,7 @@ class SignUpModal extends React.Component {
                     {   
                         email: this.state.email,
                         name: this.state.name,
-                        password: this.state.password,
+                        password: SHA256(this.state.password),
                         mobile: this.state.mobile
                     },
                 )
@@ -119,7 +120,7 @@ class SignUpModal extends React.Component {
           axios.post('http://localhost:4000/user/signup', {
               loginId: this.state.email,
               name: kakaoUserData.properties.nickname,
-              password: this.state.password,
+              password: SHA256(this.state.password),
               mobile: this.state.mobile,
               corporation: 'kakao',
               socialAccount: kakaoUserData.id,
@@ -151,7 +152,7 @@ class SignUpModal extends React.Component {
         const signUp = await axios.post('http://localhost:4000/user/signup', {
             loginId: this.state.email,
             name: googleUserData.name,
-            password: this.state.password,
+            password: SHA256(this.state.password),
             mobile: this.state.mobile,
             corporation: 'google',
             socialAccount: googleUserData.sub,
