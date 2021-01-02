@@ -1,14 +1,20 @@
 .PMMCtn {
     width: 400px;
     height: 300px;
+    border-radius: 6px;
     position: relative;
     box-sizing: border-box;
-    margin: 50px auto;
+    margin: 200px auto;
     padding: 20px;
     background: #fff;   
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
+}
+.PMMmessage {
+    font-size: 20px;
+    padding: 40px;
 }
 .PMtitle {
     padding: 10px;
@@ -35,6 +41,10 @@
     padding-top:5px;
     align-self: flex-start;
 }
+.PMtitleCardCompany {
+    padding: 10px;
+    padding-right: 23px;
+}
 .cardCompany {
     width: 50px;
     padding: 3px;
@@ -43,23 +53,50 @@
 .cardCompany:focus {
     outline: 1px solid black
 }
-
-.btnPMpay {
-    border: 1px solid grey;
-    border-radius: 5px;
+.PMaccount {
+    display: flex;
+    flex-direction: row;
+    padding: 20px;
+}
+.PMbank {
+   display: flex;
+   flex-direction: column;
+}
+.PMinput {
+    display: flex;
+    flex-direction: column;
+}
+.PMaccTitle {
     padding: 5px;
     margin: 10px;
+}
+.PMaccContent {
+    padding: 5px;
+    margin: 10px;
+    width: 180px;
+}
+.btnPMpay {
+    background-color: rgb(234,234,234);
+    border-radius: 10px;
+    padding: 8px;
+    margin: 15px;
     width: 80px;
-    font-size: 15px;
+    font-size: 85%;
     transition: background-color 0.5s;
 }
 .btnPMpay:hover {
-    background-color: black;
-    color: white
+    background-color: rgb(123,123,253);
+    color: white;
+    font-weight: bold;
 }
 .btnPMClose {
     align-self: flex-end;
     font-size: 25px;
     cursor: pointer;
 }
+
+
+
+
+
 
