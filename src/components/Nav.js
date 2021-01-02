@@ -39,8 +39,7 @@ class Nav extends Component {
         isDelete: true
       })
       setTimeout(() => {
-        window.open('/','_self')
-        alert('구글 소셜 계정 연결을 해지했습니다.')
+        window.open('/mypage','_self')
       }, 3000)
       deleteGoogle()
       await axios.post(`https://accounts.google.com/o/oauth2/revoke?token=${getGoogleToken.data.data.access_token}`)
@@ -69,7 +68,7 @@ class Nav extends Component {
         url: '/v1/user/unlink',
         success: function (response) {
           deleteKakao()
-          window.open('/', '_self')
+          window.open('/mypage', '_self')
         },
         fail: function (error) {
           console.log(error)

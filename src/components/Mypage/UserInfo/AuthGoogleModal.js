@@ -1,3 +1,4 @@
+import "./authKakaoGoogleModal.css"
 import React, { Component } from "react"
 import { withRouter } from "react-router"
 require('dotenv').config();
@@ -20,10 +21,12 @@ class AuthGoogleModal extends Component {
         <>
         {isOpen ? 
           (<div className='modal1'>
-             <div className='loginModal'>
-               <div>구글과 연동하시겠습니까?</div>
-               <button className='authAccount' onClick={this.authAccount}>예</button>
-               <button className='close' onClick={close}>아니오</button>
+             <div className='AKMctn'>
+               <div className='AKMcontent'>구글과 연동하시겠습니까?</div>
+               <div className='btnAKMctn'>
+               <button className='btnAKM' onClick={this.authAccount}>예</button>
+               <button className='btnAKM' onClick={close}>아니오</button>
+               </div>
              </div>
            </div> ) :
           null
