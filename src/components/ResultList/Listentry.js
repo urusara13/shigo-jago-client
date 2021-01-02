@@ -24,9 +24,10 @@ class Listentry extends Component {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
   render() {
-    const { list, reservation } = this.props
+    const { list, reservation, date } = this.props
     const { isModalOpen } = this.state
-
+    console.log(list)
+    console.log(reservation)
     return (
       <>
         <div className="listings">
@@ -51,7 +52,7 @@ class Listentry extends Component {
                 </div>
                 <div className="listings__price">
                   <div className="listings__price__night">
-                    20000원 <span> / 1박</span>
+                    {this.numberWithCommas(list.price / date)}원 <span> / 1박</span>
                   </div>
                   <div className="listings__price__total">
                     <span>Total {this.numberWithCommas(list.price)}</span>
