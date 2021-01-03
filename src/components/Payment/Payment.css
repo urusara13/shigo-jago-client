@@ -1,87 +1,107 @@
-.middlePayModal {
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background: rgba(0, 0, 0, 0.6);
-    z-index: 10000;
-}
-
 .container1{
     display:flex;
-    width:900px;
-    height:600px;
+    padding: 20px;
+    padding-bottom: 60px;
+    margin-right: 350px;
+    margin-left: 350px;
+    margin-top: 0px;
     position: relative;
-    margin: 50px auto;
-    flex-flow: row wrap;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     background-color: white;
-    padding: 20px;
-    border-radius: 10px;
+    border-radius: 25px;
     overflow: auto;
     box-sizing: border-box;
     background: #fff;   
 }
-
+.MPheadCtn {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+.MPhotelName {
+    font-size: 40px;
+    font-weight: bolder;
+    padding: 15px;
+}
+.MPhotelAddr {
+    font-size: 20px;
+    padding: 15px;
+}
+.ImgInfoctn {
+    display: flex;
+    flex-direction: row;
+}
 .hotelImage{
     margin-top: 18px;
-    width: 400px;
-    height: 400px;
-    border-radius: 10px;
+    width: 600px;
+    height: 500px;
+    border-radius: 15px;
     overflow: hidden;
     position: relative;
-    border-right: 1px solid #ddd;
 }
-
-
 .hotelImage img {
     object-fit: cover;
     height: 100%;
     width: 100%;
-
 }
-
-
 .reservationInfo{
-    border-left: 1px solid #ddd;
-    width:400px;
-    height: 400px;
     margin-left: 20px;
-    background-color: #fff;
-    opacity: 0.7;
     padding : 20PX;
-    
-
 }
-
-.reservationInfo div{
+.MPcheckMsg {
     font-size: 20px;
-    line-height: 30px;
-       
+    padding: 10px;
+    padding-top: 50px;
+    padding-bottom: 30px;
+    text-align: center;
+    font-weight: bold;
+    
 }
-
+.MPmidCtn {
+    display: flex;
+    flex-direction: row;
+    
+}
+.MPtitle {
+    padding: 10px;
+    font-size: 20px;
+    color: rgb(123,123,253);
+    font-weight: bold;
+}
+.MPcontent {
+    padding: 10px;
+    font-size: 20px;
+    
+}
 .howPay{
     display:flex;
-    width:820px;
-    height:70px;
     justify-content: center;
-    flex-flow: row wrap;
+    flex-direction: row;
+    align-items: center;
+    padding-top: 20px;
 }
 
 .PI_payment__input{
-    font-size: 20px;
-    margin-right: 10px;
+    width: 150px;
+    height: 30px;
+    margin: 20px;
+    font-size: 100%;
 }
+.howPay > button{ 
+    background-color: rgb(234,234,234);
+    padding: 8px;
+    margin-bottom: 0px;
+    font-size: 100%;
+    border-radius: 10px;
+    transition: background-color 0.5s}
 
-.howPay > button{
-    font-size:30px;   
-    cursor:pointer;
-    background-color:#dfbdfa;
-    border-radius: 6px;
-    box-shadow:inset 0px 1px 0px 0px #efdcfb;
-
+.howPay > button:hover {
+    background-color: rgb(123,123,253);
+    color: white;
+    font-weight: bold;
 }
 
 

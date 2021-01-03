@@ -47,13 +47,14 @@ class ListModal extends Component {
   }
 
   render() {
-    const { close, reservation, list } = this.props
+    const { close, reservation, list, date } = this.props
     const { hotelDetail, review } = this.state
 
     const newInfo = {}; //Payment props 넘겨주기 위함
     newInfo.reservation = reservation;
     newInfo.hotelDetail = hotelDetail;
-    newInfo.totalPrice = list.price
+    newInfo.totalPrice = list.price;
+    newInfo.date = date;
 
     return (
       hotelDetail ?
@@ -70,8 +71,8 @@ class ListModal extends Component {
               <div className="hotelDetail">{hotelDetail.overview} </div>
 
               <div className="booking_info">
-              <span>예약정보-성인: {reservation.adult}</span>
-              <span>예약정보-아동: {reservation.child}</span>
+              <span>선택정보-성인: {reservation.adult}</span>
+              <span>선택정보-아동: {reservation.child}</span>
               <span>총 금액 : {this.numberWithCommas(list.price)}</span>
               </div>
               <h2 className="review_reading">리뷰</h2>

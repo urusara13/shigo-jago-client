@@ -26,8 +26,7 @@ class Listentry extends Component {
   render() {
     const { list, reservation, date } = this.props
     const { isModalOpen } = this.state
-    console.log(list)
-    console.log(reservation)
+    
     return (
       <>
         <div className="listings">
@@ -62,7 +61,7 @@ class Listentry extends Component {
             </div>
           </div>
         </div>
-        {isModalOpen ? <ListModal list={list} reservation={reservation} close={this.closeListModal}></ListModal> : null}
+        {isModalOpen ? <ListModal list={list} reservation={reservation} close={this.closeListModal} date={date}></ListModal> : null}
       </>
     )
   }
