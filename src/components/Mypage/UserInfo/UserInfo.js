@@ -2,6 +2,8 @@ import axios from "axios";
 import React, { Component } from "react"; 
 import { withRouter } from "react-router-dom";
 import "./userInfo.css";
+import google from '../../../images/google.png'
+import kakao from '../../../images/kakao.png'
 
 import DeleteUserModal from "./DeleteUserModal";
 import DeleteKakao from './DeleteKakaoModal'
@@ -107,7 +109,7 @@ class UserInfo extends Component {
   }
 
   componentDidMount() {
-    const { accessToken, userInfoHandler, socialInfoHandler } = this.props;
+    const { accessToken, userInfoHandler } = this.props;
     
     axios.get('http://localhost:4000/mypage/userinfo', {
       headers: {"Authorization": `Bearer ${accessToken}`}
@@ -152,13 +154,26 @@ class UserInfo extends Component {
           </div>
           <div className='btnUInfoCtn'> 
           <button className='btnUInfo' onClick={this.goToEditUserInfo}>회원 정보 수정</button>
+          <button className='btnUInfo' onClick={this.openDeleteAccountModal}>탈퇴 하기</button>
           { isKakao ? 
-          <button className='btnUInfo' onClick={this.openDeleteKakaoModal}>카카오 계정 연결 해제</button> :
-          <button className='btnUInfo'onClick={this.openAuthKakaoModal}>카카오 계정 연동하기</button>
+          <div className="kakaobtn" onClick={this.openDeleteKakaoModal}>
+          <img className="kakaoLogo" src={kakao} alt='kakao' />
+          <div className='kakaoUI' >연결 해제</div> 
+          </div>  :
+          <div className="kakaobtn" onClick={this.openAuthKakaoModal}>
+          <img className="kakaoLogo" src={kakao} alt='kakao' />
+          <div className='kakaoUI'>계정 연동</div>
+          </div>
           }
           { isGoogle ? 
-          <button className='btnUInfo' onClick={this.openDeleteGoogleModal}>구글 계정 연결 해제</button> :
-          <button className='btnUInfo'onClick={this.openAuthGoogleModal}>구글 계정 연동하기</button>
+          <div className="googlebtn" onClick={this.openDeleteGoogleModal}>
+          <img className="googleLogo" src={google} alt='google' />
+          <div className='googleUI' >연결 해제</div>
+          </div> :
+          <div className="googlebtn" onClick={this.openAuthGoogleModal}>
+          <img className="googleLogo" src={google} alt='google' />
+          <div className='googleUI'>계정 연동</div>
+          </div>
           }
           { isAuthGoogle &&
           <AuthGoogle
@@ -177,7 +192,6 @@ class UserInfo extends Component {
           <DeleteKakao 
             isOpen={isDeleteKakaoAccount}
             close={this.closeDeleteKakaoModal} />}
-          <button className='btnUInfo' onClick={this.openDeleteAccountModal}>탈퇴하기</button>
           { isDeleteAccountModalOpen && 
           <DeleteUserModal 
             close={this.closeDeleteAccountModal} 
