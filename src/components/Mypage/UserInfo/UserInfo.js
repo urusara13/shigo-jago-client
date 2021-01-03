@@ -154,7 +154,7 @@ class UserInfo extends Component {
           </div>
           <div className='btnUInfoCtn'> 
           <button className='btnUInfo' onClick={this.goToEditUserInfo}>회원 정보 수정</button>
-          <button className='btnUInfo' onClick={this.openDeleteAccountModal}>탈퇴 하기</button>
+          
           { isKakao ? 
           <div className="kakaobtn" onClick={this.openDeleteKakaoModal}>
           <img className="kakaoLogo" src={kakao} alt='kakao' />
@@ -171,7 +171,7 @@ class UserInfo extends Component {
           <div className='googleUI' >연결 해제</div>
           </div> :
           <div className="googlebtn" onClick={this.openAuthGoogleModal}>
-          <img className="googleLogo" src={google} alt='google' />
+          <img className="googleLogoUI" src={google} alt='google' />
           <div className='googleUI'>계정 연동</div>
           </div>
           }
@@ -197,6 +197,7 @@ class UserInfo extends Component {
             close={this.closeDeleteAccountModal} 
             logoutHandlerSimple={logoutHandlerSimple}
             accessToken={accessToken} />}
+            <button className='btnUInfo' onClick={this.openDeleteAccountModal}>탈퇴 하기</button>
           </div>
         </div>
       )
