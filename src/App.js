@@ -13,7 +13,6 @@ import Hire from "./components/SiteMapSection/Hire";
 import Refund from "./components/SiteMapSection/Refund";
 import Chat from "./components/SiteMapSection/Chat"
 import Payment from "./components/Payment/Payment";
-import AdminLoginModal from "./components/AdminLoginModal"
 
 
 
@@ -24,7 +23,6 @@ class App extends React.Component {
     super(props);
     this.state = {
       isLogin: false,
-      isAdmin: false,
       accessToken: '',
       kakaoUserData: null,
       googleUserData: null
@@ -245,7 +243,6 @@ class App extends React.Component {
           deleteGoogle={this.deleteGoogle}
         />
         <Switch>
-          <Route path='/admin/login' render={() => <AdminLoginModal isLogin={isLogin} loginHandler={this.loginHandler} isAdmin={isAdmin} />} />
           <Route path='/user/signup' render={() => <SignUpModal isLogin={isLogin} kakaoUserData={kakaoUserData} googleUserData={googleUserData} />} />
           <Route path="/about" render={() => <About />} />
           <Route path="/gethelp" render={() => <GetHelp isLogin={isLogin} isAdmin={isAdmin} accessToken={accessToken} />} />
