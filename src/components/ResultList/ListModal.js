@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import './List.css';
+import './listModal.css';
 
 class ListModal extends Component {
   constructor(props) {
@@ -37,7 +38,7 @@ class ListModal extends Component {
       contentId: contentid,
       contenttypeId: contenttypeid
     })
-
+    console.log(review.data.data)
     this.setState({review: review.data.data})
   }
 
@@ -66,20 +67,30 @@ class ListModal extends Component {
               <div className="hotelImg">
                 <img alt='' src={hotelDetail.firstimage} ></img>
               </div>
+              <h2 className="review_reading">위치</h2>
               <div className="hotelAddr">{hotelDetail.addr1} {hotelDetail.addr2}</div>
+              <h2 className="review_reading">연락처</h2>
               <div className="hotelNum">{hotelDetail.telname} {hotelDetail.tel}</div>
+              <h2 className="review_reading">숙소 설명</h2>
               <div className="hotelDetail">{hotelDetail.overview} </div>
-
+              <h2 className="review_reading">선택 정보</h2>
               <div className="booking_info">
-              <span>선택정보-성인: {reservation.adult}</span>
-              <span>선택정보-아동: {reservation.child}</span>
-              <span>총 금액 : {this.numberWithCommas(list.price)}</span>
+              <span>성인 {reservation.adult}명</span>
+              <span>아동 {reservation.child}명</span>
+              <span>체크인 {reservation.checkIn}</span>
+              <span>체크아웃 {reservation.checkOut}</span>
               </div>
+              <h2 className="review_reading">총 금액</h2>
+              <div>₩{this.numberWithCommas(list.price)}</div>
+
               <h2 className="review_reading">리뷰</h2>
               {review && review.map((ele, idx) => (
-                <div key={idx}>
-                <div>{idx}.{ele.title}</div>
-                <div>{ele.description}</div>
+                <div key={idx} className="LMcomment">
+                  <div className="LMctn">
+                    <div className="LMctitle">{ele.title}</div>
+                    <div className="LMcdes">{ele.description}</div>
+                  </div>
+                  <div className="LMcdate">{ele.updatedAt.substr(0,10)}</div>
                 </div>
               ))}
               <div className="reservation__btn">

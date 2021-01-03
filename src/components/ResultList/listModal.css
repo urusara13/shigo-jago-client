@@ -1,0 +1,21 @@
+.LMcomment {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 20px;
+  border-bottom: 1px solid grey;
+
+}
+.LMctn {
+  display: flex;
+  flex-direction: column;
+}
+.LMctitle {
+  font-weight: bold;
+  padding: 10px;
+  padding-left: 0px;
+  padding-top: 0px;
+}
+.LMcdate {
+  color: grey;
+}
