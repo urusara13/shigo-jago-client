@@ -9,7 +9,7 @@ class Hire extends Component {
                 <div className="hr_wrapper">
                     <div className="hr_header clearfix">
                         <div className="hr_logo">
-                            <h1>Find Your Next Career<span>Jobs</span></h1>
+                            <h1>Find Your Next Career Jobs</h1>
                         </div>
                         <ul className="hr_nav">
                             <li className="current">All Jobs</li>

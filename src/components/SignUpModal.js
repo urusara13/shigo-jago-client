@@ -15,7 +15,7 @@ const pwRegex = RegExp(
 );
 
 const phoneRegex = RegExp(
-    /^01(?:0|1|[6-9])-(?:\d{3}|\d{4})-\d{4}$/ 
+    /^01(?:0|1|[6-9])-(?:\d{3}|\d{4})-\d{4}$/
 );
 
 
@@ -74,43 +74,47 @@ class SignUpModal extends React.Component {
         const formErrors = { ...this.state.formErrors };
         if (this.state.email === "" && this.state.name === "" && this.state.password === ""
             && this.state.mobile === "") {
-            this.setState({ errorMessage: '모든 항목은 필수다' });
+            this.setState({ errorMessage: '모든 항목은 필수입니다.👌' });
         }
         else if (formErrors.email || formErrors.name || formErrors.password || formErrors.mobile) {
 
-            this.setState({ errorMessage: '다 시 해 ~ ' });
+            this.setState({ errorMessage: '다시 해주세요~ ☝ ' });
 
         }
         else {
             axios.post(
-                    'http://localhost:4000/user/signup',
-                    {   
-                        loginId: this.state.email,
-                        name: this.state.name,
-                        password: SHA256(this.state.password),
-                        mobile: this.state.mobile
-                    },
-                )
+                'http://localhost:4000/user/signup',
+                {
+                    loginId: this.state.email,
+                    name: this.state.name,
+                    password: SHA256(this.state.password),
+                    mobile: this.state.mobile
+                },
+            )
                 .then((response) => {
-                    if (response.statuscode === 201) {
-                        alert('가입에 성공하셨습니다!');
+                    //console.log(response)
+                    if (response.status === 201) {
+                        alert('🙇신규가입에 성공하셨습니다!🙏')
                     }
                 })
                 .then(() => {
                     this.props.history.push('/');
                 })
+                .catch(err => {
+                    if (err.response.data.error) this.setState({ errorMessage: '🙅이메일이 존재합니다.😅' })
+                });
         }
     }
 
-    kakaoSignup = async () =>  {
+    kakaoSignup = async () => {
         const formErrors = { ...this.state.formErrors }
         const { kakaoUserData } = this.props
-        
-        if (this.state.email === "" && this.state.password === ""&& this.state.mobile === "") {
+
+        if (this.state.email === "" && this.state.password === "" && this.state.mobile === "") {
             this.setState({ errorMessage: '모든 항목은 필수입니다.' })
         }
 
-        else if(formErrors.email || formErrors.password || formErrors.mobile) {
+        else if (formErrors.email || formErrors.password || formErrors.mobile) {
             this.setState({ errorMessage: '올바르게 입력해주세요.' })
         }
 
@@ -132,44 +136,52 @@ class SignUpModal extends React.Component {
             .then(() => {
                 this.props.history.push('/');
             })
+            .catch(err => {
+              if (err.response.data.error) this.setState({ errorMessage: '🙅이메일이 존재합니다.😅' })
+            });
         }
     }
 
     googleSignup = async () => {
-      const formErrors = { ...this.state.formErrors }
-      const { googleUserData } = this.props
-      
-      if (this.state.email === "" && this.state.password === ""&& this.state.mobile === "") {
-        this.setState({ errorMessage: '모든 항목은 필수입니다.' })
-      }
-      else if(formErrors.email || formErrors.password || formErrors.mobile) {
-        this.setState({ errorMessage: '올바르게 입력해주세요.' })
-      }
-      else {
-        const signUp = await axios.post('http://localhost:4000/user/signup', {
-            loginId: this.state.email,
-            name: googleUserData.name,
-            password: SHA256(this.state.password),
-            mobile: this.state.mobile,
-            corporation: 'google',
-            socialAccount: googleUserData.sub,
-            socialEmail: googleUserData.email
-        })
-        if(signUp.status === 201) { 
-          alert('신규가입에 성공하셨습니다!')
-          this.props.history.push('/');
+        const formErrors = { ...this.state.formErrors }
+        const { googleUserData } = this.props
+
+        if (this.state.email === "" && this.state.password === "" && this.state.mobile === "") {
+            this.setState({ errorMessage: '모든 항목은 필수입니다.' })
+        }
+        else if (formErrors.email || formErrors.password || formErrors.mobile) {
+            this.setState({ errorMessage: '올바르게 입력해주세요.' })
         }
         else {
-          alert('현재 사용중인 로그인 이메일 주소입니다. \n소셜 로그인의 경우 마이페이지에서 추가 연동 하십시오. ')
+            try {
+                const signUp = await axios.post('http://localhost:4000/user/signup', {
+                    loginId: this.state.email,
+                    name: googleUserData.name,
+                    password: SHA256(this.state.password),
+                    mobile: this.state.mobile,
+                    corporation: 'google',
+                    socialAccount: googleUserData.sub,
+                    socialEmail: googleUserData.email
+                })
+
+                if (signUp.status === 201) {
+                    alert('신규가입에 성공하셨습니다!')
+                    this.props.history.push('/');
+                }
+            }
+            catch(err) {
+                {
+                    if (err.response.data.error) this.setState({ errorMessage: '🙅이메일이 존재합니다.😅' })
+                };
+            }
         }
-      }
     }
 
     render() {
         const { formErrors } = this.state;
         const { kakaoUserData, googleUserData } = this.props
 
-        
+
         return !kakaoUserData && !googleUserData ? (
             <>
                 <div >
@@ -249,157 +261,157 @@ class SignUpModal extends React.Component {
                 </div>
             </>
         )
-        : !googleUserData ? (
-            <>
-                <div >
-                    <div className="signUpModal">
-                        <div className="signUpModalContents" >
-                            <h1>회원가입</h1>
+            : !googleUserData ? (
+                <>
+                    <div >
+                        <div className="signUpModal">
+                            <div className="signUpModalContents" >
+                                <h1>회원가입</h1>
 
-                            <form onSubmit={(e) => e.preventDefault()} >
+                                <form onSubmit={(e) => e.preventDefault()} >
 
-                            <div className="newEmail">
-                                <label htmlFor="email">Email</label>
-                                    <input
-                                        className={formErrors.email.length > 0 ? "error" : null}
-                                        type="email"
-                                        name="email"
-                                        placeholder="로그인에 사용하실 e-mail을 입력해주세요"
-                                        noValidate
-                                        onChange={this.handleInputValue}
-                                    ></input>
-                                    {formErrors.email.length > 0 && (
-                                        <div className="errorMessage">{formErrors.email}</div>
-                                    )}
-                            </div>
+                                    <div className="newEmail">
+                                        <label htmlFor="email">Email</label>
+                                        <input
+                                            className={formErrors.email.length > 0 ? "error" : null}
+                                            type="email"
+                                            name="email"
+                                            placeholder="로그인에 사용하실 e-mail을 입력해주세요"
+                                            noValidate
+                                            onChange={this.handleInputValue}
+                                        ></input>
+                                        {formErrors.email.length > 0 && (
+                                            <div className="errorMessage">{formErrors.email}</div>
+                                        )}
+                                    </div>
 
-                                <div className="newName">
-                                  <label htmlFor="name" style={{"color":"Goldenrod"}}>Name</label>
-                                    <div style={{"color":"gray"}}>{kakaoUserData.properties.nickname}</div>
-                                </div>
+                                    <div className="newName">
+                                        <label htmlFor="name" style={{ "color": "Goldenrod" }}>Name</label>
+                                        <div style={{ "color": "gray" }}>{kakaoUserData.properties.nickname}</div>
+                                    </div>
 
-                                <div className="newEmail">
-                                  <label htmlFor="email" style={{"color":"Goldenrod"}}>Kakao Account</label>
-                                    <div style={{"color":"gray"}}>{kakaoUserData.kakao_account.email}</div>
-                                </div>
-                                
-                                <div className="newPassword">
-                                    <label htmlFor="password">Password</label>
-                                    <input
-                                        className={formErrors.password.length > 0 ? "error" : null}
-                                        type="password"
-                                        name="password"
-                                        placeholder="사용하실 password를 입력해주세요"
-                                        
-                                        onChange={this.handleInputValue}
-                                    ></input>
-                                    {formErrors.password.length > 0 && (
-                                        <div className="errorMessage">{formErrors.password}</div>
-                                    )}
-                                </div>
-                  
-                                <div className="phoneNum">
-                                    <label htmlFor="mobile">Mobile</label>
-                                    <input
-                                        className={formErrors.mobile.length > 0 ? "error" : null}
-                                        type='tel'
-                                        name="mobile"
-                                        placeholder="휴대폰 번호를 입력해주세요"
-                                        
-                                        onChange={this.handleInputValue}
-                                    ></input>
-                                    {formErrors.mobile.length > 0 && (
-                                        <div className="errorMessage">{formErrors.mobile}</div>
-                                    )}
-                                </div>
-                                <button
-                                    className="btnSignUp"
-                                    type='submit'
-                                    onClick={this.kakaoSignup}
-                                >
-                                    회원가입
+                                    <div className="newEmail">
+                                        <label htmlFor="email" style={{ "color": "Goldenrod" }}>Kakao Account</label>
+                                        <div style={{ "color": "gray" }}>{kakaoUserData.kakao_account.email}</div>
+                                    </div>
+
+                                    <div className="newPassword">
+                                        <label htmlFor="password">Password</label>
+                                        <input
+                                            className={formErrors.password.length > 0 ? "error" : null}
+                                            type="password"
+                                            name="password"
+                                            placeholder="사용하실 password를 입력해주세요"
+
+                                            onChange={this.handleInputValue}
+                                        ></input>
+                                        {formErrors.password.length > 0 && (
+                                            <div className="errorMessage">{formErrors.password}</div>
+                                        )}
+                                    </div>
+
+                                    <div className="phoneNum">
+                                        <label htmlFor="mobile">Mobile</label>
+                                        <input
+                                            className={formErrors.mobile.length > 0 ? "error" : null}
+                                            type='tel'
+                                            name="mobile"
+                                            placeholder="휴대폰 번호를 입력해주세요"
+
+                                            onChange={this.handleInputValue}
+                                        ></input>
+                                        {formErrors.mobile.length > 0 && (
+                                            <div className="errorMessage">{formErrors.mobile}</div>
+                                        )}
+                                    </div>
+                                    <button
+                                        className="btnSignUp"
+                                        type='submit'
+                                        onClick={this.kakaoSignup}
+                                    >
+                                        회원가입
                                     </button>
-                                {<div className="alert-box">{this.state.errorMessage}</div>}
-                            </form>
+                                    {<div className="alert-box">{this.state.errorMessage}</div>}
+                                </form>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </>
-        ) 
-        : (
-            <div >
-            <div className="signUpModal">
-                <div className="signUpModalContents" >
-                    <h1>회원가입</h1>
+                </>
+            )
+                : (
+                    <div >
+                        <div className="signUpModal">
+                            <div className="signUpModalContents" >
+                                <h1>회원가입</h1>
 
-                    <form onSubmit={(e) => e.preventDefault()} >
-                    <div className="newEmail">
-                                <label htmlFor="email">Email</label>
-                                    <input
-                                        className={formErrors.email.length > 0 ? "error" : null}
-                                        type="email"
-                                        name="email"
-                                        placeholder="로그인에 사용하실 e-mail을 입력해주세요"
-                                        noValidate
-                                        onChange={this.handleInputValue}
-                                    ></input>
-                                    {formErrors.email.length > 0 && (
-                                        <div className="errorMessage">{formErrors.email}</div>
-                                    )}
-                            </div>
+                                <form onSubmit={(e) => e.preventDefault()} >
+                                    <div className="newEmail">
+                                        <label htmlFor="email">Email</label>
+                                        <input
+                                            className={formErrors.email.length > 0 ? "error" : null}
+                                            type="email"
+                                            name="email"
+                                            placeholder="로그인에 사용하실 e-mail을 입력해주세요"
+                                            noValidate
+                                            onChange={this.handleInputValue}
+                                        ></input>
+                                        {formErrors.email.length > 0 && (
+                                            <div className="errorMessage">{formErrors.email}</div>
+                                        )}
+                                    </div>
 
-                        <div className="newName">
-                          <label htmlFor="name" style={{"color":"Goldenrod"}}>Name</label>
-                            <div style={{"color":"gray"}}>{googleUserData.name}</div>
-                        </div>
+                                    <div className="newName">
+                                        <label htmlFor="name" style={{ "color": "Goldenrod" }}>Name</label>
+                                        <div style={{ "color": "gray" }}>{googleUserData.name}</div>
+                                    </div>
 
-                        <div className="newEmail">
-                          <label htmlFor="email" style={{"color":"Goldenrod"}}>Google Account</label>
-                            <div style={{"color":"gray"}}>{googleUserData.email}</div>
-                        </div>
-                        
-                        <div className="newPassword">
-                            <label htmlFor="password">Password</label>
-                            <input
-                                className={formErrors.password.length > 0 ? "error" : null}
-                                type="password"
-                                name="password"
-                                placeholder="사용하실 password를 입력해주세요"
-                                
-                                onChange={this.handleInputValue}
-                            ></input>
-                            {formErrors.password.length > 0 && (
-                                <div className="errorMessage">{formErrors.password}</div>
-                            )}
-                        </div>
-          
-                        <div className="phoneNum">
-                            <label htmlFor="mobile">Mobile</label>
-                            <input
-                                className={formErrors.mobile.length > 0 ? "error" : null}
-                                type='tel'
-                                name="mobile"
-                                placeholder="휴대폰 번호를 입력해주세요"
-                                
-                                onChange={this.handleInputValue}
-                            ></input>
-                            {formErrors.mobile.length > 0 && (
-                                <div className="errorMessage">{formErrors.mobile}</div>
-                            )}
-                        </div>
-                        <button
-                            className="btnSignUp"
-                            type='submit'
-                            onClick={this.googleSignup}
-                        >
-                            회원가입2
+                                    <div className="newEmail">
+                                        <label htmlFor="email" style={{ "color": "Goldenrod" }}>Google Account</label>
+                                        <div style={{ "color": "gray" }}>{googleUserData.email}</div>
+                                    </div>
+
+                                    <div className="newPassword">
+                                        <label htmlFor="password">Password</label>
+                                        <input
+                                            className={formErrors.password.length > 0 ? "error" : null}
+                                            type="password"
+                                            name="password"
+                                            placeholder="사용하실 password를 입력해주세요"
+
+                                            onChange={this.handleInputValue}
+                                        ></input>
+                                        {formErrors.password.length > 0 && (
+                                            <div className="errorMessage">{formErrors.password}</div>
+                                        )}
+                                    </div>
+
+                                    <div className="phoneNum">
+                                        <label htmlFor="mobile">Mobile</label>
+                                        <input
+                                            className={formErrors.mobile.length > 0 ? "error" : null}
+                                            type='tel'
+                                            name="mobile"
+                                            placeholder="휴대폰 번호를 입력해주세요"
+
+                                            onChange={this.handleInputValue}
+                                        ></input>
+                                        {formErrors.mobile.length > 0 && (
+                                            <div className="errorMessage">{formErrors.mobile}</div>
+                                        )}
+                                    </div>
+                                    <button
+                                        className="btnSignUp"
+                                        type='submit'
+                                        onClick={this.googleSignup}
+                                    >
+                                        회원가입2
                             </button>
-                        {<div className="alert-box">{this.state.errorMessage}</div>}
-                    </form>
-                </div>
-            </div>
-        </div>
-        )
+                                    {<div className="alert-box">{this.state.errorMessage}</div>}
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                )
     }
 }
 

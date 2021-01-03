@@ -15,7 +15,6 @@ class ReservationList extends Component {
 
     axios.get('http://localhost:4000/mypage/reserveinfo', 
     { headers: { "Authorization" : `Bearer ${accessToken}`} })
-    
     .then(res => { this.setState({ userInfo : res.data.data }) })
     .catch(err => err)
   }
@@ -23,6 +22,7 @@ class ReservationList extends Component {
   render() {
       const { userInfo } = this.state;
       const { accessToken } = this.props;
+      
       return (
         <div className='reservationInfoContainer'>
           {userInfo.map((ele, idx) => {

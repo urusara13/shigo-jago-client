@@ -3,6 +3,7 @@
     flex-direction: column;
     justify-content: center;
     flex-wrap: wrap;
+    transition: all 2s;
 }
 .userInfo {
     text-align: center;
@@ -32,17 +33,17 @@
     list-style: none;
     display: flex;
     flex-direction: row;
-    justify-content: center;
-    align-items: flex-start;
+    justify-content: space-evenly;
+    align-items: center;
     margin: 0;
     margin-top: 60px;
     padding: 0;
+    
 }
 .btnUInfo {
     background-color: rgb(234,234,234);
     padding: 8px;
     margin: 15px;
-    margin-bottom: 0px;
     font-size: 85%;
     border-radius: 10px;
     transition: background-color 0.5s
@@ -51,4 +52,50 @@
     background-color: rgb(123,123,253);
     color: white;
     font-weight: bold;
+}
+
+.googleLogoUI {
+    width: 40px;
+    height: 40px;
+    padding: 1px;
+    border-radius: 10px;
+    background-color: #FFFFFF;
+    border : 0.5px solid grey;
+}
+.googleUI {
+    padding-top: 10px;
+}
+.googlebtn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 13px;
+    transition: transform 0.2s;
+    padding-left: 30px;
+    padding-right: 25px;
+}
+.googlebtn:hover {
+    transform: translateY(-5px)
+}
+
+.kakaoLogo {
+    width: 40px;
+    height: 40px;
+    padding: 5px;
+    border-radius: 10px;
+    background-color: #f8e000;
+  }
+.kakaoUI {
+    padding-top: 10px;
+}
+.kakaobtn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 13px;
+    transition: transform 0.2s;
+    padding-left: 20px;
+}
+.kakaobtn:hover {
+    transform: translateY(-5px)
 }

@@ -19,6 +19,8 @@ class Mainpage extends Component {
   }
 
   setReservation(data) {
+    localStorage.setItem("reservation",JSON.stringify(data))
+
     this.setState({
       reservation: data
     })
@@ -46,7 +48,7 @@ class Mainpage extends Component {
         </img>  
         <Chat isChat={isChat}/>
       </div>
-    )
+    ) 
   }
 }
 

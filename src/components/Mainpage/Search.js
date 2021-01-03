@@ -13,7 +13,7 @@ class Search extends Component {
             checkOut: null,
             adult: 0,
             child: 0,
-
+            errorMessage: ''
         };
 
         this.searchInputValue = this.searchInputValue.bind(this);
@@ -37,7 +37,7 @@ class Search extends Component {
         const today = new Date();
 
         if (inDate - today < -86400000) {
-            alert('오늘 이후의 날짜로 선택해주세요.')
+            this.setState({errorMessage: '오늘 이후의 날짜를 선택해주세요.'})
         } else if (checkOut) {
             const oyear = checkOut.substr(0, 4);
             const omonth = checkOut.substr(5, 2);
@@ -46,7 +46,7 @@ class Search extends Component {
             const outDate = new Date(Number(oyear), Number(omonth) - 1, Number(odate));
 
             if (inDate - outDate >= 0) {
-                alert('체크아웃 시간보다 앞 시간을 선택해주세요.')
+                this.setState({errorMessage: '체크아웃 시간보다 앞 시간을 선택해주세요.'})
             } else {
                 this.setState({ checkIn: strDate });
             }
@@ -68,7 +68,7 @@ class Search extends Component {
         const today = new Date();
 
         if (outDate - today < -86400000) {
-            alert('오늘 이후의 날짜로 선택해주세요.')
+            this.setState({errorMessage: '오늘 이후의 날짜로 선택해주세요.'})
         } else if (checkIn) {
             const iyear = checkIn.substr(0, 4);
             const imonth = checkIn.substr(5, 2);
@@ -77,7 +77,7 @@ class Search extends Component {
             const inDate = new Date(Number(iyear), Number(imonth) - 1, Number(idate));
 
             if (outDate - inDate <= 0) {
-                alert('체크인 시간보다 뒷 시간을 선택해주세요.')
+                this.setState({errorMessage: '체크인 시간보다 뒷 시간을 선택해주세요.'})
             } else {
                 this.setState({ checkOut: strDate });
             }
@@ -98,25 +98,24 @@ class Search extends Component {
         const { setReservation } = this.props
         const { adult, child, checkIn, checkOut } = this.state
 
-        if (!(checkIn || checkOut)) {
-            alert('날짜를 바르게 지정해주세요.')
+        if (!(checkIn && checkOut)) {
+            this.setState({errorMessage: '날짜를 바르게 지정해주세요.'})
         }
         else if (adult + child > 0) {
             setReservation(this.state)
         }
         else {
-            alert('인원을 지정해주세요.')
+            this.setState({errorMessage: '인원을 지정해주세요.'})
         }
     }
 
 
     render() {
-        const { areacode } = this.state
+        const { areacode, errorMessage } = this.state
 
         return (
             <>
                 <div className="search__box">
-
                     <form onSubmit={(e) => e.preventDefault()}>
                         <div className="where_area">
                             <div className="fat_text">시</div>
@@ -168,15 +167,15 @@ class Search extends Component {
                                 <option>5</option>
                             </select>
                         </div>
-
                         <div className="search__button" onClick={this.goSearch}>
                             <button>검색</button>
                         </div>
-                    </form >
+                    </form>
                 </div >
                 <div className="search__title">
                     <span className="main__title">코로나에도 <br />편안하고 안전한<br /> 숙소를 예약하세요.</span>
                 </div>
+                {errorMessage && <div className="ERRmessage">{errorMessage}</div>}
             </>
 
         )
