@@ -32,27 +32,43 @@ export default class MiddlePayment extends Component {
   }
 
   render() {
-    const { hotelDetail, reservation, totalPrice } = this.props.location.state.reservationInfo
+    const { hotelDetail, reservation, totalPrice, date } = this.props.location.state.reservationInfo
     const { accessToken } = this.props;
     const { howPay, isModalOpen } = this.state
-
+    
     return (
       <>
-      <div className='middlePayModal'>
         <div className='container1'>
+          <div className='MPheadCtn'>
+          <div className='MPhotelName'>{hotelDetail.title}</div>
+          <div className='MPhotelAddr'>{hotelDetail.addr1} {hotelDetail.addr2}</div>
+          </div>
+          <div className='ImgInfoctn'>
           <div className='hotelImage'>
             <img alt='' src={hotelDetail.firstimage}></img>
           </div>
           <div className='reservationInfo'>
-            <div>숙소명 : {hotelDetail.title} </div>
-            <div>위치 : {hotelDetail.addr1} {hotelDetail.addr2}</div>
-            <div>예약정보-성인: {reservation.adult}</div>
-            <div>예약정보-아동: {reservation.child}</div>
-            <div>예약정보-체크인: {reservation.checkIn}</div>
-            <div>예약정보-체크아웃: {reservation.checkOut}</div>
-            <div>금액: {this.numberWithCommas(totalPrice)}</div>
-          </div>
-          <div className='howPay'>
+            <div className='MPcheckMsg'>선택하신 내용이 맞나요?</div>
+            <div className='MPmidCtn'>
+            <div className='MPtitleCtn'>
+            <div className='MPtitle'>성인</div>
+            <div className='MPtitle'>아동</div>
+            <div className='MPtitle'>체크인</div>
+            <div className='MPtitle'>체크아웃</div>
+            <div className='MPtitle'>숙박일수</div>
+            <div className='MPtitle'>총 금액</div>
+            </div>
+            <div className='MPcontentCtn'>
+            <div className='MPcontent'>{reservation.adult}</div>
+            <div className='MPcontent'>{reservation.child}</div>
+            <div className='MPcontent'>{reservation.checkIn}</div>
+            <div className='MPcontent'>{reservation.checkOut}</div>
+            <div className='MPcontent'>{date}박 {date+1}일</div>
+            <div className='MPcontent'>{this.numberWithCommas(totalPrice)} 원</div>
+            </div>
+            </div>
+            <div className='MPfootCtn'>
+            <div className='howPay'>
             <select className="PI_payment__input" value={this.state.howPay} onChange={this.handleInputValue("howPay")} >
               <option value='card'>카드</option>
               <option value='account'>계좌이체</option>
@@ -65,9 +81,11 @@ export default class MiddlePayment extends Component {
               res={reservation}
               price={totalPrice}
               hotelName={hotelDetail.title} />}
-            <div></div>
+            </div>
+            </div>
           </div>
-        </div>
+          </div>
+         
         </div>
       </>
     )

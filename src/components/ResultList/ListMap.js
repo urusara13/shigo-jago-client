@@ -31,7 +31,6 @@ export default class ListMap extends React.Component {
     let mapx = 0, mapy = 0
 
     list.forEach(obj => {
-      console.log(obj)
       const newObj = Object.assign({}, {
         latlng: new window.kakao.maps.LatLng(Number(obj.mapy), Number(obj.mapx)),
         title: obj.title,

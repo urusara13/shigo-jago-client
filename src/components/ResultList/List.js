@@ -3,7 +3,6 @@ import axios from "axios";
 
 import Listentry from "./Listentry"
 import ListMap from "./ListMap"
-import ListModal from "./ListModal"
 
 class List extends Component {
   constructor(props) {
@@ -23,6 +22,7 @@ class List extends Component {
   numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
+
   toDate(str) {
     const year = str.substr(0,4);
     const month = str.substr(5,2);
@@ -32,9 +32,9 @@ class List extends Component {
   }
 
   getPrice() {
-    const { adult, child, checkIn, checkOut } = this.props.reservation
+    const reservation = JSON.parse(localStorage.getItem("reservation"));
+    const { adult, child, checkIn, checkOut } = reservation
     const { price } = this.state
-    
     
     return (adult * price.adult[Math.floor(Math.random() * price.adult.length)] + 
      child * price.child[Math.floor(Math.random() * price.child.length)]) *
@@ -44,8 +44,8 @@ class List extends Component {
   async componentDidMount() {
 
     try{
-      const { reservation } = this.props
-    
+      const reservation = JSON.parse(localStorage.getItem("reservation"));
+      
       const hotelList = await axios.post('http://localhost:4000/search/list', {
         areacode: reservation.areacode,
         sigungucode: reservation.sigungucode
@@ -76,12 +76,15 @@ class List extends Component {
   
   render() {
     const { list } = this.state
-    const { reservation } = this.props
- 
+    const localReservation = JSON.parse(localStorage.getItem("reservation"));
+    const { checkIn, checkOut } = localReservation
+    
+    const date = (this.toDate(checkOut) - this.toDate(checkIn)) / 86400000;
+
     return (
       <>
       {list.map((ele, idx) => (
-        <Listentry list={ele} reservation={reservation} key={idx} />
+        <Listentry list={ele} reservation={localReservation} key={idx} date={date} />
       ))}
       {list.length > 0 && <ListMap list={list} />}
       </>
