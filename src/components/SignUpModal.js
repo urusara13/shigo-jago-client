@@ -40,7 +40,6 @@ class SignUpModal extends React.Component {
 
     handleInputValue = e => {
         e.preventDefault();
-        console.log(e.target)
         const { name, value } = e.target;
         let formErrors = { ...this.state.formErrors };
 
@@ -68,7 +67,7 @@ class SignUpModal extends React.Component {
                 break;
         }
 
-        this.setState({ formErrors, [name]: value }, () => console.log(this.state));
+        this.setState({ formErrors, [name]: value });
     };
 
     handleSignup = () => {
@@ -120,27 +119,26 @@ class SignUpModal extends React.Component {
         }
 
         else {
-            axios.post('http://localhost:4000/user/signup', {
-                loginId: this.state.email,
-                name: kakaoUserData.properties.nickname,
-                password: SHA256(this.state.password),
-                mobile: this.state.mobile,
-                corporation: 'kakao',
-                socialAccount: kakaoUserData.id,
-                socialEmail: kakaoUserData.kakao_account.email
+          axios.post('http://localhost:4000/user/signup', {
+              loginId: this.state.email,
+              name: kakaoUserData.properties.nickname,
+              password: SHA256(this.state.password),
+              mobile: this.state.mobile,
+              corporation: 'kakao',
+              socialAccount: kakaoUserData.id,
+              socialEmail: kakaoUserData.kakao_account.email
+          })
+            .then((response) => {
+                if (response.status === 201) {
+                    alert('가입에 성공하셨습니다!')
+                }
             })
-                .then((response) => {
-                    console.log(response)
-                    if (response.status === 201) {
-                        alert('가입에 성공하셨습니다!')
-                    }
-                })
-                .then(() => {
-                    this.props.history.push('/');
-                })
-                .catch(err => {
-                    if (err.response.data.error) this.setState({ errorMessage: '🙅이메일이 존재합니다.😅' })
-                });
+            .then(() => {
+                this.props.history.push('/');
+            })
+            .catch(err => {
+              if (err.response.data.error) this.setState({ errorMessage: '🙅이메일이 존재합니다.😅' })
+            });
         }
     }
 
@@ -177,10 +175,6 @@ class SignUpModal extends React.Component {
                 };
             }
         }
-    }
-
-    componentDidMount() {
-        console.log('componentDidMount', this.props)
     }
 
     render() {

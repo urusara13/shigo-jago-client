@@ -59,7 +59,7 @@ class UserEdit extends Component {
         password: null,
         mobile: null,
         errorMessage: '성공적으로 수정되었습니다.' })) 
-      .catch(err => console.log(err))
+      .catch(err => err)
     }
   }
 

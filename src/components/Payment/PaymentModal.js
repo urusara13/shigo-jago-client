@@ -51,7 +51,7 @@ class PaymentModal extends Component {
           this.setState({message: '성공적으로 예약되었습니다.'})
         }
       })
-      .catch(err => console.log(err))
+      .catch(err => err)
     }
   }
   
