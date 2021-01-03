@@ -30,7 +30,6 @@ class LoginModal extends Component {
 
   handleLogin() {
     const { loginHandler, close } = this.props;
-    console.log(SHA256(this.state.password))
     if (!(this.state.loginId && this.state.password)) {
       this.setState({ errorMessage: '아이디와 비밀번호를 모두 채워주세요.' })
     } else {

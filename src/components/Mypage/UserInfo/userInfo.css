@@ -21,11 +21,12 @@
     font-size: 90%;
     color: rgb(123,123,253)
 }
+
 .userInfoCTsocial {
     padding-top: 30px;
     padding-bottom: 0;
     font-size: 90%;
-    color: black;
+    color: black
 }
 .btnUInfoCtn {
     list-style: none;

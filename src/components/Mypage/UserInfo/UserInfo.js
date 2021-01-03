@@ -114,7 +114,7 @@ class UserInfo extends Component {
     })
     .then(res => { 
       if(res.data.data.Social) {
-        res.data.data.Social.map((ele) => {
+        res.data.data.Social.forEach(ele => {
           if(ele.corporation ==='kakao') {
             this.buttonUpKaKao()
           }
@@ -125,7 +125,7 @@ class UserInfo extends Component {
       }
       userInfoHandler(res.data.data) 
     })
-    .catch(err => console.log(err))
+    .catch(err => err)
   }
 
   render() {

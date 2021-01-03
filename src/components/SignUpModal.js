@@ -40,7 +40,6 @@ class SignUpModal extends React.Component {
 
     handleInputValue = e => {
         e.preventDefault();
-        console.log(e.target)
         const { name, value } = e.target;
         let formErrors = { ...this.state.formErrors };
 
@@ -68,7 +67,7 @@ class SignUpModal extends React.Component {
                 break;
         }
 
-        this.setState({ formErrors, [name]: value }, () => console.log(this.state));
+        this.setState({ formErrors, [name]: value });
     };
 
     handleSignup = () => {
@@ -93,7 +92,6 @@ class SignUpModal extends React.Component {
                     },
                 )
                 .then((response) => {
-                    //console.log(response)
                     if (response.statuscode === 201) {
                         alert('가입에 성공하셨습니다!');
                     }
@@ -127,7 +125,6 @@ class SignUpModal extends React.Component {
               socialEmail: kakaoUserData.kakao_account.email
           })
             .then((response) => {
-                console.log(response)
                 if (response.status === 201) {
                     alert('가입에 성공하셨습니다!')
                 }
@@ -166,10 +163,6 @@ class SignUpModal extends React.Component {
           alert('현재 사용중인 로그인 이메일 주소입니다. \n소셜 로그인의 경우 마이페이지에서 추가 연동 하십시오. ')
         }
       }
-    }
-
-    componentDidMount() {
-        console.log('componentDidMount', this.props)
     }
 
     render() {

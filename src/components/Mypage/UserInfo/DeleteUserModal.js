@@ -20,7 +20,7 @@ class DeleteUserModal extends Component {
       { }, 
       { headers: {"Authorization": `Bearer ${accessToken}`}})
     .then(this.setState({ message: '이용해주셔서 감사합니다!' }))
-    .catch(err => console.log(err))
+    .catch(err => err)
   }
 
   goToMainpage() {

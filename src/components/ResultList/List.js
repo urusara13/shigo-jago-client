@@ -68,8 +68,8 @@ class List extends Component {
       })
     }
     
-    catch{
-      alert('네트워크 오류입니다.')
+    catch (err) {
+      alert(err)
       window.open('/', '_self')
     }
   }

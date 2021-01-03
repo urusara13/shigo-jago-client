@@ -29,18 +29,18 @@ class Listentry extends Component {
 
     return (
       <>
-        <div className="listings">
+        <div className="listings" onClick={this.openListModal}>
           <div className="listings__item">
 
-            <div className="listings__image" onClick={this.openListModal}>
+            <div className="listings__image" >
               <img alt='' src={list.firstimage || list.image1}></img>
             </div>
             <div className="listings__content">
-              <div className="listings__title" onClick={this.openListModal}>
+              <div className="listings__title" >
                 <h2>{list.title} </h2>
               </div>
               <div className="separator"></div>
-              <div className="listings__address" onClick={this.openListModal}>
+              <div className="listings__address" >
                 <span>{list.addr1} </span>
               </div>
               <span>금액 : {this.numberWithCommas(list.price)} </span>

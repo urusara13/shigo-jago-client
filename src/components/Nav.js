@@ -73,7 +73,6 @@ class Nav extends Component {
           window.open('/', '_self')
         },
         fail: function (error) {
-          console.log(error)
         }
       })
       this.props.history.push('/')

@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { Route , withRouter } from "react-router-dom"; 
 import Search from './Search'
 import ResultList from '../ResultList/ResultList'
-
+import Chat from './Chat'
+import { chatIcon } from '../../images/resources'
 
 class Mainpage extends Component {
   constructor(props) {
@@ -11,7 +12,8 @@ class Mainpage extends Component {
       reservation: {
         adult: null,
         child: null
-      }
+      },
+      isChat: false
     }
     this.setReservation = this.setReservation.bind(this)
   }
@@ -25,7 +27,7 @@ class Mainpage extends Component {
 
   render() {
     const { isLogin } = this.props;
-    const { reservation } = this.state
+    const { reservation, isChat } = this.state
     
     return(
       <div>
@@ -40,10 +42,12 @@ class Mainpage extends Component {
         render={() => (
           <Search setReservation={this.setReservation} isLogin={isLogin}/>
       )} />
+        <img src={chatIcon} alt={'kakaotalk'} className="chatter" style={{"float":"right", "width":"100px", "height": "100px", "position":"relative", "top":"850px", "left": "-100px"}} onClick={() => this.setState({isChat: !isChat})}>
+        </img>  
+        <Chat isChat={isChat}/>
       </div>
     )
   }
 }
-
 
 export default withRouter(Mainpage)

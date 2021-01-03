@@ -10,10 +10,7 @@ import About from "./components/SiteMapSection/About";
 import GetHelp from "./components/SiteMapSection/GetHelp";
 import Hire from "./components/SiteMapSection/Hire";
 import Refund from "./components/SiteMapSection/Refund";
-import Chat from "./components/SiteMapSection/Chat"
 import Payment from "./components/Payment/Payment";
-
-
 require('dotenv').config();
 
 class App extends React.Component {
@@ -24,7 +21,6 @@ class App extends React.Component {
       accessToken: '',
       kakaoUserData: null,
       googleUserData: null
-
     }
     this.logoutHandler = this.logoutHandler.bind(this)
     this.logoutHandlerSimple = this.logoutHandlerSimple.bind(this)
@@ -121,24 +117,34 @@ class App extends React.Component {
 
       },
       fail: function (error) {
-        console.log(error)
       }
     })
   }
 
   async tokenLoadLocal() {
+    axios.defaults.withCredentials = true
     const load = JSON.parse(sessionStorage.getItem("accessToken"))
+    try{
     if(load) {
       const login = await axios.get('http://localhost:4000/mypage/userInfo',{
         headers: {
           "Authorization": `Bearer ${load}`
-        }
+        },
       })
       if(login.data.message === "ok") {
         this.setState({
           isLogin: true,
           accessToken: load
         })
+      }
+    }
+  }
+    catch(err) {
+      if(err.response) {
+        if(err.response.status === 401) {
+        alert('토큰이 만료됐습니다. \n 다시 로그인 해주세요')
+        sessionStorage.clear()      
+        }  
       }
     }
   }
@@ -195,9 +201,7 @@ class App extends React.Component {
       window.Kakao.init(process.env.REACT_APP_KAKAO_JSKEY)
     }
     if (window.Kakao.Auth.getAccessToken()) {
-      console.log('토큰 있음', window.Kakao.Auth.getAccessToken())
       window.Kakao.Auth.logout(() => {
-        console.log('로그아웃됨', window.Kakao.Auth.getAccessToken())
       })
     }
 
@@ -220,7 +224,7 @@ class App extends React.Component {
       })
     }
     window.onpageshow = function(event) {
-      if ( event.persisted || (window.performance && window.performance.navigation.type == 2)) {
+      if ( event.persisted || (window.performance && window.performance.navigation.type === 2)) {
         window.location.replace("/")
       }
     }
@@ -246,7 +250,7 @@ class App extends React.Component {
           <Route path="/gethelp" render={() => <GetHelp />} />
           <Route path="/hire" render={() => <Hire />} />
           <Route path="/refund" render={() => <Refund />} />
-          <Route path="/chat" render={() => <Chat />} />
+          
           <Route
             path='/payment'
             render={(obj) => (
@@ -270,7 +274,7 @@ class App extends React.Component {
                 accessToken={accessToken}
                 loginHandler={this.loginHandler} />
             )} />
-        </Switch>
+        </Switch>   
         <Sitemap />
       </div>
     );
