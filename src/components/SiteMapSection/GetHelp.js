@@ -1,6 +1,47 @@
+import axios from 'axios';
 import React, { Component } from 'react';
-import './About.css';
-class GetHelp extends Component {
+import { withRouter } from "react-router-dom";
+import './GetHelp.css';
+class GetHelp extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            email: "",
+            name: "",
+            subject: "",
+            message: "",
+        }
+        this.handleInputValue = this.handleInputValue.bind(this)
+        this.wirteInquire = this.wirteInquire.bind(this)
+    }
+
+    handleInputValue = (key) => (e) => {
+        this.setState({ [key]: e.target.value });
+    }
+
+    wirteInquire = async () => {
+        const { email, name, subject, message } = this.state
+        const { accessToken } = this.props
+        console.log(this.state)
+        try {
+
+            const writeInfo = await axios.post('http://localhost:4000/mypage/writeinquire', {
+                email: email,
+                name: name,
+                subject: subject,
+                message: message
+            }, { headers: { "Authorization": `Bearer ${accessToken}` } })
+            console.log(writeInfo)
+            if (writeInfo.status === 201) {
+                alert('문의가 등록되었습니다')
+                this.props.history.push('/')
+            }
+
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
     render() {
         return (
             <div className="sg-main">
@@ -18,8 +59,7 @@ class GetHelp extends Component {
                                 type="email"
                                 name="helpEmail"
                                 placeholder="e-mail 주소를 입력해주세요"
-                       
- 
+                                onChange={this.handleInputValue("email")}
                             ></input>
 
                         </div>
@@ -30,13 +70,15 @@ class GetHelp extends Component {
                                 type="text"
                                 name="helpnName"
                                 placeholder="이름을 입력해주세요"
- 
+                                onChange={this.handleInputValue("name")}
                             ></input>
                         </div>
                         <div className="helpTopic">
                             <label htmlFor="helpTopic">주제</label>
                             <select className="search__input" type='text'
-                                name="helpTopic" onChange={this.handleInputValue}>
+                                name="helpTopic"
+                                onChange={this.handleInputValue("subject")}
+                            >
                                 <option>일반적인 내용</option>
                                 <option>부정확한 가격 정보를 발견했습니다.</option>
                                 <option>내 데이터 삭제</option>
@@ -49,17 +91,14 @@ class GetHelp extends Component {
                         <div className="helpMessage">
                             <label htmlFor="helpMessage">메시지</label>
                             <br></br>
-                            <textarea id="message" name="helpMessage" rows="10" cols="50">
-                                메시지를 적어주세요.
+                            <textarea id="message" name="helpMessage" rows="10" cols="50"
+                                onChange={this.handleInputValue("message")} placeholder="메시지를 적어주세요">
                             </textarea>
                         </div>
 
-
-
                         <button
                             className="GetHelp"
-                            type='submit'
-
+                            onClick={this.wirteInquire}
                         >
                             피드백 제출
                                 </button>
@@ -72,4 +111,4 @@ class GetHelp extends Component {
     }
 }
 
-export default GetHelp
+export default withRouter(GetHelp);
