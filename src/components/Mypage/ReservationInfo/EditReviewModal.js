@@ -7,8 +7,8 @@ class EditReviewlModal extends Component  {
     super(props);
     const { title, description } = this.props.originReview;
     this.state = {
-      title: title,
-      description: description,
+      title: null,
+      description: null,
       message: null,
       errorMessage: null,
       rate: 0
@@ -121,6 +121,7 @@ class EditReviewlModal extends Component  {
           <button className="btnERM" onClick={close}>확인</button>
           </> :
           <div className="ERMctnMid">
+            {errorMessage && <div className="ERMerrorMsg">{errorMessage}</div>}
              <input
             defaultValue={title}
             placeholder={title}
@@ -164,7 +165,6 @@ class EditReviewlModal extends Component  {
           <button className="btnERM" onClick={this.editReview}>수정하기</button>
           <button className="btnERM" onClick={close}>닫기</button>
           </div>
-          {errorMessage && <div>{errorMessage}</div>}
           </div>
         }
       </div>
