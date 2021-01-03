@@ -10,9 +10,6 @@ class ResultList extends Component {
     }
   }
 
-  componentWillUnmount() {
-    window.open('/', '_self')
-  }
 
   render() {
     const { reservation } = this.props

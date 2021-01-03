@@ -11,7 +11,7 @@ import About from "./components/SiteMapSection/About";
 import GetHelp from "./components/SiteMapSection/GetHelp";
 import Hire from "./components/SiteMapSection/Hire";
 import Refund from "./components/SiteMapSection/Refund";
-import Chat from "./components/SiteMapSection/Chat"
+import Chat from "./components/Mainpage/Chat"
 import Payment from "./components/Payment/Payment";
 
 
