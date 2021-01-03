@@ -22,7 +22,25 @@
     font-size: 15px;
     color: rgb(63, 63, 252);
     text-shadow: 1px 2px 2px grey;
+
+
+  -webkit-animation:blink 0.2s ease-in-out 4 alternate;
+  -moz-animation:blink 0.2s ease-in-out 4 alternate;
+  animation:blink 0.2s ease-in-out 4 alternate;
 }
+@-webkit-keyframes blink{
+    0% {opacity:0;}
+    100% {opacity:1;}
+}
+@-moz-keyframes blink{
+    0% {opacity:0;}
+    100% {opacity:1;}
+}
+@keyframes blink{
+    0% {opacity:0;}
+    100% {opacity:1;}
+}
+
 
 
 .search__title {

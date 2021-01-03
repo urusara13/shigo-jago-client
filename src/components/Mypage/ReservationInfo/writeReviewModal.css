@@ -25,7 +25,24 @@
 .WRMerrorMsg {
     font-size: 12px;
     color: red;
-}
+
+    -webkit-animation:blink 0.2s ease-in-out 4 alternate;
+    -moz-animation:blink 0.2s ease-in-out 4 alternate;
+    animation:blink 0.2s ease-in-out 4 alternate;
+  }
+  @-webkit-keyframes blink{
+      0% {opacity:0;}
+      100% {opacity:1;}
+  }
+  @-moz-keyframes blink{
+      0% {opacity:0;}
+      100% {opacity:1;}
+  }
+  @keyframes blink{
+      0% {opacity:0;}
+      100% {opacity:1;}
+  }
+  
 .WRMcontent {
     padding: 10px;
     margin: 10px;

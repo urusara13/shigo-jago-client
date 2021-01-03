@@ -30,7 +30,7 @@ class LoginModal extends Component {
 
   handleLogin() {
     const { loginHandler, close } = this.props;
-    console.log(SHA256(this.state.password))
+    
     if (!(this.state.loginId && this.state.password)) {
       this.setState({ errorMessage: '아이디와 비밀번호를 모두 채워주세요.' })
     } else {
@@ -60,10 +60,6 @@ class LoginModal extends Component {
     window.location.assign(kakaoAuthurl)
   }
 
-  componentDidMount() {
-    this.setState({ errorMessage: null })
-  }
-
   render() {
     const { close } = this.props;
     const { errorMessage } = this.state;
@@ -73,7 +69,7 @@ class LoginModal extends Component {
         <div className="loginModal">
           <span className="btnClose" onClick={close}>&times;</span>
           <div className="loginModalContents" >
-            {errorMessage ? <div>{errorMessage}</div> : null}
+            {errorMessage ? <div className="LMerrMsg">{errorMessage}</div> : null}
             <input
               className="email"
               type="text"
