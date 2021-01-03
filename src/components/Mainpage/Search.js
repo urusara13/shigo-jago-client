@@ -98,7 +98,7 @@ class Search extends Component {
         const { setReservation } = this.props
         const { adult, child, checkIn, checkOut } = this.state
 
-        if (!(checkIn || checkOut)) {
+        if (!(checkIn && checkOut)) {
             this.setState({errorMessage: '날짜를 바르게 지정해주세요.'})
         }
         else if (adult + child > 0) {
@@ -116,7 +116,6 @@ class Search extends Component {
         return (
             <>
                 <div className="search__box">
-
                     <form onSubmit={(e) => e.preventDefault()}>
                         <div className="where_area">
                             <div className="fat_text">시</div>
@@ -168,11 +167,10 @@ class Search extends Component {
                                 <option>5</option>
                             </select>
                         </div>
-
                         <div className="search__button" onClick={this.goSearch}>
                             <button>검색</button>
                         </div>
-                    </form >
+                    </form>
                 </div >
                 <div className="search__title">
                     <span className="main__title">코로나에도 <br />편안하고 안전한<br /> 숙소를 예약하세요.</span>

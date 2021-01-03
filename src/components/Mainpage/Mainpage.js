@@ -17,6 +17,8 @@ class Mainpage extends Component {
   }
 
   setReservation(data) {
+    localStorage.setItem("reservation",JSON.stringify(data))
+
     this.setState({
       reservation: data
     })
