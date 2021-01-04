@@ -1,3 +1,12 @@
+.PMMmodalBG {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 10000;
+  }
 .PMMCtn {
     width: 400px;
     height: 300px;
@@ -93,6 +102,10 @@
     align-self: flex-end;
     font-size: 25px;
     cursor: pointer;
+}
+.PMerrMsg {
+    font-size: 12px;
+    color: red;
 }
 
 

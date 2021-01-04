@@ -37,13 +37,13 @@ class DeleteUserModal extends Component {
 
       return (
         message ? 
-        <div className='modal1'>
+        <div className='DUMmodalBG'>
           <div className='DUMctn'>
             <div>{message}</div>
             <button className='btnDUM' onClick={this.goToMainpage}>확인</button>
           </div>
         </div> : 
-        <div className='modal1'>
+        <div className='DUMmodalBG'>
           <div className='DUMctn'>
             <div>정말 탈퇴하시겠습니까?</div>
               <div className='btnDUMctn'>

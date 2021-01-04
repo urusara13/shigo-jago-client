@@ -59,7 +59,6 @@ class LoginModal extends Component {
     const kakaoAuthurl = `https://kauth.kakao.com/oauth/authorize?client_id=${process.env.REACT_APP_KAKAO_RESTKEY}&redirect_uri=${process.env.REACT_APP_KAKAO_REDIRECT}&response_type=code`
     window.location.assign(kakaoAuthurl)
   }
-
   render() {
     const { close } = this.props;
     const { errorMessage } = this.state;

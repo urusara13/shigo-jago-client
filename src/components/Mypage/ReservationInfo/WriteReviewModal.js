@@ -105,7 +105,7 @@ class WriteReviewlModal extends Component  {
   const { close } = this.props;
   const { message, errorMessage } = this.state;
   return (
-    <div className="modal1">
+    <div className="WRMmodalBG">
       <div className="WRMctn">
           {message ?
           <> 
