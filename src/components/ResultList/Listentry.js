@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import ListModal from "./ListModal"
 import './List.css';
-import star from '../../images/star.svg'
 
 class Listentry extends Component {
   constructor(props) {
@@ -46,8 +45,6 @@ class Listentry extends Component {
               <span>금액 : {this.numberWithCommas(list.price)} </span>
               <div className="listings__details">
                 <div className="listings__rating">
-                  <img src={star} alt='Star' />
-                  <span>5 <span>(14)</span></span>
                 </div>
                 <div className="listings__price">
                   <div className="listings__price__night">

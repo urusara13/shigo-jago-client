@@ -1,3 +1,97 @@
+.Darken_around_listModal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 10000;
+}
+
+.listModal {
+  width: 1100px;
+  height: 800px;
+  background-color: white;
+  position: relative;
+  box-sizing: border-box;
+  margin: 50px auto;
+  padding: 50px;
+  background: #fff;   
+  border-radius: 10px;
+  overflow: auto;
+}
+
+
+.hotel_Name {
+  margin-top: 18px;
+  font-size: 34px;
+  font-weight: bold;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--grey-med);
+}
+
+.hotel_Img {
+  margin-top: 18px;
+  width: 400px;
+  height: 250px;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  border-bottom: 1px solid var(--grey-med);
+}
+
+.hotel_Img img {
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+}
+
+.hotel_Addr, .hotel_Num, .hotel_Detail, .hotel_total_won {
+  border-bottom: 1px solid #ebebeb;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.booking_info {
+  border-bottom: 1px solid #ebebeb;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+}
+
+
+.review_reading {
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.reservation__btn {
+  border-top: 1px solid #ebebeb;
+  display: grid;
+  justify-content: left;
+  padding: 20px 0;
+}
+
+.reservation__btn a {
+  background-color: #7B7BFD;
+  color:white;
+  width: 70px;
+  height: 45px;
+  font-size: 15px;
+  font-weight: 700; 
+  border-radius: 6px;
+  border: 0;
+  cursor: pointer;
+  text-align: center;
+  line-height: 45px;
+  text-decoration: none;
+}
+.reservation__btn a:hover {
+  color: white
+}
+
+
 .LMcomment {
   display: flex;
   flex-direction: row;

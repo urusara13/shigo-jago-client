@@ -96,20 +96,20 @@ class ListModal extends Component {
     return (
       hotelDetail ?
         <>
-          <div className='modal2'>
+          <div className='Darken_around_listModal'>
             <div className='listModal'>
               <span className="btnClose" onClick={close}>&times;</span>
-              <div className="hotelName">{hotelDetail.title} </div>
-              <div className="hotelImg">
+              <div className="hotel_Name">{hotelDetail.title} </div>
+              <div className="hotel_Img">
                 <img alt='' src={hotelDetail.firstimage} ></img>
               </div>
               
               <h2 className="review_reading">위치</h2>
-              <div className="hotelAddr">{hotelDetail.addr1} {hotelDetail.addr2}</div>
+              <div className="hotel_Addr">{hotelDetail.addr1} {hotelDetail.addr2}</div>
               <h2 className="review_reading">연락처</h2>
-              <div className="hotelNum">{hotelDetail.telname} {hotelDetail.tel}</div>
+              <div className="hotel_Num">{hotelDetail.telname} {hotelDetail.tel}</div>
               <h2 className="review_reading">숙소 설명</h2>
-              <div className="hotelDetail">{hotelDetail.overview} </div>
+              <div className="hotel_Detail">{hotelDetail.overview} </div>
               <h2 className="review_reading">선택 정보</h2>
               <div className="booking_info">
               <span>성인 {reservation.adult}명</span>
