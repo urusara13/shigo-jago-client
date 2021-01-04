@@ -14,7 +14,7 @@
 }
 
 ._v748os9 {
-    margin-top: 95px;
+    margin-top: 85px;
     -webkit-box-align: center ; 
     -webkit-box-direction: normal ;
     -webkit-box-orient: vertical ;
@@ -38,7 +38,7 @@
     margin-top: 0;
     font-size: 64px ;
     line-height: 64px ;
-    margin-bottom: 12px ;
+    margin-bottom: 22px ;
     font-weight: 800 ;
     letter-spacing: -1px ;
 
@@ -48,7 +48,7 @@
     font-size: 26px ;
     line-height: 30px ;
     max-width: 470px ;
-    margin-top: 12px ;
+    margin-top: 22px ;
 }
 
 ._vmvmolb {
@@ -61,8 +61,23 @@
     margin-bottom: 80px ;
 }
 
+._vmvmolc {
+    padding-left: 80px ;
+    padding-right: 80px ;
+    margin-top: 80px ;
+    color: #222222 ;
+    margin-left: auto ;
+    margin-right: auto ;
+    margin-bottom: 120px ;
+}
+
 ._19h11reb {
-    padding-bottom: 80px ;
+    padding-bottom: 70px ;
+    border-bottom: 1px solid #DDDDDD ;
+}
+
+._19h11rec {
+    padding-bottom: 70px ;
     border-bottom: 1px solid #DDDDDD ;
 }
 
@@ -103,12 +118,6 @@
     margin-inline-end: 0px;
 }
 
-
-._19h11reb {
-    padding-bottom: 80px ;
-    border-bottom: 1px solid #DDDDDD ;
-}
-
 ._x2xwu5 {
     margin-top: 0;
     font-size: 44px ;
@@ -128,6 +137,16 @@
 }
 
 ._1byskwn {
+    margin-left: -8px ;
+    margin-right: -8px ;
+    width: calc(100% + 16px) ;
+    display: flex;
+    align-items: stretch ;
+    justify-content: flex-start ;
+    flex-wrap: wrap ;
+}
+
+._1byskwc {
     margin-left: -8px ;
     margin-right: -8px ;
     width: calc(100% + 16px) ;

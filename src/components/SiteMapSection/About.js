@@ -52,10 +52,10 @@ class About extends Component {
                         </div>
                         <div data-veloute="landing_page_section">
                             <div className="_1gw6tte">
-                                <div className="_vmvmolb" >
-                                    <div className="_19h11reb">
+                                <div className="_vmvmolc" >
+                                    <div className="_19h11rec">
                                         <h2 className="_x2xwu5">간단한 시작 방법</h2>
-                                        <div className="_1byskwn">
+                                        <div className="_1byskwc">
                                             <div className="_1waicp6g">
                                                 <div className="_y7pled">
                                                     <img className="_audx11w" src="https://img.freepik.com/free-photo/woman-browsing-smartphone-near-window_23-2147769534.jpg?size=626&ext=jpg" alt=""></img>
