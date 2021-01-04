@@ -12,8 +12,11 @@ class PaymentDetailModal extends Component {
         cardNumber: ''
       }
     }
+    this.numberWithCommas = this.numberWithCommas.bind(this);
   }
-
+  numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
   componentDidMount() {
     const { accessToken, reservationinfo } = this.props;
 
@@ -21,6 +24,7 @@ class PaymentDetailModal extends Component {
       { reservationId: reservationinfo.id },
       { headers: {"Authorization": `Bearer ${accessToken}`}})
     .then(res => {
+      console.log(res.data.data)
       this.setState({ paymentDetail: res.data.data }) })
   }
 
@@ -43,6 +47,7 @@ class PaymentDetailModal extends Component {
           {paymentDetail.howPaid === 'card' ?
           <div className="PDMtot">카드번호</div> :
           <div className="PDMtot">계좌번호</div> }
+          
           </div>
           <div className='PDMcontent'>
           <div className="PDMtoc">{reservationinfo.hotelName}</div>
@@ -50,11 +55,11 @@ class PaymentDetailModal extends Component {
           <div className="PDMtoc">{reservationinfo.checkedout}</div>
           <div className="PDMtoc">성인 {reservationinfo.adult} /아동 {reservationinfo.child}</div>
           <div className="PDMtoc">{reservationinfo.createdAt.substr(0,10)}</div> 
-          <div className="PDMtoc">{paymentDetail.price}</div>
-          <div className="PDMtoc">{paymentDetail.howPaid}</div>
+          <div className="PDMtoc">₩ {this.numberWithCommas(paymentDetail.price)}</div>
+          <div className="PDMtoc">{paymentDetail.howPaid === 'card' ? '신용카드' : '계좌이체'}</div>
           {paymentDetail.howPaid === 'card' ? 
-          <div className="PDMtoc">{paymentDetail.cardNumber}</div> :
-          <div className="PDMtoc">{paymentDetail.accountNumber}</div> }
+          <div className="PDMtoc">{paymentDetail.cardNumber} ({paymentDetail.company})</div> :
+          <div className="PDMtoc">{paymentDetail.accountNumber} ({paymentDetail.company})</div> }
           </div>
           </div>
           <div className="btnPDM" onClick={close}>닫기</div>

@@ -94,6 +94,10 @@
     font-size: 25px;
     cursor: pointer;
 }
+.PMerrMsg {
+    font-size: 12px;
+    color: red;
+}
 
 
 
