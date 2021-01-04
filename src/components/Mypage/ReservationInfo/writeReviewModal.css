@@ -76,12 +76,7 @@ a, a:hover, a:visited, a:active{
 a:hover{
     color: #a00;
 }
-h1{
-    text-align: center;
-    background-color: #fff;
-    padding: 5px;
-    margin: 0;
-}
+
 /* 레이아웃 외곽 너비 400px 제한*/
 .wrap{
     max-width: 480px;
