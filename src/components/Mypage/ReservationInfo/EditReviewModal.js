@@ -5,9 +5,9 @@ import { withRouter } from "react-router-dom";
 class EditReviewlModal extends Component  {
   constructor(props) {
     super(props);
-    const { title, description } = this.props.originReview;
+    
     this.state = {
-      title: null,
+      newtitle: null,
       description: null,
       message: null,
       errorMessage: null,
@@ -20,16 +20,24 @@ class EditReviewlModal extends Component  {
     this.setState({ [key] : e.target.value })
   }
   editReview() {
+    const { title } = this.props.originReview;
+
     const { accessToken, reservationid } = this.props;
-    const { title, description, rate } = this.state;
-    if(!(title || description)) {
-      this.setState({errorMessage: '수정 사항이 없습니다.'})
-    }
-    axios.post('http://localhost:4000/mypage/writereview',
-    { title: title,
+    const { newtitle, description, rate } = this.state;
+
+    let body = 
+    { title: newtitle,
       description: description,
       reservationId: reservationid,
-      star: rate },
+      star: rate }
+
+    if(!description) {
+      this.setState({errorMessage: '수정 사항이 없습니다.'})
+    }
+    if(!newtitle) {
+      body.title = title
+    }
+    axios.post('http://localhost:4000/mypage/writereview', body,
     { headers: {"Authorization": `Bearer ${accessToken}`}})
     .then(res => {
       if(res.status === 201) {
@@ -128,7 +136,7 @@ class EditReviewlModal extends Component  {
               width:400,
               height:40
             }}
-            onChange={this.handleInputValue("title")} />
+            onChange={this.handleInputValue("newtitle")} />
           <textarea
             defaultValue={description}
             placeholder={description}
