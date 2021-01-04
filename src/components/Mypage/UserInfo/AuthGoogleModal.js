@@ -20,7 +20,7 @@ class AuthGoogleModal extends Component {
       return (
         <>
         {isOpen ? 
-          (<div className='modal1'>
+          (<div className='AKMmodalBG'>
              <div className='AKMctn'>
                <div className='AKMcontent'>구글과 연동하시겠습니까?</div>
                <div className='btnAKMctn'>

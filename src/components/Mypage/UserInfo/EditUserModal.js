@@ -4,7 +4,7 @@ import "./editUserModal.css"
 function EditModal({ gotoUI, close, errorMessage }) {
   return(
     <>
-    <div className='modal1'>
+    <div className='EUMmodalBG'>
       <div className='EUMctn'>
       <div>{errorMessage}</div>
       {errorMessage === '변경된 사항이 없습니다.' ?

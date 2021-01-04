@@ -1,3 +1,13 @@
+.WRMmodalBG {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 10000;
+  }
+
 .WRMctn {
     width: 600px;
     height: 450px;
@@ -76,12 +86,7 @@ a, a:hover, a:visited, a:active{
 a:hover{
     color: #a00;
 }
-h1{
-    text-align: center;
-    background-color: #fff;
-    padding: 5px;
-    margin: 0;
-}
+
 /* 레이아웃 외곽 너비 400px 제한*/
 .wrap{
     max-width: 480px;
@@ -122,7 +127,7 @@ h1{
     z-index: 10;
     width: 30px;
     height: 30px;
-    background-image: url(./starrate.png);
+    background-image: url(../../../images/starrate.png);
     background-repeat: no-repeat;
     background-size: 30px 30px;
     cursor: pointer;

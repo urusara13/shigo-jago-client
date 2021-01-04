@@ -8,15 +8,15 @@ class PaymentModal extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      cardCompany: null,
       cardNumber1: null,
       cardNumber2: null,
       cardNumber3: null,
       cardNumber4: null,
       validThru: null,
-      bank: null,
+      company: null,
       accountNumber: null,
-      message: null
+      message: null,
+      errMessage: null
     };
     this.handleInputValue = this.handleInputValue.bind(this);
     this.pay = this.pay.bind(this);
@@ -25,35 +25,59 @@ class PaymentModal extends Component {
 
   pay() {
     const { accessToken, howPay, res, price, hotelName } = this.props;
-    const { cardNumber1, cardNumber2, cardNumber3, cardNumber4, accountNumber} = this.state;
+    const { cardNumber1, cardNumber2, cardNumber3, cardNumber4, accountNumber, company, validThru} = this.state;
     const cardNumber = `${cardNumber1}${cardNumber2}${cardNumber3}${cardNumber4}`
     
+    const body =  
+      { reserveInfo: {
+        checkedin: res.checkIn,
+        checkedout: res.checkOut,
+        adult: res.adult,
+        child: res.child,
+        hotelName: hotelName },
+      payInfo: {
+        price: price,
+        howPaid: howPay,
+        company: company
+      }}
+
     if(!accessToken) {
       this.setState({message: '로그인을 먼저 진행해주세요.'})
     } 
+    else if (howPay === "card") {
+      if(!(cardNumber1 && cardNumber2 && cardNumber3 && cardNumber4 && company && validThru)) {
+        this.setState({errMessage: '모든 항목을 채워주세요.'})
+      } else {
+        body.payInfo.cardNumber = cardNumber
+
+        axios.post('http://localhost:4000/detail/payment', body ,
+          { headers: {"Authorization": `Bearer ${accessToken}`}} )
+        .then(res => {
+          if(res.data.message) {
+            this.setState({message: '성공적으로 예약되었습니다.'})
+          }
+        })
+        .catch(err => err)
+      }
+    }
     else {
-      axios.post('http://localhost:4000/detail/payment',
-        { reserveInfo: {
-            checkedin: res.checkIn,
-            checkedout: res.checkOut,
-            adult: res.adult,
-            child: res.child,
-            hotelName: hotelName },
-          payInfo: {
-            price: price,
-            howPaid: howPay,
-            cardNumber: cardNumber,
-            accountNumber: accountNumber,
-          }},
-        { headers: {"Authorization": `Bearer ${accessToken}`}} )
-      .then(res => {
-        if(res.data.message) {
-          this.setState({message: '성공적으로 예약되었습니다.'})
-        }
-      })
-      .catch(err => err)
+      if(!(accountNumber && company)) {
+        this.setState({errMessage: '모든 항목을 채워주세요.'})
+      } else {
+        body.payInfo.accountNumber = accountNumber
+
+        axios.post('http://localhost:4000/detail/payment', body ,
+          { headers: {"Authorization": `Bearer ${accessToken}`}} )
+        .then(res => {
+          if(res.data.message) {
+            this.setState({message: '성공적으로 예약되었습니다.'})
+          }
+        })
+        .catch(err => err)
+      }
     }
   }
+
   
   goToMypage() {
     const { close, history } = this.props;
@@ -68,11 +92,11 @@ class PaymentModal extends Component {
 
   render() {
     const { howPay, close } = this.props;
-    const { message } = this.state;
+    const { message, errMessage } = this.state;
 
     return (
       message ? 
-        <div className='modal1'>
+        <div className='PMMmodalBG'>
           <div className='PMMCtn'>      
           <div className='PMMmessage'>{message}</div> 
           {message === '성공적으로 예약되었습니다.' && 
@@ -82,12 +106,13 @@ class PaymentModal extends Component {
           </div>
         </div> 
         :
-        <div className='modal1'>
+        <div className='PMMmodalBG'>
           <div className='PMMCtn'>       
           <span className="btnPMClose" onClick={close}>&times;</span>
           {howPay === 'card' && 
           <>
           <h1>카드결제</h1>
+          {errMessage === '모든 항목을 채워주세요.' && <div className="PMerrMsg">{errMessage}</div>}
           <div className='PMcardNumberCtn'>
           <div className='PMtitle'>카드번호</div>
           <input
@@ -105,8 +130,8 @@ class PaymentModal extends Component {
           </div>
           <div className='PMetc'>
           <div className='PMtitleCardCompany'>카드사</div>
-          <select className="cardCompany" onChange={this.handleInputValue("cardCompany")}>
-            <option value=""></option>
+          <select className="cardCompany" onChange={this.handleInputValue("company")}>
+            <option ></option>
             <option value="현대">현대</option>
             <option value="삼성">삼성</option>
             <option value="롯데">롯데</option>
@@ -120,14 +145,15 @@ class PaymentModal extends Component {
           {howPay === 'account' && 
           <>
           <h1>계좌결제</h1>
+          {errMessage === '모든 항목을 채워주세요.' && <div className="PMerrMsg">{errMessage}</div>}
           <div className='PMaccount'>
           <div className='PMbank'>
             <div className='PMaccTitle'>은행</div> 
             <div className='PMaccTitle'>계좌번호</div> 
           </div>
           <div className='PMinput'>
-            <select className='PMaccContent' onChange={this.handleInputValue("bank")}>
-              <option value='' ></option>
+            <select className='PMaccContent' onChange={this.handleInputValue("company")}>
+              <option ></option>
               <option value='신한'>신한</option>
               <option value='우리'>우리</option>
               <option value='국민'>국민</option>

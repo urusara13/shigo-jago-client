@@ -3,6 +3,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import './List.css';
 import './listModal.css';
+import star from '../../images/star.svg'
 
 class ListModal extends Component {
   constructor(props) {
@@ -85,6 +86,12 @@ class ListModal extends Component {
     newInfo.hotelDetail = hotelDetail;
     newInfo.totalPrice = list.price;
     newInfo.date = date;
+    
+    let rating = null;
+    if(review) {
+      rating = review.reduce((acc, cur) => {
+        return acc + cur.star }, 0) / review.length
+    }
 
     return (
       hotelDetail ?
@@ -96,6 +103,7 @@ class ListModal extends Component {
               <div className="hotel_Img">
                 <img alt='' src={hotelDetail.firstimage} ></img>
               </div>
+              
               <h2 className="review_reading">위치</h2>
               <div className="hotel_Addr">{hotelDetail.addr1} {hotelDetail.addr2}</div>
               <h2 className="review_reading">연락처</h2>
@@ -110,16 +118,25 @@ class ListModal extends Component {
               <span>체크아웃 {reservation.checkOut}</span>
               </div>
               <h2 className="review_reading">총 금액</h2>
-              <div className="hotel_total_won">₩{this.numberWithCommas(list.price)}</div>
-
+              <div>₩{this.numberWithCommas(list.price)}</div>
+              <div className="reviewArating">
               <h2 className="review_reading">리뷰</h2>
+              {rating > 0 ? <h2>평점: {rating.toFixed(1)}</h2> : null}
+              </div>
               {review && review.map((ele, idx) => (
                 <div key={idx} className="LMcomment">
                   <div className="LMctn">
                     <div className="LMctitle">{ele.title}</div>
                     <div className="LMcdes">{ele.description}</div>
                   </div>
-                  <div className="LMcdate">{ele.updatedAt.substr(0,10)}</div>
+                  <div className="LMctnEtc">
+                    <div className="LMcdate">{ele.updatedAt.substr(0,10)}</div>
+                    <div className="LMrateStar">
+                    {[...Array(ele.star)].map((i, idx) => {
+                      return <img key={idx} className="LMstaricon"src={star} alt='Star' />
+                    })}
+                    </div>
+                    </div>
                 </div>
               ))}
               <div className="reservation__btn">
