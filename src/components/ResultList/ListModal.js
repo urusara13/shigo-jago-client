@@ -93,8 +93,6 @@ class ListModal extends Component {
         return acc + cur.star }, 0) / review.length
     }
 
-    console.log(rating)
-
     return (
       hotelDetail ?
         <>
