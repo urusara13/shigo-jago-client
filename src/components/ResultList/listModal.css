@@ -16,6 +16,26 @@
   padding-left: 0px;
   padding-top: 0px;
 }
+.LMctnEtc {
+  display: flex;
+  flex-direction: column;
+}
 .LMcdate {
   color: grey;
+}
+.LMrateStar {
+  display:flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  padding-top: 20px;
+}
+.LMstaricon {
+  width: 15px;
+  height: 15px;
+}
+.reviewArating {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
