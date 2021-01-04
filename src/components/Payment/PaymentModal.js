@@ -76,7 +76,7 @@ class PaymentModal extends Component {
 
     return (
       message ? 
-        <div className='modal1'>
+        <div className='PMMmodalBG'>
           <div className='PMMCtn'>      
           <div className='PMMmessage'>{message}</div> 
           {message === '성공적으로 예약되었습니다.' && 
@@ -86,7 +86,7 @@ class PaymentModal extends Component {
           </div>
         </div> 
         :
-        <div className='modal1'>
+        <div className='PMMmodalBG'>
           <div className='PMMCtn'>       
           <span className="btnPMClose" onClick={close}>&times;</span>
           {howPay === 'card' && 

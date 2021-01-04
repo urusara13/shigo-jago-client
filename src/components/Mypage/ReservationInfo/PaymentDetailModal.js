@@ -33,7 +33,7 @@ class PaymentDetailModal extends Component {
     const { paymentDetail } = this.state;
   
     return (
-      <div className="modal1">
+      <div className="PDMmodalBG">
         <div className="PDMctn">
           <div className="PDMctnMid">
           <div className="PDMtitle">

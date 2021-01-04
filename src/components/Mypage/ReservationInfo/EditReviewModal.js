@@ -110,7 +110,7 @@ class EditReviewlModal extends Component  {
   const { message, errorMessage } = this.state;
   const { title, description } = this.props.originReview;
   return (
-    <div className="modal1">
+    <div className="ERMmodalBG">
       <div className="ERMctn">
         {message ? 
           <>

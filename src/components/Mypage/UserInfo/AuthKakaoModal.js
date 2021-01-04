@@ -24,7 +24,7 @@ class AuthKakaoModal extends Component {
       return (
         <>
         {isOpen ? 
-          (<div className='modal1'>
+          (<div className='AKMmodalBG'>
              <div className='AKMctn'>
                <div className='AKMcontent'>카카오와 연동하시겠습니까?</div>
                <div className='btnAKMctn'>

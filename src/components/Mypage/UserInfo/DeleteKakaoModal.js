@@ -22,7 +22,7 @@ class DeleteKakaoModal extends Component {
       return (
         <>
         {isOpen ? 
-          (<div className='modal1'>
+          (<div className='DKMmodalBG'>
              <div className='DKMctn'>
                <div className='DKMcontent'>카카오 계정을</div> 
                <div className='DKMcontent'>연결 해제하시겠습니까?</div>
