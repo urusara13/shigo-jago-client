@@ -118,7 +118,7 @@ class ListModal extends Component {
               <span>체크아웃 {reservation.checkOut}</span>
               </div>
               <h2 className="review_reading">총 금액</h2>
-              <div>₩{this.numberWithCommas(list.price)}</div>
+              <div className="hotel_total_won">₩{this.numberWithCommas(list.price)}</div>
               <div className="reviewArating">
               <h2 className="review_reading">리뷰</h2>
               {rating > 0 ? <h2>평점: {rating.toFixed(1)}</h2> : null}
