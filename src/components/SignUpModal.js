@@ -170,9 +170,9 @@ class SignUpModal extends React.Component {
                 }
             }
             catch(err) {
-                {
+                if(err.response) {
                     if (err.response.data.error) this.setState({ errorMessage: '🙅이메일이 존재합니다.😅' })
-                };
+                }
             }
         }
     }

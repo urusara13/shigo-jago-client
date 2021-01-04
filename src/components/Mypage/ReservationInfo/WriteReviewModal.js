@@ -1,8 +1,6 @@
 import axios from "axios";
 import "./writeReviewModal.css";
 import React, { Component } from "react"; 
-
-
 class WriteReviewlModal extends Component  {
   constructor(props) {
     super(props);
@@ -13,22 +11,15 @@ class WriteReviewlModal extends Component  {
       rate: null,
       errorMessage: null
     };
-
     this.handleInputValue = this.handleInputValue.bind(this);
-    
     this.writeReview = this.writeReview.bind(this)
   };
-
   handleInputValue = (key) => (e) => {
     this.setState({ [key] : e.target.value })
   }
-
-
-
   writeReview() {
     const { accessToken, reservationid } = this.props;
     const { title, description, rate } = this.state;
-    
     if(!(title && description)) {
       this.setState({errorMessage: '제목과 내용 모두 작성해주세요.'})
     } else {
@@ -41,7 +32,6 @@ class WriteReviewlModal extends Component  {
     .then(this.setState({message: '성공적으로 작성되었습니다!'}))
     }
   }
-
   componentDidMount() {
     const newthis = this
     //별점선택 이벤트 리스너
@@ -111,11 +101,9 @@ class WriteReviewlModal extends Component  {
     Rating.prototype.rate = 0;
     let rating = new Rating();//별점 인스턴스 생성
   }
-
   render() {
   const { close } = this.props;
   const { message, errorMessage } = this.state;
-
   return (
     <div className="modal1">
       <div className="WRMctn">
@@ -174,4 +162,3 @@ class WriteReviewlModal extends Component  {
   }
 }
 export default WriteReviewlModal;
-
