@@ -13,7 +13,7 @@ class ReservationList extends Component {
   componentDidMount() {
     const { accessToken } = this.props
 
-    axios.get('http://localhost:4000/mypage/reserveinfo', 
+    axios.get(`${process.env.REACT_APP_URL}/mypage/reserveinfo`, 
     { headers: { "Authorization" : `Bearer ${accessToken}`} })
     .then(res => { this.setState({ userInfo : res.data.data }) })
     .catch(err => err)

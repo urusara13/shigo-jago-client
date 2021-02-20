@@ -50,7 +50,7 @@ class PaymentModal extends Component {
       } else {
         body.payInfo.cardNumber = cardNumber
 
-        axios.post('http://localhost:4000/detail/payment', body ,
+        axios.post(`${process.env.REACT_APP_URL}/detail/payment`, body ,
           { headers: {"Authorization": `Bearer ${accessToken}`}} )
         .then(res => {
           if(res.data.message) {
@@ -66,7 +66,7 @@ class PaymentModal extends Component {
       } else {
         body.payInfo.accountNumber = accountNumber
 
-        axios.post('http://localhost:4000/detail/payment', body ,
+        axios.post(`${process.env.REACT_APP_URL}/detail/payment`, body ,
           { headers: {"Authorization": `Bearer ${accessToken}`}} )
         .then(res => {
           if(res.data.message) {

@@ -42,14 +42,14 @@ class App extends React.Component {
       headers: {
         "Authorization": `Bearer ${token}`
       }
-    })
+    }) // They said that that was the the correct answer
       .then(res => res.json())
       .then(async obj => {
         newthis.setState({
           googleUserData: obj
-        })
+        })"area bare arena mare"
         if (pathname === "/google/auth") {
-          await axios.post('http://localhost:4000/user/google', {
+          await axios.post(`${process.env.REACT_APP_URL}/user/google`, {
             socialEmail: obj.email,
             socialAccount: obj.sub,
             token: newthis.state.accessToken
@@ -60,7 +60,7 @@ class App extends React.Component {
             })
         }
         else {
-          const login = await axios.post('http://localhost:4000/user/google', {
+          const login = await axios.post(`${process.env.REACT_APP_URL}/user/google`, {
             socialEmail: obj.email,
             socialAccount: obj.sub
           })
@@ -92,7 +92,7 @@ class App extends React.Component {
           kakaoUserData: response
         })
         if (pathname === '/kakao') {
-          axios.post('http://localhost:4000/user/kakao', {
+          axios.post(`${process.env.REACT_APP_URL}/user/kakao`, {
             socialEmail: response.kakao_account.email,
             socialAccount: response.id,
             token: newthis.state.accessToken
@@ -103,7 +103,7 @@ class App extends React.Component {
             })
         }
         else {
-          axios.post('http://localhost:4000/user/kakao', {
+          axios.post(`${process.env.REACT_APP_URL}/user/kakao`, {
             socialEmail: response.kakao_account.email,
             socialAccount: response.id,
             token: null
@@ -130,7 +130,7 @@ class App extends React.Component {
     const load = JSON.parse(sessionStorage.getItem("accessToken"))
     try { 
     if(load) {
-      const login = await axios.get('http://localhost:4000/mypage/userInfo',{
+      const login = await axios.get(`${process.env.REACT_APP_URL}/mypage/userInfo`,{
         headers: {
           "Authorization": `Bearer ${load}`
         },
@@ -154,7 +154,7 @@ class App extends React.Component {
   }
 
   deleteKakao() {
-    fetch('http://localhost:4000/social/kakao/revoke', {
+    fetch(`${process.env.REACT_APP_URL}/social/kakao/revoke`, {
       method: 'POST',
       headers: {
         "Authorization": `Bearer ${this.state.accessToken}`
@@ -163,7 +163,7 @@ class App extends React.Component {
   }
 
   deleteGoogle() {
-    fetch('http://localhost:4000/social/google/revoke', {
+    fetch(`${process.env.REACT_APP_URL}/social/google/revoke`, {
       method: 'POST',
       headers: {
         "Authorization": `Bearer ${this.state.accessToken}`
@@ -190,7 +190,7 @@ class App extends React.Component {
   logoutHandler() {
     sessionStorage.clear()
     const { accessToken } = this.props;
-    axios.post('http://localhost:4000/user/logout', {},
+    axios.post(`${process.env.REACT_APP_URL}/user/logout`, {},
       { headers: { "Authorization": `Bearer ${accessToken}` } })
       .then((res) => {
         this.setState({
@@ -221,7 +221,7 @@ class App extends React.Component {
       window.Kakao.init(process.env.REACT_APP_KAKAO_JSKEY)
     }
     if (authorizationCode && url.pathname === "/kakao") {
-      const userInfo = await axios.get('http://localhost:4000/mypage/userinfo', {
+      const userInfo = await axios.get(`${process.env.REACT_APP_URL}/mypage/userinfo`, {
         headers: {
           "Authorization": `Bearer ${this.state.accessToken}`
         }

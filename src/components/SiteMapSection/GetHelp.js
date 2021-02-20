@@ -22,23 +22,20 @@ class GetHelp extends React.Component {
     wirteInquire = async () => {
         const { email, name, subject, message } = this.state
         const { accessToken } = this.props
-        console.log(this.state)
         try {
 
-            const writeInfo = await axios.post('http://localhost:4000/mypage/writeinquire', {
+            const writeInfo = await axios.post(`${process.env.REACT_APP_URL}/mypage/writeinquire`, {
                 email: email,
                 name: name,
                 subject: subject,
                 message: message
             }, { headers: { "Authorization": `Bearer ${accessToken}` } })
-            console.log(writeInfo)
             if (writeInfo.status === 201) {
                 alert('문의가 등록되었습니다')
                 this.props.history.push('/')
             }
 
         } catch (err) {
-            console.log(err)
         }
     }
 

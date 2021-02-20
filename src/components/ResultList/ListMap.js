@@ -34,9 +34,9 @@ export default class ListMap extends React.Component {
     list.forEach(obj => {
       const newObj = Object.assign({}, {
         latlng: new window.kakao.maps.LatLng(Number(obj.mapy), Number(obj.mapx)),
-        title: obj.title,
+        title: obj.title.replace(/\[[^\]]*\]/g,"").replace(/ *\([^)]*\) */g, ""),
         content: `<div style="box-shadow: rgba(5, 10, 30, 0.6) 10px 15px 20px !important; border-radius: 5px; background: white;  margin: auto;
-       "><img src=${obj.firstimage || obj.image1} width="300" height="200" /><br><div style="text-align: center; font-weight:lighter;">${obj.addr1}</div><div style="text-align: center; font-weight:bold; ">${obj.title}</div>
+       "><img src=${obj.firstimage || obj.image1} width="300" height="200" /><br><div style="text-align: center; font-weight:lighter;">${obj.addr1.split(' ').slice(0,3).join(' ')}</div><div style="text-align: center; font-weight:bold; ">${obj.title.replace(/\[[^\]]*\]/g,"").replace(/ *\([^)]*\) */g, "")}</div>
         <hr /><br><div style="text-align: center; top: 10px;">가격 : <span style="font-weight: 800 !important">${obj.price}</span></div><br></div>`
       })
       mapx += Number(obj.mapx)
@@ -47,7 +47,7 @@ export default class ListMap extends React.Component {
     let mapContainer = document.getElementById('map'), 
         mapOption = { 
         center: new window.kakao.maps.LatLng(mapy / list.length, mapx / list.length), 
-        level: 6 
+        level: 9
         };
 
     let map = new window.kakao.maps.Map(mapContainer, mapOption);
@@ -82,6 +82,7 @@ export default class ListMap extends React.Component {
         content: content,
         yAnchor: 1 
     });
+    console.log(idx, customOverlay)
       let infowindow = new window.kakao.maps.InfoWindow({
         content: ele.content 
       })

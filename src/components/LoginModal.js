@@ -30,11 +30,11 @@ class LoginModal extends Component {
 
   handleLogin() {
     const { loginHandler, close } = this.props;
-    
+
     if (!(this.state.loginId && this.state.password)) {
       this.setState({ errorMessage: '아이디와 비밀번호를 모두 채워주세요.' })
     } else {
-      axios.post('http://localhost:4000/user/login',
+      axios.post(`${process.env.REACT_APP_URL}/user/login`,
         { loginId: this.state.loginId, password: SHA256(this.state.password) },
         { headers: { "Content-Type": "application/json" } })
         .then(res => {
@@ -47,8 +47,8 @@ class LoginModal extends Component {
     }
   }
   async googleOauth() {
-    const googleoAuthurl = `https://accounts.google.com/o/oauth2/auth?client_id=${process.env.REACT_APP_GOOGLE_CLIENT_ID}&redirect_uri=${process.env.REACT_APP_GOOGLE_REDIRECT_URI}&response_type=code&scope=https://www.googleapis.com/auth/userinfo.profile email`
-
+    const googleoAuthurl = `https://accounts.google.com/o/oauth2/auth?client_id=${process.env.REACT_APP_GOOGLE_CLIENT_ID}&redirect_uri=${process.env.REACT_APP_GOOGLE_REDIRECT_URI_DP}&response_type=code&scope=https://www.googleapis.com/auth/userinfo.profile email`
+    
     window.location.assign(googleoAuthurl)
   }
 
@@ -56,9 +56,14 @@ class LoginModal extends Component {
     if (!window.Kakao.isInitialized()) {
       window.Kakao.init(process.env.REACT_APP_KAKAO_JSKEY)
     }
-    const kakaoAuthurl = `https://kauth.kakao.com/oauth/authorize?client_id=${process.env.REACT_APP_KAKAO_RESTKEY}&redirect_uri=${process.env.REACT_APP_KAKAO_REDIRECT}&response_type=code`
+    const kakaoAuthurl = `https://kauth.kakao.com/oauth/authorize?client_id=${process.env.REACT_APP_KAKAO_RESTKEY}&redirect_uri=${process.env.REACT_APP_KAKAO_REDIRECT_DP}&response_type=code`
     window.location.assign(kakaoAuthurl)
   }
+
+  componentDidMount() {
+    this.setState({ errorMessage: null })
+  }
+
   render() {
     const { close } = this.props;
     const { errorMessage } = this.state;
@@ -68,7 +73,8 @@ class LoginModal extends Component {
         <div className="loginModal">
           <span className="btnClose" onClick={close}>&times;</span>
           <div className="loginModalContents" >
-            {errorMessage ? <div className="LMerrMsg">{errorMessage}</div> : null}
+            <div>로그인</div>
+            {errorMessage ? <div>{errorMessage}</div> : null}
             <input
               className="email"
               type="text"

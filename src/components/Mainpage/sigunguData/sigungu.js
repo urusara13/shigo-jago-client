@@ -28,11 +28,9 @@ const sigungu = [{
   ]}, {
   si: {name: '인천', value: 2}, 
   gungu: [
-    {name: '강화군', value: 1}, 
     {name: '계양구', value: 2},
     {name: '미추홀구', value: 3},
     {name: '남동구', value: 4},
-    {name: '동구', value: 5},
     {name: '부평구', value: 6},
     {name: '서구', value: 7},
     {name: '연수구', value: 8},
@@ -67,7 +65,6 @@ const sigungu = [{
   ]}, {
   si: {name: '부산', value: 6}, 
   gungu: [
-    {name: '강서구', value: 1}, 
     {name: '금정구', value: 2},
     {name: '기장군', value: 3},
     {name: '남구', value: 4},
@@ -89,7 +86,6 @@ const sigungu = [{
     {name: '중구', value: 1}, 
     {name: '남구', value: 2},
     {name: '동구', value: 3},
-    {name: '북구', value: 4},
     {name: '울주군', value: 5},
   ]}, {
   si: {name: '세종특별자치시', value: 8}, 
@@ -103,8 +99,6 @@ const sigungu = [{
     {name: '과천시', value: 3},
     {name: '광명시', value: 4},
     {name: '광주시', value: 5},
-    {name: '구리시', value: 6},
-    {name: '군포시', value: 7},
     {name: '김포시', value: 8},
     {name: '남양주시', value: 9},
     {name: '동두천시', value: 10},
@@ -127,7 +121,6 @@ const sigungu = [{
     {name: '파주시', value: 27},
     {name: '평택시', value: 28},
     {name: '포천시', value: 29},
-    {name: '하남시', value: 30},
     {name: '화성시', value: 31},
   ]}, {
   si: {name: '강원도', value: 32}, 
@@ -142,11 +135,9 @@ const sigungu = [{
     {name: '영월군', value: 8},
     {name: '원주시', value: 9},
     {name: '인제군', value: 10},
-    {name: '정선군', value: 11},
     {name: '철원군', value: 12},
     {name: '춘천시', value: 13},
     {name: '태백시', value: 14},
-    {name: '평창군', value: 15},
     {name: '홍천군', value: 16},
     {name: '화천군', value: 17},
     {name: '횡성군', value: 18},
@@ -157,14 +148,9 @@ const sigungu = [{
     {name: '단양군', value: 2},
     {name: '보은군', value: 3},
     {name: '영동군', value: 4},
-    {name: '옥천군', value: 5},
     {name: '음성군', value: 6},
     {name: '제천시', value: 7},
-    {name: '진천군', value: 8},
-    {name: '청원군', value: 9},
-    {name: '청주시', value: 10},
-    {name: '충주시', value: 11},
-    {name: '증평군', value: 12},
+    {name: '충주시', value: 11}
   ]}, {
   si: {name: '충청남도', value: 34}, 
   gungu: [
@@ -181,21 +167,18 @@ const sigungu = [{
     {name: '청양군', value: 13},
     {name: '태안군', value: 14},
     {name: '홍성군', value: 15},
-    {name: '계룡시', value: 16},
   ]}, {
   si: {name: '경상북도', value: 35}, 
   gungu: [
     {name: '경산시', value: 1}, 
     {name: '경주시', value: 2},
     {name: '고령군', value: 3},
-    {name: '구미시', value: 4},
     {name: '군위군', value: 5},
     {name: '김천시', value: 6},
     {name: '문경시', value: 7},
     {name: '봉화군', value: 8},
     {name: '상주시', value: 9},
     {name: '성주군', value: 10},
-    {name: '안동시', value: 11},
     {name: '영덕군', value: 12},
     {name: '영양군', value: 13},
     {name: '영주시', value: 14},
@@ -216,19 +199,15 @@ const sigungu = [{
     {name: '고성군', value: 3},
     {name: '김해시', value: 4},
     {name: '남해군', value: 5},
-    {name: '마산시', value: 6},
     {name: '밀양시', value: 7},
     {name: '사천시', value: 8},
-    {name: '산청군', value: 9},
     {name: '양산시', value: 10},
     {name: '의령군', value: 12},
     {name: '진주시', value: 13},
-    {name: '진해시', value: 14},
     {name: '창녕군', value: 15},
     {name: '창원시', value: 16},
     {name: '통영시', value: 17},
     {name: '하동군', value: 18},
-    {name: '함안군', value: 19},
     {name: '함양군', value: 20},
     {name: '합천군', value: 21},
   ]}, {
@@ -251,7 +230,6 @@ const sigungu = [{
   ]}, {
   si: {name: '전라남도', value: 38}, 
   gungu: [
-    {name: '강진군', value: 1}, 
     {name: '고흥군', value: 2},
     {name: '곡성군', value: 3},
     {name: '광양시', value: 4},
@@ -265,7 +243,6 @@ const sigungu = [{
     {name: '신안군', value: 12},
     {name: '여수시', value: 13},
     {name: '영광군', value: 16},
-    {name: '영암군', value: 17},
     {name: '완도군', value: 18},
     {name: '장성군', value: 19},
     {name: '장흥군', value: 20},
@@ -276,8 +253,6 @@ const sigungu = [{
   ]}, {
   si: {name: '제주도', value: 39}, 
   gungu: [
-    {name: '남제주군', value: 1}, 
-    {name: '북제주군', value: 2},
     {name: '서귀포시', value: 3},
     {name: '제주시', value: 4},
   ]}

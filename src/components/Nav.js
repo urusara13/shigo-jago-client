@@ -25,7 +25,7 @@ class Nav extends Component {
     const authorizationCode = url.searchParams.get('code')
 
     if (authorizationCode && (url.pathname === "/google" || url.pathname === "/google/auth")) {
-      const getGoogleToken = await axios.post(`http://localhost:4000/social/google/callback`, {
+      const getGoogleToken = await axios.post(`${process.env.REACT_APP_URL}/social/google/callback`, {
         authorizationCode: authorizationCode,
         isDelete: false,
         pathname: url.pathname
@@ -35,7 +35,7 @@ class Nav extends Component {
 
     else if(authorizationCode && url.pathname === "/google/mypage") {
       try{
-        const getGoogleToken = await axios.post(`http://localhost:4000/social/google/callback`, {
+        const getGoogleToken = await axios.post(`${process.env.REACT_APP_URL}/social/google/callback`, {
         authorizationCode: authorizationCode,
         isDelete: true
       })
@@ -48,7 +48,7 @@ class Nav extends Component {
     }
 
     if (authorizationCode && (url.pathname === "/" || url.pathname === '/kakao')) {
-      const getkakaoToken = await axios.post('http://localhost:4000/social/kakao/callback', {
+      const getkakaoToken = await axios.post(`${process.env.REACT_APP_URL}/social/kakao/callback`, {
         authorizationCode: authorizationCode,
         isDelete: false,
         pathname: url.pathname
@@ -56,7 +56,7 @@ class Nav extends Component {
       kakaoToken(getkakaoToken.data.data.access_token, url.pathname)
     }
     else if (authorizationCode && url.pathname === "/mypage") {
-      const getkakaoToken = await axios.post('http://localhost:4000/social/kakao/callback', {
+      const getkakaoToken = await axios.post(`${process.env.REACT_APP_URL}/social/kakao/callback`, {
         authorizationCode: authorizationCode,
         isDelete: true
       })

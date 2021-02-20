@@ -3,8 +3,10 @@ import { Route , withRouter } from "react-router-dom";
 import Search from './Search'
 import ResultList from '../ResultList/ResultList'
 import Chat from './Chat'
+import Game from './Game'
 import { chatIcon } from '../../images/resources'
-
+import logo from '../../images/11.png'
+let arr
 class Mainpage extends Component {
   constructor(props) {
     super(props);
@@ -13,7 +15,8 @@ class Mainpage extends Component {
         adult: null,
         child: null
       },
-      isChat: false
+      isChat: false,
+      isGame: false
     }
     this.setReservation = this.setReservation.bind(this)
   }
@@ -29,7 +32,7 @@ class Mainpage extends Component {
 
   render() {
     const { isLogin } = this.props;
-    const { reservation, isChat } = this.state
+    const { reservation, isChat, isGame } = this.state
     
     return(
       <div>
@@ -44,9 +47,12 @@ class Mainpage extends Component {
         render={() => (
           <Search setReservation={this.setReservation} isLogin={isLogin}/>
       )} />
-        <img src={chatIcon} alt={'kakaotalk'} className="chatter" style={{"float":"right", "width":"100px", "height": "100px", "position":"relative", "top":"850px", "left": "-100px"}} onClick={() => this.setState({isChat: !isChat})}>
+        <img src={chatIcon} alt={'kakaotalk'} className="chatter" style={{"width":"100px", "height": "100px", "position":"relative", "top":"850px", "left": "95%"}} onClick={() => this.setState({isChat: !isChat})}>
         </img>  
         <Chat isChat={isChat}/>
+        {/* <img src={logo} alt={'kakaotalk'} className="chatter" style={{"width":"100px", "height": "100px", "position":"relative", "top":"700px", "left": "88%"}} onClick={() => this.setState({isGame: !isGame})}>
+        </img>  
+        <Game isGame={isGame}/> */}
       </div>
     ) 
   }

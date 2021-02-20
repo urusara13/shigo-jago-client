@@ -27,7 +27,7 @@
     ],
     "rules": {
       "no-unused-vars": "off",
-      "no-array-constructor" : "off"
+      "no-array-constructor": "off"
     }
   },
   "browserslist": {
