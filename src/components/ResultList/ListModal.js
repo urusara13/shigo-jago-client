@@ -22,7 +22,7 @@ class ListModal extends Component {
   async getDetail() {
     try{    
       const { contentid, contenttypeid } = this.props.list
-      const detail = await axios.post('http://localhost:4000/search/detail', {
+      const detail = await axios.post(`${process.env.REACT_APP_URL}/search/detail`, {
         contentid: contentid,
         contenttypeid: contenttypeid
       })
@@ -35,7 +35,7 @@ class ListModal extends Component {
     }
       catch {
         const { contentid, contenttypeid } = this.props.list
-        const detail = await axios.post('http://localhost:4000/search/detail', {
+        const detail = await axios.post(`${process.env.REACT_APP_URL}/search/detail`, {
           contentid: contentid,
           contenttypeid: contenttypeid
         })
@@ -52,7 +52,7 @@ class ListModal extends Component {
     
     try{
       const { contentid, contenttypeid } = this.props.list
-      const review = await axios.post('http://localhost:4000/detail/review',{ 
+      const review = await axios.post(`${process.env.REACT_APP_URL}/detail/review`,{ 
         contentId: contentid,
         contenttypeId: contenttypeid
       },{
@@ -62,7 +62,7 @@ class ListModal extends Component {
     }
     catch {
       const { contentid, contenttypeid } = this.props.list
-      const review = await axios.post('http://localhost:4000/detail/review',{ 
+      const review = await axios.post(`${process.env.REACT_APP_URL}/detail/review`,{ 
         contentId: contentid,
         contenttypeId: contenttypeid
       },{

@@ -11,7 +11,7 @@ class AuthGoogleModal extends Component {
   }
 
   authAccount() {
-    const googleoAuthurl = `https://accounts.google.com/o/oauth2/auth?client_id=${process.env.REACT_APP_GOOGLE_CLIENT_ID}&redirect_uri=${process.env.REACT_APP_GOOGLE_REDIRECT_URI_AUTH}&response_type=code&scope=https://www.googleapis.com/auth/userinfo.profile email`
+    const googleoAuthurl = `https://accounts.google.com/o/oauth2/auth?client_id=${process.env.REACT_APP_GOOGLE_CLIENT_ID}&redirect_uri=${process.env.REACT_APP_GOOGLE_REDIRECT_URI_DP_AUTH}&response_type=code&scope=https://www.googleapis.com/auth/userinfo.profile email`
     window.location.assign(googleoAuthurl)
   }
   

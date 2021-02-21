@@ -83,7 +83,7 @@ class SignUpModal extends React.Component {
         }
         else {
             axios.post(
-                'http://localhost:4000/user/signup',
+                `${process.env.REACT_APP_URL}/user/signup`,
                 {
                     loginId: this.state.email,
                     name: this.state.name,
@@ -92,7 +92,6 @@ class SignUpModal extends React.Component {
                 },
             )
                 .then((response) => {
-                    //console.log(response)
                     if (response.status === 201) {
                         alert('🙇신규가입에 성공하셨습니다!🙏')
                     }
@@ -119,7 +118,7 @@ class SignUpModal extends React.Component {
         }
 
         else {
-          axios.post('http://localhost:4000/user/signup', {
+          axios.post(`${process.env.REACT_APP_URL}/user/signup`, {
               loginId: this.state.email,
               name: kakaoUserData.properties.nickname,
               password: SHA256(this.state.password),
@@ -154,7 +153,7 @@ class SignUpModal extends React.Component {
         }
         else {
             try {
-                const signUp = await axios.post('http://localhost:4000/user/signup', {
+                const signUp = await axios.post(`${process.env.REACT_APP_URL}/user/signup`, {
                     loginId: this.state.email,
                     name: googleUserData.name,
                     password: SHA256(this.state.password),
@@ -404,7 +403,7 @@ class SignUpModal extends React.Component {
                                         type='submit'
                                         onClick={this.googleSignup}
                                     >
-                                        회원가입2
+                                        회원가입
                             </button>
                                     {<div className="alert-box">{this.state.errorMessage}</div>}
                                 </form>

@@ -37,7 +37,7 @@ class EditReviewlModal extends Component  {
     if(!newtitle) {
       body.title = title
     }
-    axios.post('http://localhost:4000/mypage/writereview', body,
+    axios.post(`${process.env.REACT_APP_URL}/mypage/writereview`, body,
     { headers: {"Authorization": `Bearer ${accessToken}`}})
     .then(res => {
       if(res.status === 201) {
@@ -66,7 +66,6 @@ class EditReviewlModal extends Component  {
       //요소가 파라메터로 넘어오면 별점 클릭, 없으면 저장 후 전체 초기화
       if (rateobj) {
           newthis.setState({rate: newrate})
-          console.log('rate: ', newthis.state.rate)
           rateobj.querySelector('.ratefill').style.width = parseInt(newrate * 30) + 'px'; // 현재 별점 갯수 채색
           checks = rateobj.querySelectorAll('.rate_radio'); // 넘어온 요소 하위의 라디오버튼만 선택
       } else {

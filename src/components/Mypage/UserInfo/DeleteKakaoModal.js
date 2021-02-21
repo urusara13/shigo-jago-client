@@ -1,4 +1,3 @@
-import "./deleteKakaoGoogleModal.css"
 import React, { Component } from "react"
 import { withRouter } from "react-router"
 require('dotenv').config();
@@ -14,7 +13,7 @@ class DeleteKakaoModal extends Component {
   }
 
   async deleteAccount() {
-    window.open(`https://kauth.kakao.com/oauth/authorize?client_id=${process.env.REACT_APP_KAKAO_RESTKEY}&redirect_uri=${process.env.REACT_APP_KAKAO_REDIRECT_DELETE}&response_type=code`, "_self")
+    window.open(`https://kauth.kakao.com/oauth/authorize?client_id=${process.env.REACT_APP_KAKAO_RESTKEY}&redirect_uri=${process.env.REACT_APP_KAKAO_REDIRECT_DP_DELETE}&response_type=code`, "_self")
   }
  
   render() {
@@ -24,7 +23,7 @@ class DeleteKakaoModal extends Component {
         {isOpen ? 
           (<div className='DKMmodalBG'>
              <div className='DKMctn'>
-               <div className='DKMcontent'>카카오 계정을</div> 
+             <div className='DKMcontent'>카카오 계정을</div> 
                <div className='DKMcontent'>연결 해제하시겠습니까?</div>
                <div className='btnDKMctn'>
                <button className='btnDKM' onClick={this.deleteAccount}>예</button>

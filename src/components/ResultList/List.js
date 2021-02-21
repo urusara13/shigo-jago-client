@@ -46,7 +46,7 @@ class List extends Component {
     try{
       const reservation = JSON.parse(localStorage.getItem("reservation"));
       
-      const hotelList = await axios.post('http://localhost:4000/search/list', {
+      const hotelList = await axios.post(`${process.env.REACT_APP_URL}/search/list`, {
         areacode: reservation.areacode,
         sigungucode: reservation.sigungucode
       },{
@@ -63,8 +63,12 @@ class List extends Component {
         }
       })
 
+      const newData = await hotelList.data.data.filter((ele) => (
+        (ele.title === "고추잠자리" || ele.title === "꼬뜨도르 호텔" || ele.title === "나이스호텔" || ele.title === "더럭펜션") ? false : true
+      ))
+      
       this.setState({
-        list: hotelList.data.data
+        list: newData
       })
     }
     

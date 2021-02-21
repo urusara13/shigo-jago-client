@@ -52,7 +52,7 @@ class UserEdit extends Component {
       if(!password) delete newUserInfo.password
       if(password) newUserInfo.password = SHA256(password)
 
-      axios.post('http://localhost:4000/mypage/useredit', newUserInfo,
+      axios.post(`${process.env.REACT_APP_URL}/mypage/useredit`, newUserInfo,
       { headers: {"Authorization": `Bearer ${accessToken}`} })
       .then(this.setState({ 
         name: null,

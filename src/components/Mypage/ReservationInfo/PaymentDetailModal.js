@@ -20,11 +20,10 @@ class PaymentDetailModal extends Component {
   componentDidMount() {
     const { accessToken, reservationinfo } = this.props;
 
-    axios.post('http://localhost:4000/mypage/paymentinfo',
+    axios.post(`${process.env.REACT_APP_URL}/mypage/paymentinfo`,
       { reservationId: reservationinfo.id },
       { headers: {"Authorization": `Bearer ${accessToken}`}})
     .then(res => {
-      console.log(res.data.data)
       this.setState({ paymentDetail: res.data.data }) })
   }
 

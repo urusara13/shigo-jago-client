@@ -16,7 +16,7 @@ class DeleteUserModal extends Component {
   deleteAccount() {
     const { accessToken } = this.props;
 
-    axios.post('http://localhost:4000/mypage/deleteuser',
+    axios.post(`${process.env.REACT_APP_URL}/mypage/deleteuser`,
       { }, 
       { headers: {"Authorization": `Bearer ${accessToken}`}})
     .then(this.setState({ message: '이용해주셔서 감사합니다!' }))
