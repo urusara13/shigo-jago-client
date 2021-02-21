@@ -47,7 +47,7 @@ class App extends React.Component {
       .then(async obj => {
         newthis.setState({
           googleUserData: obj
-        })"area bare arena mare"
+        })
         if (pathname === "/google/auth") {
           await axios.post(`${process.env.REACT_APP_URL}/user/google`, {
             socialEmail: obj.email,
