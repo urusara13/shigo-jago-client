@@ -25,13 +25,14 @@
 
 ![](https://img.shields.io/badge/BACK-EC2-FF9900?style=for-the-badge&logo=) ![](https://img.shields.io/badge/BACK-RDS-FF9900?style=for-the-badge&logo=) ![](https://img.shields.io/badge/BACK-S3-FF9900?style=for-the-badge&logo=)
 
-![](https://img.shields.io/badge/BACK-Express-092E20?style=for-the-badge)
+![](https://img.shields.io/badge/BACK-Express-gold?style=for-the-badge)
 
-![](https://img.shields.io/badge/BACK-sequelize-092E20?style=for-the-badge&logo=sequelize)
+![](https://img.shields.io/badge/BACK-sequelize-deepskyblue?style=for-the-badge&logo=sequelize)
 
 ## COMMON
 
-![](https://img.shields.io/badge/FRONT/Back-axios-white?style=for-the-badge) ![](https://img.shields.io/badge/FRONT/Back-dotenv-white?style=for-the-badge)
+![](https://img.shields.io/badge/FRONT/Back-axios-purple?style=for-the-badge) 
+![](https://img.shields.io/badge/FRONT/Back-dotenv-gray?style=for-the-badge)
 
 <img width="1781" alt="TechStack" src="https://images.velog.io/images/unow30/post/6f584ab5-2ac3-421f-b2bd-aa85a8c29e31/%ED%99%94%EB%A9%B4%20%EC%BA%A1%EC%B2%98%202021-01-01%20215107.png">
 
