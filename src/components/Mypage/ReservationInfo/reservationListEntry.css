@@ -1,0 +1,39 @@
+.RLEctn {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border: 1px solid rgb(204,204,204);
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px;
+    position: relative;
+}
+.RLEctn:hover {
+    border: 1px solid rgb(123,123,253);
+}
+.RLEctnDetail {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.RLEtitle {
+    padding-right:5px;
+    border-radius: 10px;
+    color: rgb(123,123,253);
+}
+.RLEcontent {
+    padding-right: 30px;
+}
+.btnRLEDetail {
+    background-color: rgb(234,234,234);
+    padding: 8px;
+    margin-left: 20px;
+    font-size: 85%;
+    border-radius: 10px;
+    transition: background-color 0.5s
+}
+
+.btnRLEDetail:hover {
+    background-color: rgb(123,123,253);
+    color: white;
+}

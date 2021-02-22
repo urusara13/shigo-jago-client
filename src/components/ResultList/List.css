@@ -1,0 +1,138 @@
+:root {
+    --grey-med: #ddd;
+    --grey-light: #f7f7f7;
+    --grey-text-light: #717171;
+    --grey-text-dark: #222;
+    --pink: #ff385c;
+}
+
+.list__main {
+    position: relative;
+    padding-top: 80px;
+    padding-bottom: 80px;
+    background: white;
+}
+
+.list__main__content {
+    min-height: calc(100vh - 80px);
+    width: 840px;
+    padding: 60px 24px 0;
+}
+
+.list__main__content h1 {
+    margin-top: 18px;
+    font-size: 34px;
+}
+
+.list__main__scarcity {
+    display: flex;
+    align-items: center;
+    padding-top: 30px;
+    padding-bottom: 20px;
+}
+
+.listings__details {
+    display: flex;
+    justify-content: space-between;
+    margin-top: auto;
+}
+
+.listings__price {
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+}
+
+.listings__price__night {
+    font-size: 18px;
+}
+
+.listings__price__night span {
+    color: #484848;
+}
+
+.listings__price__total {
+    font-size: 14px;
+    color: var(--grey-text-light);
+    text-decoration: underline;
+    margin-top: 2px;
+}
+
+.listings__rating {
+    display: flex;
+    margin-top: auto;
+}
+
+.listings__rating img {
+    width: 14px;
+    margin-right: 4px;
+}
+
+.listings__rating span span {
+    color: var(--grey-text-light);
+}
+
+.listings__address {
+    padding-top: 15px;
+}
+
+.listings__address span {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.listings__item {
+    border-top: 1px solid #ebebeb;
+    padding: 24px 0;
+    display: flex;
+}
+
+.listings__item:hover {
+    opacity: 0.7;
+}
+
+.listings__image {
+    width: 300px;
+    height: 200px;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+}
+
+.listings__image img {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+}
+
+.listings__title {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.listings__title h2 {
+    font-size: 18px;
+    color: var(--grey-text-dark);
+    margin: 5px 0 15px;
+    font-weight: 400;
+}
+
+.listings__content {
+    width: calc(100% - 300px);
+    padding-left: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.separator {
+    width: 32px;
+    height: 1px;
+    background: var(--grey-med);
+}
+
+#map {
+  left: 45%;
+  display: flex;
+  position: absolute;
+}

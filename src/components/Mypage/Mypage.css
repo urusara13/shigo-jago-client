@@ -1,0 +1,36 @@
+.MPmain {
+    position: relative;
+    padding-top: 60px;
+    padding-bottom: 80px;
+    padding-right: 30px;
+    padding-left: 30px;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 15px;
+    margin: 200px;
+    margin-top: 0;
+    margin-bottom: 120px;
+}
+ul.menu  {
+    list-style: none;
+    display: flex;
+    padding: 20px;
+    padding-top: 0;
+    width: 300px;
+    justify-content: center;
+    border-bottom: 1px solid var(--grey-med);
+}
+.UIlink {
+    text-decoration: none;
+    color: grey;
+    padding: 20px;
+    padding-top: 0px;
+}
+.UIlink:hover {
+    color: rgb(123,123,253);
+}
+
+
+
