@@ -1,4 +1,4 @@
-# 🏨 Shigo_Jago
+# 🏨 쉬고자고
 <img src=https://images.velog.io/images/unow30/post/afbafee0-755e-4f7a-ad94-d829525a0fd2/sgjg.5d67b1ad.png width=300 height=300 />
 
 ✅ 
@@ -8,6 +8,7 @@
 * 배포 사이트 : <a href="http://shigojago.icu/">http://shigojago.icu/</a>
 * 클라이언트 : <a href="https://github.com/codestates/shigo-jago-client">https://github.com/codestates/shigo-jago-client</a>
 * 서버 : <a href="https://github.com/codestates/shigo-jago-server">https://github.com/codestates/shigo-jago-server</a>
+ <br>
 
 
 # 🕵🏼 어떤 기술이 사용되었나요?
