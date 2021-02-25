@@ -82,7 +82,7 @@ export default class ListMap extends React.Component {
         content: content,
         yAnchor: 1 
     });
-    console.log(idx, customOverlay)
+    
       let infowindow = new window.kakao.maps.InfoWindow({
         content: ele.content 
       })
