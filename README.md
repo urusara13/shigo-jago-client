@@ -10,6 +10,30 @@
 - 서버 : <a href="https://github.com/codestates/shigo-jago-server">https://github.com/codestates/shigo-jago-server</a>
   <br>
 
+# 🎥 기능 시연
+
+### 회원가입 및 로그인
+
+[![구동 영상](/readmeAssets/1.signin.gif)]
+
+### 숙박업체 검색
+
+[![구동 영상](/readmeAssets/2.search.gif)]
+
+### 숙박업체 예약
+
+[![구동 영상](/readmeAssets/3.reservation.gif)]
+
+### 예약 내역 확인 및 리뷰 작성
+
+[![구동 영상](/readmeAssets/4.writereview.gif)]
+
+### 리뷰 확인 및 수정
+
+[![구동 영상](/readmeAssets/5.checkreview.gif)]
+
+### 검색
+
 # 🕵🏼 어떤 기술이 사용되었나요?
 
 ## FRONT
@@ -109,12 +133,6 @@
     <tr>
   </tbody>
 </table>
-
-# 기능 시연
-
-### 회원가입 및 로그인
-
-[![구동 영상](/readmeAssets/signin.gif)](https://youtu.be/h_Q0ey4-VqI)
 
 # For project details
 
