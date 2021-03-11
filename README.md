@@ -14,39 +14,39 @@
 
 ### 회원가입 및 로그인
 
-[![구동 영상](/readmeAssets/1.signin.gif)]
+![구동 영상](/readmeAssets/1.signin.gif)
 
 ### 숙박업체 검색
 
-[![구동 영상](/readmeAssets/2.search.gif)]
+![구동 영상](/readmeAssets/2.search.gif)
 
 ### 숙박업체 예약
 
-[![구동 영상](/readmeAssets/3.reservation.gif)]
+![구동 영상](/readmeAssets/3.reservation.gif)
 
 ### 예약 내역 확인 및 리뷰 작성
 
-[![구동 영상](/readmeAssets/4.writereview.gif)]
+![구동 영상](/readmeAssets/4.writereview.gif)
 
 ### 리뷰 확인 및 수정
 
-[![구동 영상](/readmeAssets/5.checkreview.gif)]
+![구동 영상](/readmeAssets/5.checkreview.gif)
 
 ### 회원정보 수정 및 소셜계정 연동
 
-[![구동 영상](/readmeAssets/6.edituser.gif)]
+![구동 영상](/readmeAssets/6.edituser.gif)
 
 ### 소셜 계정 연동 해지 및 회원 탈퇴
 
-[![구동 영상](/readmeAssets/7.deleteuser.gif)]
+![구동 영상](/readmeAssets/7.deleteuser.gif)
 
 ### 사이트맵
 
-[![구동 영상](/readmeAssets/8.sitemap.gif)]
+![구동 영상](/readmeAssets/8.sitemap.gif)
 
 ### 실시간 채팅
 
-[![구동 영상](/readmeAssets/9.chatting.gif)]
+![구동 영상](/readmeAssets/9.chatting.gif)
 
 # 🕵🏼 어떤 기술이 사용되었나요?
 
